@@ -1,6 +1,7 @@
 import React from 'react';
 import { Star, Users, Clock } from 'lucide-react';
 
+
 export default function Stats() {
   const stats = [
     {

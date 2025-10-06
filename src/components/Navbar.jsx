@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, BookOpen } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isFormationsOpen, setIsFormationsOpen] = useState(false);
   const [closeTimeout, setCloseTimeout] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +16,11 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+ // Fonction pour vérifier si le lien est actif
+  const isActiveLink = (path) => {
+    return location.pathname === path;
+  };
 
   const handleMouseEnter = () => {
     if (closeTimeout) {
@@ -44,9 +51,17 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-white hover:text-orange-400 transition-colors font-medium">
+           
+            <Link 
+              to="/" 
+              className={`transition-colors duration-200 font-meduim ${
+                isActiveLink('/') 
+                  ? 'text-orange-400 font-bold' 
+                  : 'text-white hover:text-orange-400'
+              }`}
+            >
               Accueil
-            </a>
+            </Link>
             
             {/* Formations Dropdown */}
             <div 
@@ -54,13 +69,17 @@ export default function Navbar() {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <a 
-                href="/formations" 
-                className="text-white hover:text-orange-400 transition-colors font-medium flex items-center space-x-1 cursor-pointer"
+              <Link
+                to="/formations" 
+                 className={`flex items-center transition-colors duration-200 font-meduim ${
+                isActiveLink('/formations') 
+                  ? 'text-orange-400 font-bold' 
+                  : 'text-white hover:text-orange-400'
+              }`}
               >
                 <span>Nos Formations</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isFormationsOpen ? 'rotate-180' : ''}`} />
-              </a>
+               </Link>
               
               {/* Dropdown Menu */}
               {isFormationsOpen && (
@@ -76,28 +95,38 @@ export default function Navbar() {
                       <h4 className="text-purple-700 font-bold text-sm mb-4 uppercase">Informatique</h4>
                       <ul className="space-y-3">
                          <li>
-                          <a 
-                            href="/formation-wordpress" 
+                         
+                          <Link
+                           to="/formation-wordpress" 
                             className="text-gray-700 hover:text-orange-500 transition-colors block"
+                          
                           >
-                            WordPress
-                          </a>
+                          WordPress
+                          
+                          </Link>
                         </li>
                         <li>
-                          <a 
-                            href="/formation-cao" 
+                           <Link
+                           to="/formation-cao" 
                             className="text-gray-700 hover:text-orange-500 transition-colors block"
+                          
                           >
-                            CAO
-                          </a>
+                          CAO
+                          
+                          </Link>
+                         
                         </li>
                         <li>
-                          <a 
-                            href="/formation-pao" 
+                            <Link
+                           to="/formation-pao" 
                             className="text-gray-700 hover:text-orange-500 transition-colors block"
+                          
                           >
-                            PAO
-                          </a>
+                           PAO
+                          
+                          </Link>
+
+                          
                         </li>
                       </ul>
                     </div>
@@ -107,12 +136,14 @@ export default function Navbar() {
                       <h4 className="text-orange-700 font-bold text-sm mb-4 uppercase">Bureautique</h4>
                       <ul className="space-y-3">
                         <li>
-                          <a 
-                            href="/formation-excel" 
+                          <Link
+                          to="/formation-excel" 
                             className="text-gray-700 hover:text-orange-500 transition-colors block"
+                          
                           >
-                            Excel
-                          </a>
+                          Excel
+                          </Link>
+                         
                         </li>
                        
                       </ul>
@@ -122,16 +153,39 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            
-            <a href="/apropos" className="text-white hover:text-orange-400 transition-colors font-medium">
+            <Link 
+              to="/" 
+              className={`transition-colors duration-200 font-meduim ${
+                isActiveLink('/apropos') 
+                  ? 'text-orange-400 font-bold' 
+                  : 'text-white hover:text-orange-400'
+              }`}
+            >
               Qui Sommes-Nous ?
-            </a>
-            <a href="/contact" className="text-white hover:text-orange-400 transition-colors font-medium">
-              Contact
-            </a>
-            <a href="/avis" className="text-white hover:text-orange-400 transition-colors font-medium">
-              Nos Avis Clients
-            </a>
+            </Link>
+             <Link 
+              to="/" 
+              className={`transition-colors duration-200 font-meduim ${
+                isActiveLink('/contact') 
+                  ? 'text-orange-400 font-bold' 
+                  : 'text-white hover:text-orange-400'
+              }`}
+            >
+             Contact
+            </Link>
+            
+            <Link 
+              to="/" 
+              className={`transition-colors duration-200 font-meduim ${
+                isActiveLink('/avis') 
+                  ? 'text-orange-400 font-bold' 
+                  : 'text-white hover:text-orange-400'
+              }`}
+            >
+            Nos Avis Clients
+            </Link>
+            
+            
           </div>
 
           {/* CTA Button Desktop */}
