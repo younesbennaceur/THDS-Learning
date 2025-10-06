@@ -14,7 +14,7 @@ export default function Features() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/public/bg.webm" type="video/webm" />
+          <source src="bg.webm" type="video/webm" />
           Votre navigateur ne supporte pas la vidéo.
         </video>
         {/* Overlay noir */}
