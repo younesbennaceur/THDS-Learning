@@ -30,36 +30,27 @@ export default function Footer() {
             <div className="space-y-3 text-blue-100">
               <p className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-1 text-orange-400" />
-                <span>73-75 Rue de la Plaine<br />75020 PARIS</span>
+                <span>73-75 Rue de la Plaine<br />93200 SAINT DENIS</span>
               </p>
               <p className="flex items-center space-x-2">
                 <Phone className="w-5 h-5 text-orange-400" />
-                <a href="tel:0647272740" className="hover:text-orange-400 transition-colors">
-                  06 47 27 27 40
+                <a href="tel:0609968595" className="hover:text-orange-400 transition-colors">
+                  06 09 96 85 95
                 </a>
               </p>
               <p className="flex items-center space-x-2">
                 <Mail className="w-5 h-5 text-orange-400" />
-                <a href="mailto:contact@thds-formation.fr" className="hover:text-orange-400 transition-colors">
-                  contact@thds-formation.fr
+                <a href="mailto:contact@thds.fr " className="hover:text-orange-400 transition-colors">
+                  contact@thds.fr 
                 </a>
               </p>
-              <div className="pt-4 space-y-2 text-sm">
-                <p><strong>SIRET :</strong> 915 081 640 00012</p>
-                <p className="leading-relaxed">
-                  <strong>Déclaration d'activité :</strong><br />
-                  enregistrée sous le numéro 11756539475 auprès de la DREETS de la région Île-de-France.
-                </p>
-                <p className="text-xs italic">
-                  Cet enregistrement ne vaut pas agrément de l'État.
-                </p>
-              </div>
+              
             </div>
 
             {/* Social Icons */}
             <div className="flex space-x-4 mt-6">
               <a 
-                href="mailto:contact@thds-formation.fr"
+                href="mailto:contact@thds.fr "
                 className="w-10 h-10 bg-white/10 hover:bg-orange-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
               >
                 <Mail className="w-5 h-5" />

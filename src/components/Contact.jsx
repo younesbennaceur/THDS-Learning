@@ -27,21 +27,21 @@ export default function Contact() {
     {
       icon: MapPin,
       title: "Adresse",
-      content: ["73-75 Rue de la Plaine", "75020 PARIS"],
+      content: ["5 Rue Pleyel", "93200 Saint-Denis"],
       color: "text-purple-600"
     },
     {
       icon: Phone,
       title: "Téléphone",
-      content: ["06 47 27 27 40"],
-      link: "tel:0647272740",
+      content: ["06 09 96 85 95"],
+      link: "tel:0609968595",
       color: "text-orange-500"
     },
     {
       icon: Mail,
       title: "Email",
-      content: ["contact@thds-formation.fr"],
-      link: "mailto:contact@thds-formation.fr",
+      content: ["contact@thds.fr "],
+      link: "mailto:contact@thds.fr ",
       color: "text-purple-600"
     },
     {
@@ -93,15 +93,15 @@ export default function Contact() {
             </h3>
             <p className="text-blue-600 mb-6">via le numéro suivant :</p>
             <a 
-              href="tel:0647272740"
-              className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold px-8 py-3 rounded-md  transition-all duration-300"
+              href="tel:0609968595"
+              className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold px-8 py-3 rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
-              06 47 27 27 40
+              06 09 96 85 95
             </a>
           </div>
 
           {/* Email Card */}
-          <div className="bg-white rounded-2xl shadow-md p-8 text-center  duration-300">
+          <div className="bg-white rounded-2xl shadow-md p-8 text-center  transition-shadow duration-300">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mb-6">
               <MessageSquare className="w-10 h-10 text-white" />
             </div>
@@ -110,10 +110,10 @@ export default function Contact() {
             </h3>
             <p className="text-blue-600 mb-6">laissez-nous un message .</p>
             <a 
-              href="mailto:contact@thds-formation.fr"
-              className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-8 py-3 rounded-md  duration-300"
+              href="mailto:contact@thds.fr "
+              className="inline-block bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-8 py-3 rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
-              contact@thds-formation.fr
+              contact@thds.fr 
             </a>
           </div>
 
@@ -240,7 +240,7 @@ export default function Contact() {
         {/* Map Section */}
         <div className="bg-white rounded-2xl shadow-md overflow-hidden mb-16">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.4686944444!2d2.3969!3d48.8659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66dc3c2c6c37f%3A0x8c3f8e3f8e3f8e3f!2s73%20Rue%20de%20la%20Plaine%2C%2075020%20Paris!5e0!3m2!1sfr!2sfr!4v1234567890"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.0!2d2.3606!3d48.9258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66a22b5555555%3A0x1234567890abcdef!2s5%20Rue%20Pleyel%2C%2093200%20Saint-Denis!5e0!3m2!1sfr!2sfr!4v1234567890"
             width="100%"
             height="450"
             style={{ border: 0 }}
@@ -251,10 +251,10 @@ export default function Contact() {
           
           <div className="p-8 bg-gray-50 text-center">
             <h4 className="text-xl font-bold text-gray-800 mb-4">Localisation</h4>
-            <p className="text-blue-600 font-medium text-lg mb-2">73-75 Rue de la Plaine</p>
-            <p className="text-blue-600 font-medium text-lg mb-6">75020 PARIS</p>
+            <p className="text-blue-600 font-medium text-lg mb-2">5 Rue Pleyel</p>
+            <p className="text-blue-600 font-medium text-lg mb-6">93200 Saint-Denis</p>
             <a 
-              href="https://www.google.com/maps/dir//73+Rue+de+la+Plaine,+75020+Paris"
+              href="https://www.google.com/maps/dir//5+Rue+Pleyel,+93200+Saint-Denis"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
