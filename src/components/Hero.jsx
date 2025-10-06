@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -9,13 +10,15 @@ export default function Hero() {
       title: "Votre Formation Entièrement En Ligne",
       subtitle: "THDS vous propose des formations 100% en ligne. L'avantage c'est que vous êtes chez vous sans contraintes de déplacement ou de temps.",
       cta: "Demander Un Devis",
-      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=800&fit=crop" // Formation en groupe
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=800&fit=crop", // Formation en groupe
+      link:"/contact"
     },
     {
       title: "Formations Certifiantes et Diplômantes",
       subtitle: "Obtenez des certifications reconnues et valorisez votre parcours professionnel avec nos programmes de formation certifiés.",
       cta: "Nos Formations",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=800&fit=crop" // Écran ordinateur
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=800&fit=crop", // Écran ordinateur
+      link:"/formations"
     }
   ];
 
@@ -72,9 +75,13 @@ export default function Hero() {
           </p>
 
           {/* CTA Button */}
+          <Link to={slides[currentSlide].link}>
           <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-10 py-4 text-lg rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
             {slides[currentSlide].cta}
           </button>
+          
+          </Link>
+          
 
         </div>
       </div>

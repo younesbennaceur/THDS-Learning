@@ -1,5 +1,6 @@
 import React from 'react';
 import { Monitor, Clock, Award } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Features() {
   return (
@@ -46,10 +47,8 @@ export default function Features() {
           Grâce à nos formateurs de qualité, THDS c'est la garantie d'une certification réussie.
         </p>
 
-        {/* CTA Button */}
-        <button className="bg-purple-950 hover:from-purple-700 hover:to-purple-800 text-white font-semibold px-10 py-4 text-lg rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-          DÉMO PLATEFORME
-        </button>
+       
+       
 
       </div>
 

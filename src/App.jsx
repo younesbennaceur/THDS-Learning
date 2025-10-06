@@ -8,6 +8,8 @@ import Excel from './pages/Excel'
 import Contact from './components/Contact'
 import Pao from './pages/Pao'
 import Cao from './pages/Cao'
+import AboutUs from './pages/AboutUs'
+import Avis from './pages/Avis'
 
 
 
@@ -23,6 +25,9 @@ function App() {
         <Route path='/formation-excel' element={<Excel />} />
         <Route path='/formation-pao' element={<Pao />} />
         <Route path='/formation-cao' element={<Cao />} />
+        <Route path='/apropos' element={<AboutUs />} />
+        <Route path='/avis' element={<Avis />} />
+
         
 
         

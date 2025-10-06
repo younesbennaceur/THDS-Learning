@@ -17,7 +17,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
- // Fonction pour vérifier si le lien est actif
+  // Fonction pour vérifier si le lien est actif
   const isActiveLink = (path) => {
     return location.pathname === path;
   };
@@ -41,12 +41,12 @@ export default function Navbar() {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       isScrolled ? 'bg-purple-950/95 backdrop-blur-md shadow-lg shadow-purple-900/50' : 'bg-transparent'
     }`}>
-      <div className=" px-4 sm:px-6 lg:px-24">
+      <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-24">
         <div className="flex justify-between items-center h-20">
           
           {/* Logo */}
-          <div className="">
-            <img className='w-22 h-22 ' src="/Logo.png" alt="" />
+          <div>
+            <img className='w-22 h-22' src="/Logo.png" alt="Logo" />
           </div>
 
           {/* Desktop Menu */}
@@ -54,7 +54,7 @@ export default function Navbar() {
            
             <Link 
               to="/" 
-              className={`transition-colors duration-200 font-meduim ${
+              className={`transition-colors duration-200 font-medium ${
                 isActiveLink('/') 
                   ? 'text-orange-400 font-bold' 
                   : 'text-white hover:text-orange-400'
@@ -71,15 +71,15 @@ export default function Navbar() {
             >
               <Link
                 to="/formations" 
-                 className={`flex items-center transition-colors duration-200 font-meduim ${
-                isActiveLink('/formations') 
-                  ? 'text-orange-400 font-bold' 
-                  : 'text-white hover:text-orange-400'
-              }`}
+                className={`flex items-center transition-colors duration-200 font-medium ${
+                  isActiveLink('/formations') 
+                    ? 'text-orange-400 font-bold' 
+                    : 'text-white hover:text-orange-400'
+                }`}
               >
                 <span>Nos Formations</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isFormationsOpen ? 'rotate-180' : ''}`} />
-               </Link>
+                <ChevronDown className={`w-4 h-4 ml-1 transition-transform duration-300 ${isFormationsOpen ? 'rotate-180' : ''}`} />
+              </Link>
               
               {/* Dropdown Menu */}
               {isFormationsOpen && (
@@ -94,39 +94,29 @@ export default function Navbar() {
                     <div className="bg-purple-50 p-6 border-r border-gray-200">
                       <h4 className="text-purple-700 font-bold text-sm mb-4 uppercase">Informatique</h4>
                       <ul className="space-y-3">
-                         <li>
-                         
+                        <li>
                           <Link
-                           to="/formation-wordpress" 
+                            to="/formation-wordpress" 
                             className="text-gray-700 hover:text-orange-500 transition-colors block"
-                          
                           >
-                          WordPress
-                          
+                            WordPress
                           </Link>
                         </li>
                         <li>
-                           <Link
-                           to="/formation-cao" 
+                          <Link
+                            to="/formation-cao" 
                             className="text-gray-700 hover:text-orange-500 transition-colors block"
-                          
                           >
-                          CAO
-                          
+                            CAO
                           </Link>
-                         
                         </li>
                         <li>
-                            <Link
-                           to="/formation-pao" 
+                          <Link
+                            to="/formation-pao" 
                             className="text-gray-700 hover:text-orange-500 transition-colors block"
-                          
                           >
-                           PAO
-                          
+                            PAO
                           </Link>
-
-                          
                         </li>
                       </ul>
                     </div>
@@ -137,15 +127,12 @@ export default function Navbar() {
                       <ul className="space-y-3">
                         <li>
                           <Link
-                          to="/formation-excel" 
+                            to="/formation-excel" 
                             className="text-gray-700 hover:text-orange-500 transition-colors block"
-                          
                           >
-                          Excel
+                            Excel
                           </Link>
-                         
                         </li>
-                       
                       </ul>
                     </div>
 
@@ -153,9 +140,10 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+
             <Link 
               to="/apropos" 
-              className={`transition-colors duration-200 font-meduim ${
+              className={`transition-colors duration-200 font-medium ${
                 isActiveLink('/apropos') 
                   ? 'text-orange-400 font-bold' 
                   : 'text-white hover:text-orange-400'
@@ -163,36 +151,37 @@ export default function Navbar() {
             >
               Qui Sommes-Nous ?
             </Link>
-             <Link 
+
+            <Link 
               to="/contact" 
-              className={`transition-colors duration-200 font-meduim ${
+              className={`transition-colors duration-200 font-medium ${
                 isActiveLink('/contact') 
                   ? 'text-orange-400 font-bold' 
                   : 'text-white hover:text-orange-400'
               }`}
             >
-             Contact
+              Contact
             </Link>
             
             <Link 
               to="/avis" 
-              className={`transition-colors duration-200 font-meduim ${
+              className={`transition-colors duration-200 font-medium ${
                 isActiveLink('/avis') 
                   ? 'text-orange-400 font-bold' 
                   : 'text-white hover:text-orange-400'
               }`}
             >
-            Nos Avis Clients
+              Nos Avis Clients
             </Link>
-            
-            
           </div>
 
           {/* CTA Button Desktop */}
           <div className="hidden md:block">
-            <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300">
-              Commencer Maintenant
-            </button>
+            <Link to="/formations">
+              <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300">
+                Commencer Maintenant
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -209,77 +198,87 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-purple-950/98 backdrop-blur-md border-t border-purple-800/50">
           <div className="px-4 pt-4 pb-6 space-y-3">
-            <a 
-              href="/" 
+            <Link 
+              to="/"
               className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-3 px-4 rounded-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Accueil
-            </a>
-            <a 
-              href="/formations" 
+            </Link>
+
+            <Link 
+              to="/formations"
               className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-3 px-4 rounded-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Nos Formations
-            </a>
+            </Link>
+           
             <div className="ml-4 space-y-2">
               <div className="text-purple-300 text-xs font-bold uppercase mb-2">Informatique</div>
-                <a 
-                href="/formation-wordpress" 
-                className="block text-white/80 hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg text-sm"
+              <Link 
+                to="/formation-wordpress"
+                className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 WordPress
-              </a>
-              <a 
-                href="/formation-cao" 
-                className="block text-white/80 hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg text-sm"
+              </Link>
+
+              <Link 
+                to="/formation-cao"
+                className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 CAO
-              </a>
-              <a 
-                href="/formation-pao" 
-                className="block text-white/80 hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg text-sm"
+              </Link>
+               
+              <Link 
+                to="/formation-pao"
+                className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 PAO
-              </a>
+              </Link>
+              
               <div className="text-orange-300 text-xs font-bold uppercase mb-2 mt-3">Bureautique</div>
-              <a 
-                href="/formation-excel" 
-                className="block text-white/80 hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg text-sm"
+              <Link 
+                to="/formation-excel"
+                className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Excel
-              </a>
-            
+              </Link>
             </div>
-            <a 
-              href="/apropos" 
+
+            <Link 
+              to="/apropos"
               className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-3 px-4 rounded-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Qui Sommes-Nous ?
-            </a>
-            <a 
-              href="/contact" 
+            </Link>
+
+            <Link 
+              to="/contact"
               className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-3 px-4 rounded-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact
-            </a>
-            <a 
-              href="/avis" 
+            </Link>
+
+            <Link 
+              to="/avis"
               className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-3 px-4 rounded-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Nos Avis Clients
-            </a>
-            <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold mt-4 hover:shadow-lg hover:shadow-orange-500/50 transition-all">
-              Commencer Maintenant
-            </button>
+            </Link>
+           
+            <Link to="/formations">
+              <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold mt-4 hover:shadow-lg hover:shadow-orange-500/50 transition-all">
+                Commencer Maintenant
+              </button>
+            </Link>
           </div>
         </div>
       )}

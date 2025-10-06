@@ -1,5 +1,6 @@
 import React from 'react';
 import { Monitor, Users, MessageSquare, BookOpen, Award } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Financement() {
   const features = [
@@ -84,9 +85,13 @@ export default function Financement() {
                 </p>
               </div>
 
-              <button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold px-10 py-4 text-lg rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <Link to="/formations">
+               <button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold px-10 py-4 text-lg rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                 NOS FORMATIONS
               </button>
+              </Link>
+
+             
             </div>
 
             {/* Right Side - Features */}
