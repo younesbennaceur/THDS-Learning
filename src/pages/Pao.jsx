@@ -1,29 +1,28 @@
 import React from 'react';
 import { Clock, Users, Target, BookOpen, Award, Check, BarChart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function FormationWordPress() {
   const durations = [
     {
-      hours: "10h",
+      hours: "12h",
       title: "Formation Initiation",
-      description: "Découvrez les bases de Excel",
-      link:"https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_Tableur-1/83277408700023_Tableur-1"
+      description: "Découvrez les bases  d'un logiciel de PAO  ",
+      link:"https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_PAO-12/83277408700023_PAO-12?contexteFormation=ACTIVITE_PROFESSIONNELLE"
       
     },
     {
-      hours: "20h",
+      hours: "22h",
       title: "Formation Intermédiaire",
-      description: "Maîtrisez l'Excel au quotidien",
-      link:"https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_Tableur-1/83277408700023_Tableur-2"
-     
+      description: "Maîtrisez PAO au quotidien",
+      link:"https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_PAO-12/83277408700023_PA0-22?contexteFormation=ACTIVITE_PROFESSIONNELLE"
     
     },
     {
-      hours: "44h",
+      hours: "42h",
       title: "Formation Complète",
-      description: "Devenez expert Excel",
-      link:"https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_Tableur-1/83277408700023_Tableur-3"
-      
+      description: "Devenez expert d'un logiciel de PAO",
+      link:"https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_PAO-12/83277408700023_PAO-42?contexteFormation=ACTIVITE_PROFESSIONNELLE",      
     }
   ];
 
@@ -42,10 +41,10 @@ export default function FormationWordPress() {
         <div className="relative h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-4xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              formation Excel
+              formation Utilisation d'un logiciel de PAO (PCIE - ICDL) 
             </h1>
             <p className="text-xl text-purple-200">
-              Cette formation vous permettra d’améliorer ou d’acquerir les bases du logiciel de bureautique Excel.
+À l'issue de notre formation en PAO, les participants auront l'opportunité de passer l'examen ICDL (International Computer Driving Licence)
             </p>
           </div>
         </div>
@@ -115,9 +114,7 @@ export default function FormationWordPress() {
               Description et Objectifs
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              Acquérir les bases utiles à une bonne utilisation d’Excel.
-Concevoir rapidement des tableaux de calculs fiables.
-Construire des graphiques pour illustrer les chiffres.
+              La certification PAO valide la capacité d'individus à créer, produire et préparer des documents destinés à l'impression professionnelle, en utilisant des logiciels de Publication Assistée par Ordinateur spécialisés.
             </p>
           </div>
 
@@ -129,7 +126,7 @@ Construire des graphiques pour illustrer les chiffres.
                 Durée
               </h3>
               <p className="text-gray-700 text-lg mb-2">
-                De <strong className="text-purple-700">10h</strong> à <strong className="text-purple-700">30h</strong>
+                De <strong className="text-purple-700">12h</strong> à <strong className="text-purple-700">42h</strong>
               </p>
               <p className="text-gray-600">
                 Parcours individuel - Plusieurs rythmes possibles
@@ -165,7 +162,7 @@ Construire des graphiques pour illustrer les chiffres.
               </button>
             </div>
             <p className="text-gray-700 leading-relaxed">
-Tout utilisateur débutant avec Excel            </p>
+Tout utilisateur débutant avec logiciel PAO            </p>
           </div>
 
           {/* Modalités */}
@@ -207,27 +204,7 @@ Tout utilisateur débutant avec Excel            </p>
             </p>
           </div>
 
-          {/* Statistiques */}
-          <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl shadow-lg p-8 text-white mb-8">
-            <h3 className="text-2xl font-bold mb-6 flex items-center">
-              <BarChart className="w-7 h-7 mr-3" />
-              Statistiques 2024
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-orange-300 mb-2">91</div>
-                <div className="text-purple-100">Nombre de stagiaires</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-orange-300 mb-2">97%</div>
-                <div className="text-purple-100">Taux de satisfaction</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-orange-300 mb-2">82%</div>
-                <div className="text-purple-100">Taux de réussite</div>
-              </div>
-            </div>
-          </div>
+       
 
           {/* Accessibilité */}
           <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-8">

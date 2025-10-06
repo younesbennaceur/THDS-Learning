@@ -6,6 +6,9 @@ import Formations from './pages/Formations'
 import Wordpress from './pages/Wordpress'
 import Excel from './pages/Excel'
 import Contact from './components/Contact'
+import Pao from './pages/Pao'
+import Cao from './pages/Cao'
+
 
 
 function App() {
@@ -17,8 +20,10 @@ function App() {
         <Route path='/formations' element={<Formations />} />
         <Route path='/formation-wordpress' element={<Wordpress />} />
         <Route path='/Contact' element={<Contact />} />
-
         <Route path='/formation-excel' element={<Excel />} />
+        <Route path='/formation-pao' element={<Pao />} />
+        <Route path='/formation-cao' element={<Cao />} />
+        
 
         
        

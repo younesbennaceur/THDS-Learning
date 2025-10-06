@@ -154,7 +154,7 @@ export default function Navbar() {
               )}
             </div>
             <Link 
-              to="/" 
+              to="/apropos" 
               className={`transition-colors duration-200 font-meduim ${
                 isActiveLink('/apropos') 
                   ? 'text-orange-400 font-bold' 
@@ -164,7 +164,7 @@ export default function Navbar() {
               Qui Sommes-Nous ?
             </Link>
              <Link 
-              to="/" 
+              to="/contact" 
               className={`transition-colors duration-200 font-meduim ${
                 isActiveLink('/contact') 
                   ? 'text-orange-400 font-bold' 
@@ -175,7 +175,7 @@ export default function Navbar() {
             </Link>
             
             <Link 
-              to="/" 
+              to="/avis" 
               className={`transition-colors duration-200 font-meduim ${
                 isActiveLink('/avis') 
                   ? 'text-orange-400 font-bold' 

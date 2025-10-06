@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Users, Droplet, BookOpen, BarChart, Palette, Wrench, Code } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Formations() {
   const formations = [
@@ -167,9 +168,9 @@ export default function Formations() {
                       {formation.description}
                     </p>
                     <div className='w-full text-center bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300'>
-                     <a href={formation.link} className="">
-                      En savoir plus
-                    </a>
+                    <Link to={formation.link} className="text-lg">
+                        En savoir plus
+                    </Link>
                     </div>
                    
                   </div>
