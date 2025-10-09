@@ -1,17 +1,15 @@
 import React from 'react';
 import { Mail, Phone, MapPin, BookOpen, FileText, Users, Award, MessageSquare,Building2, Building } from 'lucide-react';
-
+import { Link } from 'react-router-dom';
 export default function Footer() {
   const footerLinks = {
     liens: [
       { name: "Qui sommes-nous ?", href: "/apropos" },
       { name: "Conditions générales d'utilisation", href: "cgv" },
       { name: "CGV Actions de formation", href: "/cgv-formation" },
-      { name: "Livret d'accueil en formation", href: "/LA.pdf" },
-      { name: "Règlement Intérieur Des Stagiaires", href: "/RI.pdf" },
       { name: "Réclamation", href: "/reclamation" },
       { name: "Engagement qualité", href: "/quality" },
-      { name: "Listing questionnaires", href: "#questionnaires" }
+      { name: "Listing questionnaires", href: "/questionnaires" }
     ]
   };
 
@@ -84,17 +82,39 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.liens.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     
                   
                     className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
                   >
                     <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
                     <span>{link.name}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
+            </ul>
+            <ul>
+              <li className='mt-3 space-y-3' >
+                  <a
+                    href='LA.pdf'
+                    
+                  
+                    className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                    <span>Livret d’accueil en formation</span>
+                  </a>
+                </li>
+                <li className='mt-3 space-y-3' >
+                  <a
+                    href='RI.pdf'
+                    className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                    <span>Règlement Intérieur Des Stagiaires</span>
+                  </a>
+                </li>
             </ul>
           </div>
 
