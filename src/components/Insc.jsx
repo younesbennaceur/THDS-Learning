@@ -123,10 +123,13 @@ export default function Inscription() {
               <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
                 THDS est certifié Qualiopi au titre des catégories suivantes : "Actions de Formations".
               </h3>
+              <a href=" /certificat.pdf" target="_blank" rel="noopener noreferrer">
               <button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold px-8 py-3 rounded-md shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
                 <FileCheck className="w-5 h-5" />
                 <span>NOTRE CERTIFICAT</span>
               </button>
+              </a>
+              
             </div>
 
           </div>
