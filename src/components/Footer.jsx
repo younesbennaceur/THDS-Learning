@@ -1,16 +1,16 @@
 import React from 'react';
-import { Mail, Phone, MapPin, BookOpen, FileText, Users, Award, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, BookOpen, FileText, Users, Award, MessageSquare,Building2, Building } from 'lucide-react';
 
 export default function Footer() {
   const footerLinks = {
     liens: [
-      { name: "Qui sommes-nous ?", href: "#apropos" },
-      { name: "Conditions générales d'utilisation", href: "#cgv" },
-      { name: "CGV Actions de formation", href: "#cgv-formation" },
-      { name: "Livret d'accueil en formation", href: "#livret" },
-      { name: "Règlement Intérieur Des Stagiaires", href: "#reglement" },
-      { name: "Réclamation", href: "#reclamation" },
-      { name: "Engagement qualité", href: "#qualite" },
+      { name: "Qui sommes-nous ?", href: "/apropos" },
+      { name: "Conditions générales d'utilisation", href: "cgv" },
+      { name: "CGV Actions de formation", href: "/cgv-formation" },
+      { name: "Livret d'accueil en formation", href: "/LA.pdf" },
+      { name: "Règlement Intérieur Des Stagiaires", href: "/RI.pdf" },
+      { name: "Réclamation", href: "/reclamation" },
+      { name: "Engagement qualité", href: "/quality" },
       { name: "Listing questionnaires", href: "#questionnaires" }
     ]
   };
@@ -30,7 +30,18 @@ export default function Footer() {
             <div className="space-y-3 text-blue-100">
               <p className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-1 text-orange-400" />
-                <span>73-75 Rue de la Plaine<br />93200 SAINT DENIS</span>
+                <span>5 Rue Pleyel<br />93200 SAINT DENIS</span>
+              </p>
+                <p className="flex items-center space-x-2">
+                <Building className="w-5 h-5 text-orange-400" />
+                <a href="mailto:contact@thds.fr " className="hover:text-orange-400 transition-colors">
+                  SIRET : 832 774 087 00023
+                </a>
+              </p><p className="flex items-center space-x-2">
+                <Building2 className="w-5 h-5 text-orange-400" />
+                <a href="mailto:contact@thds.fr " className="hover:text-orange-400 transition-colors">
+                  NDA : 11931056093 
+                </a>
               </p>
               <p className="flex items-center space-x-2">
                 <Phone className="w-5 h-5 text-orange-400" />
@@ -44,7 +55,7 @@ export default function Footer() {
                   contact@thds.fr 
                 </a>
               </p>
-              
+            
             </div>
 
             {/* Social Icons */}
@@ -75,6 +86,8 @@ export default function Footer() {
                 <li key={index}>
                   <a 
                     href={link.href}
+                    
+                  
                     className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
                   >
                     <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
@@ -106,6 +119,15 @@ export default function Footer() {
                 className="w-full h-32"
               />
             </div>
+            <li className="mt-4"> 
+                  <a 
+                    href="https://view.genially.com/63b6f93d1d37b0001a70ac04"
+                    className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                    <span>Accès aux personnes sourdes et malentendante.</span>
+                  </a>
+                </li>
             
            
           </div>
@@ -113,9 +135,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="border-t border-blue-700 pt-8 mt-8">
-          <p className="text-center text-blue-200">
+        <div className="flex justify-between border-t border-blue-700 pt-8 mt-8">
+          <p className=" text-blue-200">
             Copyright 2025 © <span className="font-bold text-white">THDS FORMATION</span>
+          </p>
+          <p className=" text-blue-200">
+            dernière mise à jour : 09/10/2025
+
           </p>
         </div>
 

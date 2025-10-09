@@ -6,19 +6,19 @@ export default function Stats() {
   const stats = [
     {
       icon: Star,
-      number: "4,58/5",
+      number: "à venir",
       label: "Taux de satisfaction extrait de edof pour nos actions de formation",
       color: "text-orange-500"
     },
     {
       icon: Users,
-      number: "741",
+      number: "40",
       label: "Stagiaires formés",
       color: "text-purple-600"
     },
     {
       icon: Clock,
-      number: "10687",
+      number: "à venir",
       label: "heures de formations dispensées",
       color: "text-purple-600"
     }

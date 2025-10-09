@@ -10,6 +10,10 @@ import Pao from './pages/Pao'
 import Cao from './pages/Cao'
 import AboutUs from './pages/AboutUs'
 import Avis from './pages/Avis'
+import Cgv from './pages/Cgv-formation'
+import Cgv1 from './pages/Cgv1'
+import Reclamation from './pages/Reclamation'
+import Quality from './pages/Quality'
 
 
 
@@ -27,6 +31,10 @@ function App() {
         <Route path='/formation-cao' element={<Cao />} />
         <Route path='/apropos' element={<AboutUs />} />
         <Route path='/avis' element={<Avis />} />
+        <Route path='/cgv-formation' element={<Cgv />} />
+        <Route path='/cgv' element={<Cgv1 />} />
+        <Route path='/reclamation' element={<Reclamation />} />
+        <Route path='/quality' element={<Quality />} />
 
         
 

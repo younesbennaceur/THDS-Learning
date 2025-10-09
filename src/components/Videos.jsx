@@ -12,7 +12,7 @@ export default function Videos() {
     },
     {
       id: 2,
-      title: "SE CONNECTER À LA PLATEFORME DE FORMATION « EFORMA »",
+      title: "SE CONNECTER À LA PLATEFORME DE FORMATION « dokeos »",
       videoPath: "/Video2.webm"
     }
   ];
@@ -96,7 +96,7 @@ export default function Videos() {
                 <p className="text-gray-600 text-center text-sm">
                   {video.id === 1 
                     ? "Apprenez à rejoindre facilement vos sessions de formation sur Zoom."
-                    : "Découvrez comment accéder à votre espace personnel sur EFORMA."
+                    : "Découvrez comment accéder à votre espace personnel sur dokeos."
                   }
                 </p>
               </div>

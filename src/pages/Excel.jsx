@@ -215,15 +215,15 @@ Tout utilisateur débutant avec Excel            </p>
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="text-4xl font-bold text-orange-300 mb-2">91</div>
+                <div className="text-4xl font-bold text-orange-300 mb-2">à venir</div>
                 <div className="text-purple-100">Nombre de stagiaires</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-orange-300 mb-2">97%</div>
+                <div className="text-4xl font-bold text-orange-300 mb-2">à venir</div>
                 <div className="text-purple-100">Taux de satisfaction</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-orange-300 mb-2">82%</div>
+                <div className="text-4xl font-bold text-orange-300 mb-2">à venir</div>
                 <div className="text-purple-100">Taux de réussite</div>
               </div>
             </div>

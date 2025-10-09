@@ -214,16 +214,16 @@ export default function FormationWordPress() {
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="text-4xl font-bold text-orange-300 mb-2">102</div>
-                <div className="text-purple-100">Nombre de stagiaires</div>
+                <div className="text-4xl font-bold text-orange-300 mb-2">à venir</div>
+                <div className="text-purple-100">à venir</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-orange-300 mb-2">93%</div>
-                <div className="text-purple-100">Taux de satisfaction</div>
+                <div className="text-purple-100">à venir</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-orange-300 mb-2">71%</div>
-                <div className="text-purple-100">Taux de réussite</div>
+                <div className="text-purple-100">à venir</div>
               </div>
             </div>
           </div>

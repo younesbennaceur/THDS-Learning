@@ -39,7 +39,7 @@ export default function Features() {
 
         {/* Main Title */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-          Certaines de nos formations sont disponibles en E-Learning via notre plateforme e-learning accessible 24/24 et 7/7 (EFORMA)
+          Certaines de nos formations sont disponibles en E-Learning via notre plateforme e-learning accessible 24/24 et 7/7 (dokeos)
         </h2>
 
         {/* Subtitle */}
