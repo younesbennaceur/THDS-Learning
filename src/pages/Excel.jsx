@@ -235,7 +235,7 @@ Tout utilisateur débutant avec Excel            </p>
               Accessibilité aux personnes en situation de handicap
             </h3>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Si vous présentez une situation de handicap, je vous invite à nous contacter par e-mail <a href="mailto:contact@thds-formation.fr" className="text-blue-600 hover:text-blue-800 underline font-semibold">contact@thds-formation.fr</a> ou par téléphone au <a href="tel:0647272740" className="text-blue-600 hover:text-blue-800 underline font-semibold">06 47 27 27 40</a>, afin que nous puissions convenir d'aménagements spécifiques éventuels.
+              Si vous présentez une situation de handicap, je vous invite à nous contacter par e-mail <a href="mailto:contact@thds.fr" className="text-blue-600 hover:text-blue-800 underline font-semibold">contact@thds.fr</a> ou par téléphone au <a href="tel:0647272740" className="text-blue-600 hover:text-blue-800 underline font-semibold">06 47 27 27 40</a>, afin que nous puissions convenir d'aménagements spécifiques éventuels.
             </p>
             <p className="text-gray-700">
               Nous pouvons vous orienter vers un réseau de professionnels qui a les compétences et expertises nécessaires pour pouvoir accueillir, accompagner, former ou orienter certains publics.
