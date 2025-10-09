@@ -5,7 +5,7 @@ export default function Footer() {
   const footerLinks = {
     liens: [
       { name: "Qui sommes-nous ?", href: "/apropos" },
-      { name: "Conditions générales d'utilisation", href: "cgv" },
+      { name: "Conditions générales d'utilisation", href: "/cgv" },
       { name: "CGV Actions de formation", href: "/cgv-formation" },
       { name: "Réclamation", href: "/reclamation" },
       { name: "Engagement qualité", href: "/quality" },

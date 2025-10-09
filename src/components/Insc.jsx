@@ -33,8 +33,8 @@ export default function Inscription() {
       content: `
         <p class="mb-4">Si vous présentez une situation de handicap, nous vous invitons à nous contacter au plus vite :</p>
         <ul class="list-disc pl-6 mb-4 space-y-2">
-          <li>Par e-mail : <a href="mailto:contact@thds-formation.fr" class="text-purple-600 hover:text-purple-800 underline">contact@thds-formation.fr</a></li>
-          <li>Par téléphone : <a href="tel:+33000000000" class="text-purple-600 hover:text-purple-800 underline">06 XX XX XX XX</a></li>
+          <li>Par e-mail : <a href="mailto:contact@thds.fr" class="text-purple-600 hover:text-purple-800 underline">contact@thds-formation.fr</a></li>
+          <li>Par téléphone : <a href="tel:+33609968595" class="text-purple-600 hover:text-purple-800 underline">06 09 96 85 95</a></li>
         </ul>
         <p class="mb-4">Nous nous engageons à mettre en place les aménagements nécessaires pour compenser les situations individuelles de handicap.</p>
         <p>Un réseau de professionnels est disponible pour accueillir, accompagner, former ou orienter les personnes en situation de handicap.</p>
