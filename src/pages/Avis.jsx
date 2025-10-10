@@ -29,18 +29,59 @@ export default function AvisClients() {
         </div>
       </div>
 
-      {/* No Reviews Yet Card */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10 mb-20">
-        <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
-          <div className="max-w-2xl mx-auto">
-            <MessageSquare className="w-16 h-16 text-purple-300 mx-auto mb-6" />
+      {/* Reviews Section */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10 mb-20">
+        <div className="grid md:grid-cols-2 gap-8">
+          
+          {/* Avis 1 */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300">
+            <div className="flex items-center mb-4">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
             
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              THDS n'a pas encore d'avis clients
-            </h3>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              "Formation exceptionnelle ! Les formateurs sont très pédagogues et à l'écoute. 
+              J'ai pu acquérir des compétences concrètes en Wordpress. Le suivi personnalisé fait toute la différence."
+            </p>
             
-           
+            <div className="flex items-center border-t pt-4">
+              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-lg">
+                SM
+              </div>
+              <div className="ml-4">
+                <p className="font-semibold text-gray-800">Sophie Martin</p>
+                <p className="text-sm text-gray-500">Formation Complète WordPress</p>
+              </div>
+            </div>
           </div>
+
+          {/* Avis 2 */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-shadow duration-300">
+            <div className="flex items-center mb-4">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              "Une expérience enrichissante du début à la fin. Le programme est bien structuré 
+              et les projets pratiques permettent de se confronter à des situations réelles et maitriser le logiciel excel. 
+              "
+            </p>
+            
+            <div className="flex items-center border-t pt-4">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-lg">
+                JD
+              </div>
+              <div className="ml-4">
+                <p className="font-semibold text-gray-800">Jean Dupont</p>
+                <p className="text-sm text-gray-500">Formation Intermédiaire excel</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -60,7 +101,7 @@ export default function AvisClients() {
             </div>
 
             <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-4xl font-bold text-purple-600 mb-3">+500</div>
+              <div className="text-4xl font-bold text-purple-600 mb-3">+50</div>
               <p className="text-gray-600">Stagiaires formés</p>
             </div>
 
