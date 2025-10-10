@@ -13,7 +13,7 @@ export default function Stats() {
     {
       icon: Users,
       number: "50",
-      label: "Stagiaires formés 2025",
+      label: "Stagiaires formés en 2025",
       color: "text-purple-600"
     },
     {
