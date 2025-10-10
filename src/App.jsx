@@ -1,31 +1,46 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'  // <-- Pas d'accolades {Home}, car c'est un export default
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Formations from './pages/Formations'
-import Wordpress from './pages/Wordpress'
-import Excel from './pages/Excel'
-import Contact from './components/Contact'
-import Pao from './pages/Pao'
-import Cao from './pages/Cao'
-import AboutUs from './pages/AboutUs'
-import Avis from './pages/Avis'
-import Cgv from './pages/Cgv-formation'
-import Cgv1 from './pages/Cgv1'
-import Reclamation from './pages/Reclamation'
-import Quality from './pages/Quality'
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Formations from './pages/Formations';
+import Wordpress from './pages/Wordpress';
+import Excel from './pages/Excel';
+import Contact from './components/Contact';
+import Pao from './pages/Pao';
+import Cao from './pages/Cao';
+import AboutUs from './pages/AboutUs';
+import Avis from './pages/Avis';
+import Cgv from './pages/Cgv-formation';
+import Cgv1 from './pages/Cgv1';
+import Reclamation from './pages/Reclamation';
+import Quality from './pages/Quality';
 
+// ✅ ScrollToTop reste ici
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
-    <div className=''>
-      <Navbar/>
+    <div>
+      <ScrollToTop />
+      <Navbar />
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/formations' element={<Formations />} />
         <Route path='/formation-wordpress' element={<Wordpress />} />
-        <Route path='/Contact' element={<Contact />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='/formation-excel' element={<Excel />} />
         <Route path='/formation-pao' element={<Pao />} />
         <Route path='/formation-cao' element={<Cao />} />
@@ -35,17 +50,11 @@ function App() {
         <Route path='/cgv' element={<Cgv1 />} />
         <Route path='/reclamation' element={<Reclamation />} />
         <Route path='/quality' element={<Quality />} />
-
-        
-
-        
-       
       </Routes>
-      <Footer/>
-      
 
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App  // <-- On exporte seulement App ici
+export default App;
