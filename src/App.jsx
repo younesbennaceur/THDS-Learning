@@ -34,6 +34,13 @@ function App() {
   return (
     <div>
       <ScrollToTop />
+       {/* ✅ Logo flottant à gauche */}
+      <img
+        src="/handicap.png"
+        alt="Hanciap logo"
+        className="fixed left-4 top-1/3 -translate-y-1/2 w-14 h-14 object-contain z-50 opacity-90 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      />
       <Navbar />
 
       <Routes>
