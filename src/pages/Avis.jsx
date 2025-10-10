@@ -51,7 +51,7 @@ export default function AvisClients() {
                 SM
               </div>
               <div className="ml-4">
-                <p className="font-semibold text-gray-800">Sophie Martin</p>
+                <p className="font-semibold text-gray-800">FODIL CÉCILIA</p>
                 <p className="text-sm text-gray-500">Formation Complète WordPress</p>
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function AvisClients() {
                 JD
               </div>
               <div className="ml-4">
-                <p className="font-semibold text-gray-800">Jean Dupont</p>
+                <p className="font-semibold text-gray-800">NUNES THEO</p>
                 <p className="text-sm text-gray-500">Formation Intermédiaire excel</p>
               </div>
             </div>
@@ -102,7 +102,7 @@ export default function AvisClients() {
 
             <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="text-4xl font-bold text-purple-600 mb-3">+50</div>
-              <p className="text-gray-600">Stagiaires formés</p>
+              <p className="text-gray-600">Stagiaires formés en 2025</p>
             </div>
 
           </div>

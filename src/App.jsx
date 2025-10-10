@@ -15,6 +15,7 @@ import Cgv from './pages/Cgv-formation';
 import Cgv1 from './pages/Cgv1';
 import Reclamation from './pages/Reclamation';
 import Quality from './pages/Quality';
+import Formulaires from './pages/Formulaires';
 
 // ✅ ScrollToTop reste ici
 function ScrollToTop() {
@@ -57,6 +58,8 @@ function App() {
         <Route path='/cgv' element={<Cgv1 />} />
         <Route path='/reclamation' element={<Reclamation />} />
         <Route path='/quality' element={<Quality />} />
+        <Route path='/questionnaires' element={<Formulaires />} />
+
       </Routes>
 
       <Footer />

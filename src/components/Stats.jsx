@@ -12,7 +12,7 @@ export default function Stats() {
     },
     {
       icon: Users,
-      number: "40",
+      number: "50",
       label: "Stagiaires formés",
       color: "text-purple-600"
     },
