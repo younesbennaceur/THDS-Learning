@@ -16,6 +16,8 @@ import Cgv1 from './pages/Cgv1';
 import Reclamation from './pages/Reclamation';
 import Quality from './pages/Quality';
 import Formulaires from './pages/Formulaires';
+import FormulaireContact from './pages/FormulaireContact'; // ✅ Importer le composant
+
 
 // ✅ ScrollToTop reste ici
 function ScrollToTop() {
@@ -35,10 +37,10 @@ function App() {
   return (
     <div>
       <ScrollToTop />
-       {/* ✅ Logo flottant à gauche */}
+      {/* ✅ Logo flottant à gauche */}
       <img
         src="/handicap.png"
-        alt="Hanciap logo"
+        alt="Handicap logo"
         className="fixed left-4 top-1/3 -translate-y-1/2 w-14 h-14 object-contain z-50 opacity-90 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       />
@@ -60,6 +62,31 @@ function App() {
         <Route path='/quality' element={<Quality />} />
         <Route path='/questionnaires' element={<Formulaires />} />
 
+        {/* ✅ NOUVELLES ROUTES POUR LES FORMULAIRES */}
+        <Route 
+          path='/formulaires/eleve' 
+          element={<FormulaireContact titre="Formulaire Élève" type="eleve" />} 
+        />
+        
+        <Route 
+          path='/formulaires/formateur' 
+          element={<FormulaireContact titre="Formulaire Formateur" type="formateur" />} 
+        />
+        
+        <Route 
+          path='/formulaires/reclamation' 
+          element={<FormulaireContact titre="Formulaire de Réclamation" type="reclamation" />} 
+        />
+        
+        <Route 
+          path='/formulaires/financeurs' 
+          element={<FormulaireContact titre="Recueil des Appréciations pour Financeurs" type="financeurs" />} 
+        />
+        
+        <Route 
+          path='/formulaires/entreprises' 
+          element={<FormulaireContact titre="Recueil des Appréciations pour Entreprises" type="entreprises" />} 
+        />
       </Routes>
 
       <Footer />
