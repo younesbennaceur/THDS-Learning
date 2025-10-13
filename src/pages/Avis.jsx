@@ -48,11 +48,12 @@ export default function AvisClients() {
             
             <div className="flex items-center border-t pt-4">
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-lg">
-                SM
+                NT
               </div>
-              <div className="ml-4">
-                <p className="font-semibold text-gray-800">FODIL CÉCILIA</p>
-                <p className="text-sm text-gray-500">Formation Complète WordPress</p>
+               <div className="ml-4">
+                <p className="font-semibold text-gray-800">NUNES THEO</p>
+                <p className="text-sm text-gray-500">Formation Intermédiaire WordPress</p>
+                
               </div>
             </div>
           </div>
@@ -73,11 +74,12 @@ export default function AvisClients() {
             
             <div className="flex items-center border-t pt-4">
               <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-lg">
-                JD
+                FC
               </div>
+             
               <div className="ml-4">
-                <p className="font-semibold text-gray-800">NUNES THEO</p>
-                <p className="text-sm text-gray-500">Formation Intermédiaire excel</p>
+                <p className="font-semibold text-gray-800">FODIL CÉCILIA</p>
+                <p className="text-sm text-gray-500">Formation Complète Excel</p>
               </div>
             </div>
           </div>
