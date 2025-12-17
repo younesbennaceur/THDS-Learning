@@ -16,7 +16,7 @@ import Cgv1 from './pages/Cgv1';
 import Reclamation from './pages/Reclamation';
 import Quality from './pages/Quality';
 import Formulaires from './pages/Formulaires';
-import FormulaireContact from './pages/FormulaireContact'; // ✅ Importer le composant
+import FormulaireEleve1 from './pages/FormulaireEleve1'; // ✅ Importer le composant
 
 
 // ✅ ScrollToTop reste ici
@@ -64,29 +64,11 @@ function App() {
 
         {/* ✅ NOUVELLES ROUTES POUR LES FORMULAIRES */}
         <Route 
-          path='/formulaires/eleve' 
-          element={<FormulaireContact titre="Formulaire Élève" type="eleve" />} 
+          path='/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients' 
+          element={<FormulaireEleve1 titre="Formulaire Élève" type="eleve" />} 
         />
         
-        <Route 
-          path='/formulaires/formateur' 
-          element={<FormulaireContact titre="Formulaire Formateur" type="formateur" />} 
-        />
-        
-        <Route 
-          path='/formulaires/reclamation' 
-          element={<FormulaireContact titre="Formulaire de Réclamation" type="reclamation" />} 
-        />
-        
-        <Route 
-          path='/formulaires/financeurs' 
-          element={<FormulaireContact titre="Recueil des Appréciations pour Financeurs" type="financeurs" />} 
-        />
-        
-        <Route 
-          path='/formulaires/entreprises' 
-          element={<FormulaireContact titre="Recueil des Appréciations pour Entreprises" type="entreprises" />} 
-        />
+       
       </Routes>
 
       <Footer />

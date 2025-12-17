@@ -7,7 +7,7 @@ const formulairesData = {
     title: "ÉLÈVE",
     icon: GraduationCap,
     items: [
-      { id: 1, text: "1/ Fiche analyse des besoins et attentes clients [ VISIO ]", link: "/formulaires/eleve" },
+      { id: 1, text: "1/ Fiche analyse des besoins et attentes clients [ VISIO ]", link: "/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients" },
       { id: 2, text: "2/ Fiche analyse des besoins et attentes clients [ E-LEARNING ]", link: "/formulaires/eleve" },
       { id: 3, text: "3/ Fiche analyse des besoins et attentes Bilan de compétences", link: "/formulaires/eleve" },
       { id: 4, text: "4/ Enquête de satisfaction en fin de formation (à chaud) [ E-LEARNING ]", link: "/formulaires/eleve" },
