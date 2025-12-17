@@ -3,7 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 // Import des routes
-import eleveRoutes from './routes/eleve1.js'; 
+import eleveRoutes from './routes/eleve.js'; 
+import formateurRoutes from './routes/formateur.js';
 
 
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(express.json());
 
 
 app.use('/api/eleve', eleveRoutes);
+app.use('/api/formateur', formateurRoutes); 
 
 
 app.get('/', (req, res) => {

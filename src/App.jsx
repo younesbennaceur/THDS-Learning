@@ -16,7 +16,13 @@ import Cgv1 from './pages/Cgv1';
 import Reclamation from './pages/Reclamation';
 import Quality from './pages/Quality';
 import Formulaires from './pages/Formulaires';
-import FormulaireEleve1 from './pages/FormulaireEleve1'; // ✅ Importer le composant
+import FormulaireEleve1 from './pages/Eleve1'; // ✅ Importer le composant
+import Eleve5 from './pages/Eleve5';
+import Eleve6 from './pages/Eleve6';
+import Formateur1 from './pages/Formateur1';
+import Formateur2 from './pages/Formateur2';
+import Formateur3 from './pages/Formateur3';
+import Formateur4 from './pages/Formateur4';
 
 
 // ✅ ScrollToTop reste ici
@@ -65,8 +71,33 @@ function App() {
         {/* ✅ NOUVELLES ROUTES POUR LES FORMULAIRES */}
         <Route 
           path='/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients' 
-          element={<FormulaireEleve1 titre="Formulaire Élève" type="eleve" />} 
+          element={<FormulaireEleve1  />} 
         />
+         <Route 
+          path='/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION' 
+          element={<Eleve5 />} 
+        />
+          <Route
+          path='/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)'
+          element={<Eleve6 />}
+        />
+        <Route 
+          path='/formulaires/formateur/Fiche-Formateur' 
+          element={<Formateur1  />} 
+        />
+        <Route 
+          path='/formulaires/formateur/Évaluation-annuelle-des-compétences' 
+          element={<Formateur2  />} 
+        />
+        <Route
+          path='/formulaires/formateur/Questionnaire-formateur-fin-de-formations'
+          element={<Formateur3 />}
+        />
+        <Route
+          path='formulaires/formateur/test-anglais'
+          element={<Formateur4 />}
+        />
+
         
        
       </Routes>

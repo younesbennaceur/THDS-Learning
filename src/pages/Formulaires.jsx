@@ -8,49 +8,49 @@ const formulairesData = {
     icon: GraduationCap,
     items: [
       { id: 1, text: "1/ Fiche analyse des besoins et attentes clients [ VISIO ]", link: "/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients" },
-      { id: 2, text: "2/ Fiche analyse des besoins et attentes clients [ E-LEARNING ]", link: "/formulaires/eleve" },
-      { id: 3, text: "3/ Fiche analyse des besoins et attentes Bilan de compétences", link: "/formulaires/eleve" },
-      { id: 4, text: "4/ Enquête de satisfaction en fin de formation (à chaud) [ E-LEARNING ]", link: "/formulaires/eleve" },
-      { id: 5, text: "5/ Enquête de satisfaction en fin de formation (à chaud) [ VISIO ]", link: "/formulaires/eleve" },
-      { id: 6, text: "6/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve" },
-      { id: 7, text: "7/ Questionnaire bilan de compétences", link: "/formulaires/eleve" },
-      { id: 8, text: "8/ Questionnaire bilan de compétences à 6 mois", link: "/formulaires/eleve" },
-      { id: 9, text: "9/ Test de connaissances : Manager des politiques publiques", link: "/formulaires/eleve" },
-      { id: 10, text: "10/ Test de fin : Manager des politiques publiques", link: "/formulaires/eleve" },
-      { id: 11, text: "11/ Test de connaissances : Création d'entreprise", link: "/formulaires/eleve" },
-      { id: 12, text: "12/ Règlement intérieur", link: "/formulaires/eleve" }
+      { id: 2, text: "2/ Fiche analyse des besoins et attentes clients [ E-LEARNING ]" },
+      { id: 3, text: "3/ Fiche analyse des besoins et attentes Bilan de compétences" },
+      { id: 4, text: "4/ Enquête de satisfaction en fin de formation (à chaud) [ E-LEARNING ]"},
+      { id: 5, text: "5/ Enquête de satisfaction en fin de formation (à chaud) [ VISIO ]", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
+      { id: 6, text: "6/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
+      { id: 7, text: "7/ Questionnaire bilan de compétences",  },
+      { id: 8, text: "8/ Questionnaire bilan de compétences à 6 mois",},
+      { id: 9, text: "9/ Test de connaissances : ANGLAIS", },
+      { id: 10, text: "10/ Test de connaissances : Français professionnel", },
+      { id: 11, text: "11/ Test de connaissances : Intelligence artificielle",  },
+      { id: 12, text: "12/ Règlement intérieur", }
     ]
   },
   formateur: {
     title: "FORMATEUR",
     icon: Presentation,
     items: [
-      { id: 1, text: "1/ Fiche formateur", link: "/formulaires/formateur" },
-      { id: 2, text: "2/ Évaluation annuelle des compétences", link: "/formulaires/formateur" },
-      { id: 3, text: "3/ Questionnaire formateur fin de formation", link: "/formulaires/formateur" },
-      { id: 4, text: "4/ Grille d'évaluation des besoins Stagiaires", link: "/formulaires/formateur" },
-      { id: 5, text: "5/ Feuille d'émargement", link: "/formulaires/formateur" }
+      { id: 1, text: "1/ Fiche formateur", link: "/formulaires/formateur/Fiche-Formateur" },
+      { id: 2, text: "2/ Évaluation annuelle des compétences", link: "/formulaires/formateur/Évaluation-annuelle-des-compétences" },
+      { id: 3, text: "3/ Questionnaire formateur fin de formation", link: "/formulaires/formateur/Questionnaire-formateur-fin-de-formations" },
+      { id: 4, text: "4/ Grille d'évaluation des besoins Stagiaires", link: "/formulaires/formateur/test-anglais" },
+      { id: 5, text: "5/ Feuille d'émargement",  }
     ]
   },
   reclamation: {
     title: "RÉCLAMATION",
     icon: FileText,
     items: [
-      { id: 1, text: "Formulaire de réclamation", link: "/formulaires/reclamation" }
+      { id: 1, text: "Formulaire de réclamation",  }
     ]
   },
   appreciationsFinanceurs: {
     title: "RECUEIL DES APPRÉCIATIONS POUR FINANCEURS",
     icon: TrendingUp,
     items: [
-      { id: 1, text: "Recueil des appréciations pour financeurs", link: "/formulaires/financeurs" }
+      { id: 1, text: "Recueil des appréciations pour financeurs",  }
     ]
   },
   appreciationsEntreprises: {
     title: "RECUEIL DES APPRÉCIATIONS POUR ENTREPRISES",
     icon: Building2,
     items: [
-      { id: 1, text: "Recueil des appréciations pour entreprises", link: "/formulaires/entreprises" }
+      { id: 1, text: "Recueil des appréciations pour entreprises",  }
     ]
   }}
 
