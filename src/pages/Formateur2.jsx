@@ -80,7 +80,7 @@ export default function Formateur2() {
 
     try {
       // Pas de fichiers ici, donc pas besoin de FormData, JSON suffit
-      const response = await axios.post('http://localhost:5000/api/formateur/evaluation-competences', formData);
+      const response = await axios.post('https://thds-learning.onrender.com/api/formateur/evaluation-competences', formData);
 
       if (response.status === 200) {
         Swal.fire({

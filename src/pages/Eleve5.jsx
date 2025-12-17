@@ -146,7 +146,7 @@ export default function Eleve5() {
 
     try {
       // Attention : Tu devras créer cette route côté backend plus tard
-      const response = await axios.post('http://localhost:5000/api/eleve/satisfaction-chaud', formData);
+      const response = await axios.post('https://thds-learning.onrender.com/api/eleve/satisfaction-chaud', formData);
 
       if (response.status === 200) {
         Swal.fire({

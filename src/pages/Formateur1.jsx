@@ -150,7 +150,7 @@ export default function FicheFormateur() {
     });
 
     try {
-      const response = await axios.post('http://localhost:5000/api/formateur/inscription', dataToSend, {
+      const response = await axios.post('https://thds-learning.onrender.com/api/formateur/inscription', dataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

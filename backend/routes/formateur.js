@@ -22,7 +22,7 @@ router.post('/inscription', cpUpload, async (req, res) => {
     const data = req.body;
     const files = req.files || {};
 
-    // 1. Préparation des pièces jointes pour Nodemailer
+    // 1. Préparation des pièces jointes pour l'Admin uniquement
     const attachments = [];
     Object.keys(files).forEach(key => {
       if (files[key] && files[key][0]) {
@@ -33,8 +33,8 @@ router.post('/inscription', cpUpload, async (req, res) => {
       }
     });
 
-    // 2. HTML de l'email
-    const mailContent = `
+    // 2. HTML de l'email pour l'ADMIN (Avec les données techniques)
+    const adminMailContent = `
       <div style="font-family: Arial, sans-serif; color: #1e293b;">
         <div style="background-color: #1e40af; color: white; padding: 20px; text-align: center;">
           <h2 style="margin: 0;">Nouvelle Candidature Formateur</h2>
@@ -61,29 +61,64 @@ router.post('/inscription', cpUpload, async (req, res) => {
       </div>
     `;
 
-    // 3. Envoi de l'email
+    // 3. HTML de l'email pour le CANDIDAT (Remerciement)
+    const clientMailContent = `
+      <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+        <div style="background-color: #1e40af; padding: 20px; text-align: center;">
+          <h2 style="color: white; margin: 0;">Candidature Reçue</h2>
+        </div>
+        <div style="padding: 20px;">
+          <p>Bonjour <strong>${data.prenom} ${data.nom}</strong>,</p>
+          <p>Nous accusons réception de votre dossier de candidature pour rejoindre notre réseau de formateurs.</p>
+          <p>Vos documents et informations ont bien été transmis à notre service RH.</p>
+          <p>Nous étudierons votre profil avec attention et reviendrons vers vous dans les plus brefs délais.</p>
+          <br>
+          <p>Cordialement,</p>
+          <p><strong>L'équipe THDS Formation</strong></p>
+        </div>
+        <div style="background-color: #f3f4f6; padding: 10px; text-align: center; font-size: 12px; color: #666;">
+          Ceci est un message automatique.
+        </div>
+      </div>
+    `;
+
+    // --- ENVOI DES DEUX EMAILS ---
+
+    // A) Envoi à l'Admin (Avec pièces jointes)
     await transporter.sendMail({
-      from: `"Candidature" <${process.env.EMAIL_USER}>`,
+      from: `"Candidature Formateur" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_ADMIN,
+      replyTo: data.email, // Permet à l'admin de répondre directement au formateur
       subject: `Nouveau Formateur : ${data.nom} ${data.prenom}`,
-      html: mailContent,
-      attachments: attachments // On joint les fichiers
+      html: adminMailContent,
+      attachments: attachments 
+    });
+
+    // B) Envoi au Candidat (Sans pièces jointes, juste confirmation)
+    await transporter.sendMail({
+      from: `"THDS Formation" <${process.env.EMAIL_USER}>`,
+      to: data.email, // Envoi à l'adresse saisie dans le formulaire
+      subject: `Confirmation de réception de votre candidature`,
+      html: clientMailContent
     });
 
     // 4. Nettoyage (Suppression des fichiers temporaires du serveur)
+    // On le fait après les deux envois pour être sûr
     attachments.forEach(file => {
       fs.unlink(file.path, (err) => {
         if (err) console.error("Erreur suppression fichier temp:", err);
       });
     });
 
+    console.log(`📩 Candidature envoyée pour ${data.nom} ${data.prenom} (Admin + Candidat)`);
     res.status(200).json({ message: 'Candidature envoyée avec succès !' });
 
   } catch (error) {
-    console.error('Erreur:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
+    console.error('❌ Erreur lors de l\'envoi :', error);
+    res.status(500).json({ message: 'Erreur serveur lors du traitement de la candidature.' });
   }
 });
+
 
 // ============================================================
 // ROUTE : ÉVALUATION ANNUELLE DES COMPÉTENCES
