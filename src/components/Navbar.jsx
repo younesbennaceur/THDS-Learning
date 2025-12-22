@@ -84,6 +84,17 @@ export default function Navbar() {
             
             </div>
 
+              <Link 
+              to="/certifications" 
+              className={`transition-colors duration-200 font-medium ${
+                isActiveLink('/certifications') 
+                  ? 'text-orange-400 font-bold' 
+                  : 'text-white hover:text-orange-400'
+              }`}
+            >
+              Certifications
+            </Link>
+
             <Link 
               to="/apropos" 
               className={`transition-colors duration-200 font-medium ${

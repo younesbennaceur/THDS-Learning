@@ -23,6 +23,7 @@ import Formateur1 from './pages/Formateur1';
 import Formateur2 from './pages/Formateur2';
 import Formateur3 from './pages/Formateur3';
 import Formateur4 from './pages/Formateur4';
+import Certifications from './pages/Certifications';
 
 
 // ✅ ScrollToTop reste ici
@@ -67,6 +68,7 @@ function App() {
         <Route path='/reclamation' element={<Reclamation />} />
         <Route path='/quality' element={<Quality />} />
         <Route path='/questionnaires' element={<Formulaires />} />
+        <Route path='/certifications' element={<Certifications />} />
 
         {/* ✅ NOUVELLES ROUTES POUR LES FORMULAIRES */}
         <Route 
