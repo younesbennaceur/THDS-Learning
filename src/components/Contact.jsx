@@ -70,7 +70,7 @@ export default function Contact() {
               CONTACTEZ-NOUS
             </h1>
             <p className="text-xl text-purple-200">
-              Utilisez le formulaire ci-dessous si vous souhaitez être contacté par notre agence.
+              Utilisez le formulaire ci-dessous si vous souhaitez être contacté par notre équipe.
             </p>
             <p className="text-lg text-purple-200 mt-2">
               Pour toute demande d'informations sur nos services, laissez-nous un message.

@@ -167,7 +167,7 @@ export default function QuiSommesNous() {
                 Formateurs Experts
               </h3>
               <p className="text-gray-700">
-                Des professionnels passionnés et qualifiés pour vous accompagner
+                Des professionnels et qualifiés pour vous accompagner
               </p>
             </div>
 

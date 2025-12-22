@@ -12,8 +12,8 @@ export default function Stats() {
     },
     {
       icon: Users,
-      number: "50",
-      label: "Stagiaires formés en 2025",
+      number: "à venir",
+      label: "Stagiaires formés en 2026",
       color: "text-purple-600"
     },
     {
@@ -61,34 +61,7 @@ export default function Stats() {
           })}
         </div>
 
-        {/* Top Formations */}
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-10">
-            Top 2 de nos meilleures ventes de formations
-          </h3>
-
-          <div className="space-y-6">
-            {topFormations.map((formation, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
-                <div className="flex items-center mb-3">
-                  <span className="text-lg font-semibold text-gray-700 min-w-[200px]">
-                    {formation.name}
-                  </span>
-                  <div className="flex-1 h-8 bg-gray-200 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-gradient-to-r from-purple-600 to-purple-700 rounded-full transition-all duration-1000 ease-out flex items-center justify-end pr-4"
-                      style={{ width: `${formation.percentage}%` }}
-                    >
-                      <span className="text-white font-semibold text-sm">
-                        {formation.percentage}%
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+    
 
       </div>
     </div>

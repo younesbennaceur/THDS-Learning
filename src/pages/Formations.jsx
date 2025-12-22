@@ -4,38 +4,62 @@ import { Link } from 'react-router-dom';
 
 export default function Formations() {
   const formations = [
-    {
-      id: 1,
-      title: "WORDPRESS",
-      icon: BookOpen,
-      color: "from-purple-600 to-purple-700",
-      description: "Créez et gérez votre site web professionnel",
-      link: "/formation-wordpress"
-    },
+  
     {
       id: 2,
-      title: "EXCEL",
-      icon: BarChart,
-      color: "from-orange-500 to-orange-600",
-      description: "Maîtrisez les tableaux et l'analyse de données",
-        link: "/formation-excel"
+      title: "English Business",
+      subtitle: "10 Heures",
+      icon: Code,
+      color: "from-blue-600 to-blue-700",
+      description: "Programme de formation en anglais professionnel - 10H",
+      link: "#",
+      badge: "À venir",
+      comingSoon: true
     },
     {
       id: 3,
-      title: "CAO",
-      icon: Wrench,
-      color: "from-purple-600 to-purple-700",
-      description: "Conception Assistée par Ordinateur",
-        link: "/formation-cao"
+      title: "English Business",
+      subtitle: "20 Heures",
+      icon: Code,
+      color: "from-cyan-600 to-cyan-700",
+      description: "Programme de formation en anglais professionnel - 20H",
+      link: "#",
+      badge: "À venir",
+      comingSoon: true
     },
     {
       id: 4,
-      title: "PAO",
+      title: "English Business",
+      subtitle: "30 Heures",
       icon: Code,
-      color: "from-orange-500 to-orange-600",
-      description: "Programmation à assister par ordinateur",
-        link: "/formation-pao"
-    }
+      color: "from-teal-600 to-teal-700",
+      description: "Programme de formation en anglais professionnel - 30H",
+      link: "#",
+      badge: "À venir",
+      comingSoon: true
+    },
+    {
+      id: 5,
+      title: "English Business",
+      subtitle: "40 Heures",
+      icon: Code,
+      color: "from-emerald-600 to-emerald-700",
+      description: "Programme de formation en anglais professionnel - 40H",
+      link: "#",
+      badge: "À venir",
+      comingSoon: true
+    },
+    {
+      id: 6,
+      title: "English Business",
+      subtitle: "50 Heures",
+      icon: Code,
+      color: "from-green-600 to-green-700",
+      description: "Programme de formation en anglais professionnel - 50H",
+      link: "#",
+      badge: "À venir",
+      comingSoon: true
+    },
   ];
 
   return (
@@ -62,117 +86,57 @@ export default function Formations() {
         </div>
       </div>
 
-      {/* Règles Sanitaires Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10 mb-20">
-        <div className="bg-white rounded-2xl shadow-md p-8 md:p-12">
-          
-          <div className="flex items-center justify-center mb-8">
-            <div className="bg-gradient-to-br from-purple-600 to-orange-500 p-4 rounded-full">
-              <Shield className="w-10 h-10 text-white" />
-            </div>
-          </div>
-
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6">
-            Règles sanitaires appliquées à toutes les formations intra et inter-entreprises
-          </h2>
-
-          <div className="space-y-6 text-gray-700">
-            <p className="text-lg leading-relaxed">
-              <strong>Conformément au protocole sanitaire gouvernemental, toutes les conditions requises pour garantir la sécurité de tous les stagiaires sont mises en place. La réalisation des formations en visioconférence est privilégiée.</strong>
-            </p>
-
-            <div>
-              <h3 className="text-xl font-bold text-purple-700 mb-4 flex items-center">
-                <Users className="w-6 h-6 mr-2" />
-                Aménagement des locaux pour les formations en présentiel :
-              </h3>
-              <ul className="space-y-3 ml-8">
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Respect des distances de sécurité dès l'accueil des participants</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Lavage des mains au savon à l'arrivée</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Organisation des salles de formation et respect de la jauge par personne pour assurer la distanciation physique</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Mise à disposition de matériel permettant le respect des gestes barrières (essuie-main jetable, gel hydroalcoolique…)</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-purple-700 mb-4 flex items-center">
-                <BookOpen className="w-6 h-6 mr-2" />
-                Pédagogie adaptée :
-              </h3>
-              <ul className="space-y-3 ml-8">
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Contenus pédagogiques dématérialisés</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Emargement électronique</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Exercices pédagogiques adaptés pour respecter les mesures de distanciation physique</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span>Conformément au protocole sanitaire gouvernemental, les stagiaires devront se munir de leurs propres outils de travail (stylos, bloc-notes etc) et de leur équipement de protection individuelle (masque).</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
       {/* Liste des Formations */}
       <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Nos Programmes de Formation
-            </h2>
-            <p className="text-lg text-gray-600">
-              Des formations professionnelles adaptées à vos besoins
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {formations.map((formation) => {
               const Icon = formation.icon;
               return (
                 <div 
                   key={formation.id}
-                  className="bg-white rounded-2xl shadow-md transition-all duration-300 overflow-hidden group "
+                  className={`rounded-2xl shadow-md transition-all duration-300 overflow-hidden group ${
+                    formation.comingSoon ? 'relative opacity-90' : ''
+                  }`}
                 >
-                  <div className={`bg-gradient-to-br ${formation.color} p-8 text-center`}>
+                  {/* Badge "À venir" */}
+                  {formation.badge && (
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-orange-500 text-white shadow-lg">
+                        {formation.badge}
+                      </span>
+                    </div>
+                  )}
+
+                  <div className={`bg-gradient-to-br ${formation.color} p-8 text-center relative ${formation.comingSoon ? 'opacity-80' : ''}`}>
                     <Icon className="w-16 h-16 text-white mx-auto mb-4" />
                     <h3 className="text-2xl font-bold text-white">
                       {formation.title}
                     </h3>
+                    {formation.subtitle && (
+                      <p className="text-purple-100 text-sm font-semibold mt-2">
+                        {formation.subtitle}
+                      </p>
+                    )}
                   </div>
                   
-                  <div className="p-6">
+                  <div className="p-6 bg-white">
                     <p className="text-gray-600 text-center mb-6">
                       {formation.description}
                     </p>
-                    <div className='w-full text-center bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300'>
-                    <Link to={formation.link} className="text-lg">
-                        En savoir plus
-                    </Link>
-                    </div>
-                   
+                    
+                    {formation.comingSoon ? (
+                      <div className="w-full text-center bg-gray-300 text-gray-600 font-semibold py-3 rounded-lg cursor-not-allowed">
+                        Lien EDOF à venir
+                      </div>
+                    ) : (
+                      <div className='w-full text-center bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300'>
+                        <Link to={formation.link} className="text-lg block">
+                          En savoir plus
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </div>
               );

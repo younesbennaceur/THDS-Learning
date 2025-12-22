@@ -87,29 +87,7 @@ export default function AvisClients() {
         </div>
       </div>
 
-      {/* Info Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-4xl font-bold text-purple-600 mb-3">100%</div>
-              <p className="text-gray-600">Satisfaction garantie</p>
-            </div>
-
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-4xl font-bold text-orange-500 mb-3">24/7</div>
-              <p className="text-gray-600">Support disponible</p>
-            </div>
-
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="text-4xl font-bold text-purple-600 mb-3">+50</div>
-              <p className="text-gray-600">Stagiaires formés en 2025</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
+  
 
     </div>
   );

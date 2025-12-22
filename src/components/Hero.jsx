@@ -7,8 +7,8 @@ export default function Hero() {
 
   const slides = [
     {
-      title: "Votre Formation Entièrement En Ligne",
-      subtitle: "THDS vous propose des formations 100% en ligne. L'avantage c'est que vous êtes chez vous sans contraintes de déplacement ou de temps.",
+      title: "Votre formation en présentiel",
+      subtitle: "THDS vous propose des formations  100% en présentiel. Les formations en présentiels permettent une interaction directe, une meilleure concentration, un apprentissage pratique, un accompagnement personnalisé et favorise le travail en groupe ainsi que le réseau professionnel",
       cta: "Demander Un Devis",
       image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=800&fit=crop", // Formation en groupe
       link:"/contact"
@@ -85,11 +85,19 @@ export default function Hero() {
 
         </div>
       </div>
+      {/* Logo in bottom left corner */}
+      <div className="absolute bottom-5 md:bottom-14 left-22 z-10">
+        <img 
+          src="/logo1.png" 
+          alt="THDS Logo"
+          className="h-16 w-auto"
+        />
+      </div>
 
       {/* Navigation Arrows */}
       <button 
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 z-20"
+        className="  absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 z-20"
         aria-label="Slide précédent"
       >
         <ChevronLeft className="w-6 h-6" />
@@ -104,7 +112,7 @@ export default function Hero() {
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+      <div className="hidden md:block absolute bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
         {slides.map((_, index) => (
           <button
             key={index}

@@ -124,30 +124,25 @@ export default function Footer() {
               <Award className="w-6 h-6 text-orange-400" />
               <span>CERTIFICATIONS</span>
             </h3>
-
-             <div className="">
+            <div className='flex gap-8 '>
+                 <div className="">
               <img 
                 src="/Footer2.png" 
                 alt="CPF - Charte de déontologie"
-                className="w-48 h-48"
+                className="w-32 h-32"
               />
             </div>
             <div className="">
               <img 
-                src="/Footer1.png" 
-                alt="CPF - Charte de déontologie"
-                className="w-full h-32"
+                src="/image.png" 
+                alt="Calibration Qualiopi THDS"
+                className="h-32"
               />
             </div>
-            <li className="mt-4"> 
-                  <a 
-                    href="https://view.genially.com/63b6f93d1d37b0001a70ac04"
-                    className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
-                  >
-                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                    <span>Accès aux personnes sourdes et malentendante.</span>
-                  </a>
-                </li>
+            </div>
+
+          
+            
             
            
           </div>
@@ -160,7 +155,7 @@ export default function Footer() {
             Copyright 2025 © <span className="font-bold text-white">THDS FORMATION</span>
           </p>
           <p className=" text-blue-200">
-            dernière mise à jour : 09/10/2025
+            dernière mise à jour : 5/01/2026
 
           </p>
         </div>

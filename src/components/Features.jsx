@@ -39,12 +39,11 @@ export default function Features() {
 
         {/* Main Title */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-          Certaines de nos formations sont disponibles en E-Learning via notre plateforme e-learning accessible 24/24 et 7/7 (dokeos)
-        </h2>
+Des formations 100 % en présentiel, animées par des formateurs compétents et pédagogues, pour un apprentissage efficace et concret        </h2>
 
         {/* Subtitle */}
         <p className="text-xl text-gray-100 mb-10 max-w-3xl mx-auto">
-          Grâce à nos formateurs de qualité, THDS c'est la garantie d'une certification réussie.
+          Chacune de nos formations est certifiante et se conclut obligatoirement par le passage d’une certification, garantissant la reconnaissance des compétences développées
         </p>
 
        

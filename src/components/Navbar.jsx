@@ -78,67 +78,10 @@ export default function Navbar() {
                 }`}
               >
                 <span>Nos Formations</span>
-                <ChevronDown className={`w-4 h-4 ml-1 transition-transform duration-300 ${isFormationsOpen ? 'rotate-180' : ''}`} />
+                
               </Link>
               
-              {/* Dropdown Menu */}
-              {isFormationsOpen && (
-                <div 
-                  className="absolute top-full left-0 mt-2 w-80 bg-white rounded-xl shadow-2xl overflow-hidden z-50"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className="grid grid-cols-2">
-                    
-                    {/* Informatique Section */}
-                    <div className="bg-purple-50 p-6 border-r border-gray-200">
-                      <h4 className="text-purple-700 font-bold text-sm mb-4 uppercase">Informatique</h4>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link
-                            to="/formation-wordpress" 
-                            className="text-gray-700 hover:text-orange-500 transition-colors block"
-                          >
-                            WordPress
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/formation-cao" 
-                            className="text-gray-700 hover:text-orange-500 transition-colors block"
-                          >
-                            CAO
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/formation-pao" 
-                            className="text-gray-700 hover:text-orange-500 transition-colors block"
-                          >
-                            PAO
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Bureautique Section */}
-                    <div className="bg-orange-50 p-6">
-                      <h4 className="text-orange-700 font-bold text-sm mb-4 uppercase">Bureautique</h4>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link
-                            to="/formation-excel" 
-                            className="text-gray-700 hover:text-orange-500 transition-colors block"
-                          >
-                            Excel
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-
-                  </div>
-                </div>
-              )}
+            
             </div>
 
             <Link 
