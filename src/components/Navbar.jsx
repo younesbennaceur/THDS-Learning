@@ -167,42 +167,14 @@ export default function Navbar() {
             >
               Nos Formations
             </Link>
-           
-            <div className="ml-4 space-y-2">
-              <div className="text-purple-300 text-xs font-bold uppercase mb-2">Informatique</div>
-              <Link 
-                to="/formation-wordpress"
-                className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                WordPress
-              </Link>
 
-              <Link 
-                to="/formation-cao"
-                className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                CAO
-              </Link>
-               
-              <Link 
-                to="/formation-pao"
-                className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                PAO
-              </Link>
-              
-              <div className="text-orange-300 text-xs font-bold uppercase mb-2 mt-3">Bureautique</div>
-              <Link 
-                to="/formation-excel"
-                className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-2 px-4 rounded-lg"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Excel
-              </Link>
-            </div>
+            <Link 
+              to="/certifications"
+              className="block text-white hover:text-orange-400 hover:bg-purple-900/50 transition-all py-3 px-4 rounded-lg"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Certifications
+            </Link>
 
             <Link 
               to="/apropos"
