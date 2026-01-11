@@ -119,7 +119,7 @@ export default function Footer() {
           </div>
 
           {/* Section 3: CERTIFICATIONS */}
-          <div className=' flex flex-col justify-baseline'>
+          <div className=' flex gap-4 flex-col justify-baseline'>
             <h3 className="text-xl font-bold mb-6 flex items-center space-x-2">
               <Award className="w-6 h-6 text-orange-400" />
               <span>CERTIFICATIONS</span>
@@ -139,6 +139,20 @@ export default function Footer() {
                 className="h-32"
               />
             </div>
+            </div>
+            <div className='flex gap-8 '>
+             <a href="https://vtest-france.exassess.com">
+
+                  <div className="">
+              <img 
+                src="/vtestfrance.jpg" 
+                alt="CPF - Charte de déontologie"
+                className="w-32 h-16"
+              />
+            </div>
+
+             </a>
+            
             </div>
 
           

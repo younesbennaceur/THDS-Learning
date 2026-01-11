@@ -12,9 +12,7 @@ export default function Formations() {
       icon: Code,
       color: "from-blue-600 to-blue-700",
       description: "Programme de formation en anglais professionnel - 10H",
-      link: "#",
-      badge: "À venir",
-      comingSoon: true
+      link: "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_BE10/83277408700023_EB10?contexteFormation=ACTIVITE_PROFESSIONNELLE",
     },
     {
       id: 3,
@@ -23,9 +21,7 @@ export default function Formations() {
       icon: Code,
       color: "from-cyan-600 to-cyan-700",
       description: "Programme de formation en anglais professionnel - 20H",
-      link: "#",
-      badge: "À venir",
-      comingSoon: true
+      link: "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_BE10/83277408700023_EB20?contexteFormation=ACTIVITE_PROFESSIONNELLE",
     },
     {
       id: 4,
@@ -34,9 +30,7 @@ export default function Formations() {
       icon: Code,
       color: "from-teal-600 to-teal-700",
       description: "Programme de formation en anglais professionnel - 30H",
-      link: "#",
-      badge: "À venir",
-      comingSoon: true
+      link: "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_BE10/83277408700023_EB30",
     },
     {
       id: 5,
@@ -45,9 +39,7 @@ export default function Formations() {
       icon: Code,
       color: "from-emerald-600 to-emerald-700",
       description: "Programme de formation en anglais professionnel - 40H",
-      link: "#",
-      badge: "À venir",
-      comingSoon: true
+      link: "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_BE10/83277408700023_EB40?contexteFormation=ACTIVITE_PROFESSIONNELLE",
     },
     {
       id: 6,
@@ -56,9 +48,7 @@ export default function Formations() {
       icon: Code,
       color: "from-green-600 to-green-700",
       description: "Programme de formation en anglais professionnel - 50H",
-      link: "#",
-      badge: "À venir",
-      comingSoon: true
+      link: "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_BE10/83277408700023_EB50?contexteFormation=ACTIVITE_PROFESSIONNELLE",
     },
   ];
 
