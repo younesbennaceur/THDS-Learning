@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom' // ✅ Importer Link
-import { GraduationCap, Presentation, FileText, TrendingUp, Building2 } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { GraduationCap, Presentation, FileText, TrendingUp, Building2, PencilLine } from 'lucide-react'
 
 const formulairesData = {
   eleve: {
@@ -52,25 +52,29 @@ const formulairesData = {
     items: [
       { id: 1, text: "Recueil des appréciations pour entreprises",  }
     ]
-  }}
-
+  },
+  TESTPOSITIONNEMENT: {
+    title: "TEST DE POSITIONNEMENT",
+    icon: PencilLine,
+    items: [
+      { id: 1, text: "TEST DE POSITIONNEMENT BUSINESS ENGLISH-4 SKILLS", link: "/formulaires/test-de-positionnement-BUSINESS-ENGLISH-4-SKILLS" }
+    ]
+  }
+}
 
 export default function Formulaires() {
   return (
     <div className="relative">
-        <div className="relative h-80 overflow-hidden">
+      <div className="relative h-80 overflow-hidden">
         <img 
           src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1600&h=600&fit=crop"
           alt="Contact"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-purple-950/85"></div>
-        
         <div className="relative h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Listing questionnaires
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Listing questionnaires</h1>
           </div>
         </div>
       </div>
@@ -89,18 +93,19 @@ export default function Formulaires() {
             <ul className="space-y-3 text-gray-600">
               {formulairesData.eleve.items.map((item) => (
                 <li key={item.id}>
-                  <Link  // ✅ Utilise Link au lieu de <a>
-                    to={item.link}
-                    className="text-sm leading-relaxed hover:text-purple-600 hover:underline transition-colors cursor-pointer flex items-start"
-                  >
-                    <span className="mr-2">•</span>
-                    <span>{item.text}</span>
-                  </Link>
+                  {item.link ? (
+                    <Link to={item.link} className="text-sm hover:text-purple-600 hover:underline flex items-start">
+                      <span className="mr-2">•</span><span>{item.text}</span>
+                    </Link>
+                  ) : (
+                    <span className="text-sm flex items-start opacity-50"><span className="mr-2">•</span>{item.text}</span>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
- {/* Formateur Card */}
+
+          {/* Formateur Card */}
           <div className="bg-white rounded-lg shadow-md p-8">
             <div className="flex flex-col items-center mb-6">
               <div className="bg-purple-100 p-6 rounded-full mb-4">
@@ -110,14 +115,14 @@ export default function Formulaires() {
             </div>
             <ul className="space-y-3 text-gray-600">
               {formulairesData.formateur.items.map((item) => (
-                 <li key={item.id}>
-                  <Link  // ✅ Utilise Link au lieu de <a>
-                    to={item.link}
-                    className="text-sm leading-relaxed hover:text-purple-600 hover:underline transition-colors cursor-pointer flex items-start"
-                  >
-                    <span className="mr-2">•</span>
-                    <span>{item.text}</span>
-                  </Link>
+                <li key={item.id}>
+                  {item.link ? (
+                    <Link to={item.link} className="text-sm hover:text-purple-600 hover:underline flex items-start">
+                      <span className="mr-2">•</span><span>{item.text}</span>
+                    </Link>
+                  ) : (
+                    <span className="text-sm flex items-start opacity-50"><span className="mr-2">•</span>{item.text}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -133,14 +138,14 @@ export default function Formulaires() {
             </div>
             <ul className="space-y-3 text-gray-600">
               {formulairesData.reclamation.items.map((item) => (
-                 <li key={item.id}>
-                  <Link  // ✅ Utilise Link au lieu de <a>
-                    to={item.link}
-                    className="text-sm leading-relaxed hover:text-purple-600 hover:underline transition-colors cursor-pointer flex items-start"
-                  >
-                    <span className="mr-2">•</span>
-                    <span>{item.text}</span>
-                  </Link>
+                <li key={item.id}>
+                  {item.link ? (
+                    <Link to={item.link} className="text-sm hover:text-purple-600 hover:underline flex items-start">
+                      <span className="mr-2">•</span><span>{item.text}</span>
+                    </Link>
+                  ) : (
+                    <span className="text-sm flex items-start opacity-50"><span className="mr-2">•</span>{item.text}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -152,50 +157,71 @@ export default function Formulaires() {
               <div className="bg-purple-100 p-6 rounded-full mb-4">
                 <TrendingUp className="w-16 h-16 text-purple-600" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 text-center">
-                {formulairesData.appreciationsFinanceurs.title}
-              </h2>
+              <h2 className="text-2xl font-bold text-gray-800 text-center">{formulairesData.appreciationsFinanceurs.title}</h2>
             </div>
             <ul className="space-y-3 text-gray-600">
               {formulairesData.appreciationsFinanceurs.items.map((item) => (
                 <li key={item.id}>
-                  <Link  // ✅ Utilise Link au lieu de <a>
-                    to={item.link}
-                    className="text-sm leading-relaxed hover:text-purple-600 hover:underline transition-colors cursor-pointer flex items-start"
-                  >
-                    <span className="mr-2">•</span>
-                    <span>{item.text}</span>
-                  </Link>
+                  {item.link ? (
+                    <Link to={item.link} className="text-sm hover:text-purple-600 hover:underline flex items-start">
+                      <span className="mr-2">•</span><span>{item.text}</span>
+                    </Link>
+                  ) : (
+                    <span className="text-sm flex items-start opacity-50"><span className="mr-2">•</span>{item.text}</span>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Appréciations Entreprises Card - Full Width */}
+          {/* Appréciations Entreprises Card */}
           <div className="bg-white rounded-lg shadow-md p-8 md:col-span-2">
             <div className="flex flex-col items-center mb-6">
               <div className="bg-purple-100 p-6 rounded-full mb-4">
                 <Building2 className="w-16 h-16 text-purple-600" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 text-center">
-                {formulairesData.appreciationsEntreprises.title}
-              </h2>
+              <h2 className="text-2xl font-bold text-gray-800 text-center">{formulairesData.appreciationsEntreprises.title}</h2>
             </div>
             <ul className="space-y-3 text-gray-600 max-w-2xl mx-auto">
               {formulairesData.appreciationsEntreprises.items.map((item) => (
-                <li 
-                  key={item.id}
-                  onClick={() => handleItemClick(item.link, item.text)}
-                  className="text-sm leading-relaxed hover:text-purple-600 hover:underline transition-colors cursor-pointer text-center"
-                >
-                  {item.text}
+                <li key={item.id} className="text-center">
+                   {item.link ? (
+                    <Link to={item.link} className="text-sm hover:text-purple-600 hover:underline">
+                      {item.text}
+                    </Link>
+                  ) : (
+                    <span className="text-sm opacity-50">{item.text}</span>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
-          {/* Fais pareil pour les autres cartes... */}
-        </div>
-      </div>
+
+          {/* Test de Positionnement Card */}
+          <div className="bg-white rounded-lg shadow-md p-8">
+            <div className="flex flex-col items-center mb-6">
+              <div className="bg-purple-100 p-6 rounded-full mb-4">
+                <PencilLine className="w-16 h-16 text-purple-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800">{formulairesData.TESTPOSITIONNEMENT.title}</h2>
+            </div>
+            <ul className="space-y-3 text-gray-600">
+              {formulairesData.TESTPOSITIONNEMENT.items.map((item) => (
+                <li key={item.id}>
+                   {item.link ? (
+                    <Link to={item.link} className="text-sm hover:text-purple-600 hover:underline flex items-start">
+                      <span className="mr-2">•</span><span>{item.text}</span>
+                    </Link>
+                  ) : (
+                    <span className="text-sm flex items-start opacity-50"><span className="mr-2">•</span>{item.text}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div> {/* Fermeture de la grid */}
+      </div> {/* Fermeture du container max-w-7xl */}
     </div>
   )
 }

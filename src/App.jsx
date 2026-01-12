@@ -24,6 +24,7 @@ import Formateur2 from './pages/Formateur2';
 import Formateur3 from './pages/Formateur3';
 import Formateur4 from './pages/Formateur4';
 import Certifications from './pages/Certifications';
+import TestAnglais from './pages/TestAnglais';
 
 
 // ✅ ScrollToTop reste ici
@@ -99,6 +100,12 @@ function App() {
           path='formulaires/formateur/test-anglais'
           element={<Formateur4 />}
         />
+
+        <Route
+          path='/formulaires/test-de-positionnement-BUSINESS-ENGLISH-4-SKILLS'
+          element={<TestAnglais />}
+        />
+
 
         
        
