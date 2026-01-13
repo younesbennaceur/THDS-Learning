@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, MessageSquare, Send } from 'lucide-react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { Calendar } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -150,92 +153,70 @@ export default function Contact() {
           })}
         </div>
 
-        {/* Contact Form */}
-        <div className="bg-white rounded-2xl shadow-md p-8 md:p-12 mb-16">
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">
-            Questions, commentaires ? Nous vous écoutons.
-          </h3>
+      {/* --- FORMULAIRE --- */}
+      <div className="max-w-7xl mx-auto mt-16  pb-20 relative z-10">
+        <div className="bg-white rounded-xl shadow-md  p-8 md:p-12 border border-slate-100">
           
-          <form onSubmit={handleSubmit} className="max-w-3xl mx-auto space-y-6">
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Votre nom
-              </label>
-              <input
-                type="text"
-                name="nom"
-                value={formData.nom}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
-              />
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-bold mb-2 text-slate-700">Prénom *</label>
+                <input type="text" name="prenom" value={formData.prenom} onChange={handleChange} className="input-modern" required placeholder="Ex: Jean" />
+              </div>
+              <div>
+                <label className="block text-sm font-bold mb-2 text-slate-700">Nom *</label>
+                <input type="text" name="nom" value={formData.nom} onChange={handleChange} className="input-modern" required placeholder="Ex: DUPONT" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-bold mb-2 text-slate-700">E-mail *</label>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} className="input-modern" required placeholder="jean.dupont@mail.com" />
+              </div>
+              <div>
+                <label className="block text-sm font-bold mb-2 text-slate-700">Téléphone *</label>
+                <input type="tel" name="telephone" value={formData.telephone} onChange={handleChange} className="input-modern" required placeholder="06 00 00 00 00" />
+              </div>
+            </div>
+
+            {/* Préférences de rappel */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <label className="text-sm font-bold mb-3 flex items-center text-purple-900">
+                  <Calendar size={18} className="mr-2"/> Période souhaitée
+                </label>
+                <select name="periodeContact" value={formData.periodeContact} onChange={handleChange} className="input-modern bg-white" required>
+                  <option value="">Sélectionnez...</option>
+                  <option value="Semaine">En semaine (Lundi - Vendredi)</option>
+                  <option value="Week-end">Le Week-end (Samedi)</option>
+                </select>
+              </div>
+
+              <div className="bg-purple-50 p-6 rounded-2xl border border-purple-100">
+                <label className="text-sm font-bold mb-3 flex items-center text-purple-900">
+                  <Clock size={18} className="mr-2"/> Urgence de l'appel
+                </label>
+                <select name="urgence" value={formData.urgence} onChange={handleChange} className="input-modern bg-white" required>
+                  <option value="">Sélectionnez...</option>
+                  <option value="Dès que possible">🚀 Le plus tôt possible</option>
+                  <option value="Sous 48h">📅 Sous 48 heures</option>
+                  <option value="Pas pressé">🧘 Je ne suis pas pressé</option>
+                </select>
+              </div>
             </div>
 
             <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Votre e-mail
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
-              />
+              <label className="block text-sm font-bold mb-2 text-slate-700">Message ou précisions</label>
+              <textarea name="message" value={formData.message} onChange={handleChange} rows="4" className="input-modern resize-none" placeholder="Comment pouvons-nous vous aider ?"></textarea>
             </div>
 
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Objet
-              </label>
-              <input
-                type="text"
-                name="objet"
-                value={formData.objet}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Votre N° téléphone
-              </label>
-              <input
-                type="tel"
-                name="telephone"
-                value={formData.telephone}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">
-                Votre message (facultatif)
-              </label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows="6"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all resize-none"
-              ></textarea>
-            </div>
-
-            <div className="text-center">
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold px-12 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 inline-flex items-center space-x-2"
-              >
-                <span>ENVOYER</span>
-                <Send className="w-5 h-5" />
-              </button>
-            </div>
+            <button type="submit" className="w-full bg-purple-900 text-white py-5 rounded-2xl font-bold hover:bg-purple-950 transition-all shadow-xl shadow-purple-200 flex items-center justify-center">
+              Être recontacté par un conseiller <Send size={18} className="ml-3"/>
+            </button>
           </form>
         </div>
+      </div>
 
         {/* Map Section */}
         <div className="bg-white rounded-2xl shadow-md overflow-hidden mb-16">
