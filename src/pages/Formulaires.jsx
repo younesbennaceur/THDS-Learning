@@ -7,11 +7,11 @@ const formulairesData = {
     title: "ÉLÈVE",
     icon: GraduationCap,
     items: [
-      { id: 1, text: "1/ Fiche analyse des besoins et attentes clients [ VISIO ]", link: "/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients" },
+      { id: 1, text: "1/ Fiche analyse des besoins et attentes clients [ présentiel ]", link: "/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients" },
       { id: 2, text: "2/ Fiche analyse des besoins et attentes clients [ E-LEARNING ]" },
       { id: 3, text: "3/ Fiche analyse des besoins et attentes Bilan de compétences" },
       { id: 4, text: "4/ Enquête de satisfaction en fin de formation (à chaud) [ E-LEARNING ]"},
-      { id: 5, text: "5/ Enquête de satisfaction en fin de formation (à chaud) [ VISIO ]", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
+      { id: 5, text: "5/ Enquête de satisfaction en fin de formation (à chaud) [ présentiel ]", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
       { id: 6, text: "6/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
       { id: 7, text: "7/ Questionnaire bilan de compétences",  },
       { id: 8, text: "8/ Questionnaire bilan de compétences à 6 mois",},
