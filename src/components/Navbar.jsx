@@ -131,9 +131,9 @@ export default function Navbar() {
 
           {/* CTA Button Desktop */}
           <div className="hidden md:block">
-            <Link to="/formations">
+            <Link to="/etre-contacte">
               <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300">
-                Commencer Maintenant
+                Etre Contacté 
               </button>
             </Link>
           </div>

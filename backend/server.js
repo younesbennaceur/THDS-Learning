@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import eleveRoutes from './routes/eleve.js'; 
 import formateurRoutes from './routes/formateur.js';
 import testRoutes from './routes/test.js';
+import contactRoutes from './routes/contact.js';
 
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use('/api/eleve', eleveRoutes);
 app.use('/api/formateur', formateurRoutes); 
 app.use('/api/test', testRoutes); 
+app.use('/api/contact', contactRoutes);
 
 
 app.get('/', (req, res) => {
