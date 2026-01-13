@@ -200,9 +200,9 @@ export default function Navbar() {
               Nos Avis Clients
             </Link>
            
-            <Link to="/formations">
+            <Link to="/etre-contacte">
               <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-semibold mt-4 hover:shadow-lg hover:shadow-orange-500/50 transition-all">
-                Commencer Maintenant
+                Etre Contacté
               </button>
             </Link>
           </div>
