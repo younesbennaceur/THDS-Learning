@@ -182,7 +182,7 @@ export default function FicheFormateur() {
         {/* Background Overlay effect */}
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="text-center text-white px-4 relative z-10">
-          <h1 className="text-4xl font-bold mb-2">FICHE FORMATEUR</h1>
+          <h1 className="text-4xl font-extrabold mb-2">FICHE FORMATEUR</h1>
           <p className="opacity-90">Rejoignez notre réseau d'experts</p>
         </div>
       </div>

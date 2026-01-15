@@ -9,16 +9,12 @@ const formulairesData = {
     items: [
       { id: 1, text: "1/ Fiche analyse des besoins et attentes clients [ présentiel ]", link: "/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients" },
       { id: 2, text: "2/ Fiche analyse des besoins et attentes clients [ E-LEARNING ]" },
-      { id: 3, text: "3/ Fiche analyse des besoins et attentes Bilan de compétences" },
-      { id: 4, text: "4/ Enquête de satisfaction en fin de formation (à chaud) [ E-LEARNING ]"},
-      { id: 5, text: "5/ Enquête de satisfaction en fin de formation (à chaud) [ présentiel ]", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
-      { id: 6, text: "6/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
-      { id: 7, text: "7/ Questionnaire bilan de compétences",  },
-      { id: 8, text: "8/ Questionnaire bilan de compétences à 6 mois",},
-      { id: 9, text: "9/ Test de connaissances : ANGLAIS", },
-      { id: 10, text: "10/ Test de connaissances : Français professionnel", },
-      { id: 11, text: "11/ Test de connaissances : Intelligence artificielle",  },
-      { id: 12, text: "12/ Règlement intérieur", }
+      { id: 4, text: "3/ Enquête de satisfaction en fin de formation (à chaud) [ E-LEARNING ]"},
+      { id: 5, text: "4/ Enquête de satisfaction en fin de formation (à chaud) ", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
+      { id: 6, text: "5/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
+      { id: 9, text: "6/ test de positionnement Business English - 4 skills",link: "/formulaires/eleve/test-de-positionnement-Business-English-4-skills" },
+      { id: 10, text: "7/ Test de positionnement : Français professionnel", },
+      { id: 11, text: "8/ Test de positionnement : Intelligence artificielle",  }
     ]
   },
   formateur: {
@@ -36,7 +32,7 @@ const formulairesData = {
     title: "RÉCLAMATION",
     icon: FileText,
     items: [
-      { id: 1, text: "Formulaire de réclamation",  }
+      { id: 1, text: "Formulaire de réclamation",link: "/formulaires/reclamation-form" }
     ]
   },
   appreciationsFinanceurs: {
@@ -74,7 +70,7 @@ export default function Formulaires() {
         <div className="absolute inset-0 bg-purple-950/85"></div>
         <div className="relative h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Listing questionnaires</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Listing questionnaires</h1>
           </div>
         </div>
       </div>
@@ -101,7 +97,17 @@ export default function Formulaires() {
                     <span className="text-sm flex items-start opacity-50"><span className="mr-2">•</span>{item.text}</span>
                   )}
                 </li>
+                
               ))}
+              <li className='mt-3 space-y-3' >
+                  <a
+                    href='REGLEMENTINTERIEUR.pdf'
+                    className="text-sm hover:text-purple-600 hover:underline flex items-start"
+                  >
+               
+                    <span>• 9/ Règlement intérieur</span>
+                  </a>
+                </li>
             </ul>
           </div>
 

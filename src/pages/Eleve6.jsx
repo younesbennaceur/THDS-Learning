@@ -122,7 +122,7 @@ export default function Eleve6() {
         <div className="absolute inset-0 bg-purple-950/90"></div>
         <div className="relative h-full flex items-center justify-center px-4">
           <div className="text-center text-white">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">ENQUÊTE DE SATISFACTION À FROID</h1>
+            <h1 className="text-3xl md:text-4xl font-extrabold mb-2">ENQUÊTE DE SATISFACTION À FROID</h1>
             <p className="opacity-90 uppercase tracking-widest text-sm">1 Mois après la formation</p>
           </div>
         </div>

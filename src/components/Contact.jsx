@@ -6,24 +6,36 @@ import { Calendar } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
+    prenom: '',
     nom: '',
     email: '',
-    objet: '',
     telephone: '',
+    periodeContact: '',
+    urgence: '',
     message: ''
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logique d'envoi du formulaire
-    console.log('Form submitted:', formData);
+    Swal.fire({ title: 'Transmission de votre demande...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+    try {
+      await axios.post('http://localhost:5000/api/contact/contact-complet', formData);
+      Swal.fire({
+        icon: 'success',
+        title: 'Demande envoyée !',
+        text: 'Notre équipe THDS vous recontactera selon vos préférences.',
+        confirmButtonColor: '#4c1d95'
+      });
+      // Reset form
+      setFormData({ prenom: '', nom: '', email: '', telephone: '', periodeContact: '', urgence: '', message: '' });
+    } catch (error) {
+      Swal.fire('Erreur', "Échec de l'envoi.", 'error');
+    }
   };
 
   const contactInfo = [
@@ -246,6 +258,10 @@ export default function Contact() {
         </div>
 
       </div>
+      <style>{`
+        .input-modern { width: 100%; padding: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; outline: none; transition: 0.2s; }
+        .input-modern:focus { border-color: #6b21a8; background: white; box-shadow: 0 0 0 4px rgba(107, 33, 168, 0.1); }
+      `}</style>
     </div>
   );
 }

@@ -26,6 +26,8 @@ import Formateur4 from './pages/Formateur4';
 import Certifications from './pages/Certifications';
 import TestAnglais from './pages/TestAnglais';
 import ContactPage from './pages/EtreContacte';
+import ReclamationForm from './pages/ReclamationForm';
+import CertificationVTest from './pages/VtestFrance';
 
 
 // ✅ ScrollToTop reste ici
@@ -110,6 +112,16 @@ function App() {
           path='/etre-contacte'
           element={<ContactPage />}
         />
+        <Route
+          path='/formulaires/reclamation-form'
+          element={<ReclamationForm />}
+        />
+        <Route path='/reclamation' element={<Reclamation />} />
+        <Route
+          path='/certification-vtest-france'
+          element={<CertificationVTest />}
+        />
+        
 
 
         

@@ -109,7 +109,7 @@ export default function GrilleEvaluation() {
       <div className="relative h-64 bg-purple-950 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="text-center text-white px-4 relative z-10">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">TEST D'ÉVALUATION</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold mb-2">TEST D'ÉVALUATION</h1>
           <p className="opacity-90 tracking-widest text-sm uppercase">Anglais & Compétences</p>
         </div>
       </div>

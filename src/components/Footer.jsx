@@ -97,7 +97,7 @@ export default function Footer() {
             <ul>
               <li className='mt-3 space-y-3' >
                   <a
-                    href='LA.pdf'
+                    href='LivretDacceuilTHDS.pdf'
                     
                   
                     className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
@@ -108,7 +108,7 @@ export default function Footer() {
                 </li>
                 <li className='mt-3 space-y-3' >
                   <a
-                    href='RI.pdf'
+                    href='REGLEMENTINTERIEUR.pdf'
                     className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
                   >
                     <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
@@ -145,14 +145,26 @@ export default function Footer() {
 
                   <div className="">
               <img 
-                src="/vtestfrance.jpg" 
+                src="/vtestfrance.png" 
                 alt="CPF - Charte de déontologie"
                 className="w-32 h-16"
               />
             </div>
 
              </a>
-            
+             <ul>
+             <li className='mt-3 space-y-3' >
+                   <Link
+                    to='certification-vtest-france'
+                    
+                  
+                    className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                    <span>VTest-France</span>
+                  </Link>
+                </li>
+            </ul>
             </div>
 
           
@@ -169,7 +181,7 @@ export default function Footer() {
             Copyright 2025 © <span className="font-bold text-white">THDS FORMATION</span>
           </p>
           <p className=" text-blue-200">
-            dernière mise à jour : 5/01/2026
+            dernière mise à jour : 15/01/2026
 
           </p>
         </div>

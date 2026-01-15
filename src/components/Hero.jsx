@@ -11,7 +11,7 @@ export default function Hero() {
       subtitle: "THDS vous propose des formations  100% en présentiel. Les formations en présentiels permettent une interaction directe, une meilleure concentration, un apprentissage pratique, un accompagnement personnalisé et favorise le travail en groupe ainsi que le réseau professionnel",
       cta: "Demander Un Devis",
       image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=800&fit=crop", // Formation en groupe
-      link:"/contact"
+      link:"/etre-contacte"
     },
     {
       title: "Formations Certifiantes et Diplômantes",
@@ -65,7 +65,7 @@ export default function Hero() {
         <div className="max-w-4xl">
           
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
             {slides[currentSlide].title}
           </h1>
 
@@ -86,13 +86,13 @@ export default function Hero() {
         </div>
       </div>
       {/* Logo in bottom left corner */}
-      <div className="absolute bottom-5 md:bottom-14 left-22 z-10">
+      <Link className='absolute bottom-5 md:bottom-14 left-22 z-10' to="/certification-vtest-france"> 
         <img 
-          src="/logo1.png" 
+          src="/vtestfrance.png" 
           alt="THDS Logo"
           className="h-16 w-auto"
         />
-      </div>
+       </Link>
 
       {/* Navigation Arrows */}
       <button 

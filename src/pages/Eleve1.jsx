@@ -250,10 +250,9 @@ const Line = ({ step, target }) => (
         <div className="absolute inset-0 bg-purple-950/85"></div>
         <div className="relative h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-4xl">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">
              Fiche analyse des besoins et attentes clients
             </h1>
-            <span className="bg-white/20 text-white px-4 py-1 rounded-full text-sm font-medium uppercase tracking-wider">E-Learning / Visio</span>
           </div>
         </div>
       </div>

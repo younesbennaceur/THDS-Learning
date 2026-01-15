@@ -7,6 +7,7 @@ import eleveRoutes from './routes/eleve.js';
 import formateurRoutes from './routes/formateur.js';
 import testRoutes from './routes/test.js';
 import contactRoutes from './routes/contact.js';
+import reclamationRoutes from './routes/reclamations.js';
 
 
 dotenv.config();
@@ -22,6 +23,7 @@ app.use('/api/eleve', eleveRoutes);
 app.use('/api/formateur', formateurRoutes); 
 app.use('/api/test', testRoutes); 
 app.use('/api/contact', contactRoutes);
+app.use('/api/reclamation', reclamationRoutes);
 
 
 app.get('/', (req, res) => {

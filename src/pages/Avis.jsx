@@ -19,7 +19,7 @@ export default function AvisClients() {
             <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-6">
               <Star className="w-10 h-10 text-white" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
               NOS AVIS CLIENTS
             </h1>
             <p className="text-xl text-purple-200">
