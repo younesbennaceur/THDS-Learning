@@ -13,6 +13,8 @@ export default function ContactPageModern() {
     periodeContact: '',
     urgence: '',
     message: '',
+    dateNaissance: '', // Nouveau champ
+    adresse: '',
     accordDemarchage: false 
   });
 
@@ -72,6 +74,17 @@ export default function ContactPageModern() {
               <div>
                 <label className="block text-sm font-bold mb-2 text-slate-700">Nom *</label>
                 <input type="text" name="nom" value={formData.nom} onChange={handleChange} className="input-modern" required placeholder="Ex: DUPONT" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-bold mb-2 text-slate-700">Date de naissance *</label>
+                <input type="date" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} className="input-modern" required />
+              </div>
+              <div>
+                <label className="block text-sm font-bold mb-2 text-slate-700">Adresse complète *</label>
+                <input type="text" name="adresse" value={formData.adresse} onChange={handleChange} className="input-modern" required placeholder="N°, rue, CP et Ville" />
               </div>
             </div>
 
