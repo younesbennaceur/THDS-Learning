@@ -624,31 +624,32 @@ const cgvData = {
           text: "Toute contestation qui n’aurait pas été réglée à l’amiable sera portée devant les tribunaux de Paris compétents selon les règles de droit commun."
         }
       ]
-    }
+    },
+    {
+        id: 21,
+        title: "21. RGPD et Consentement au Contact Commercial",
+        content: [
+          {
+            subtitle: "21.1. Consentement Explicite",
+            text: "En cochant la case de consentement sur nos formulaires, l’utilisateur autorise expressément l’organisme de formation THDS et, le cas échéant, ses partenaires, à utiliser les données fournies pour le contacter par téléphone, SMS et e-mail, dans un cadre strictement informatif et commercial concernant leurs activités de formation."
+          },
+          {
+            subtitle: "21.2. Droits des Utilisateurs",
+            text: "Conformément au Règlement Général sur la Protection des Données (RGPD), l'utilisateur est informé qu'il dispose de droits d’accès, de rectification, d’opposition, d’effacement et de limitation du traitement de ses données."
+          },
+          {
+            subtitle: "21.3. Modalités d'Exercice",
+            text: "Ces droits peuvent être exercés à tout moment en envoyant un email à contact@thds.fr. Pour plus de détails, l'utilisateur est invité à consulter notre Politique de Confidentialité complète disponible sur le site."
+          },
+          {
+            subtitle: "21.4. Finalité du Traitement",
+            text: "Les données collectées ont pour but exclusif de répondre aux demandes d'information, d'assurer le suivi des dossiers de formation et de proposer des offres pédagogiques adaptées aux besoins du candidat."
+          }
+        ]
+      }
   ]
 }
-const demarchageSection = {
-    id: 20,
-    title: "20. Autorisation de Démarchage (IDRIFORM)",
-    content: [
-      {
-        subtitle: "Note importante :",
-        text: "Cette section s'applique suite à votre consentement explicite pour être recontacté par IDRIFORM."
-      },
-      {
-        subtitle: "20.1. Autorisation de contact",
-        text: "L'utilisateur autorise la société IDRIFORM (32 RUE DE PARIS, 92100 BOULOGNE-BILLANCOURT, SIRET: 93055766500013) à procéder à des appels téléphoniques, des envois de courriels, ou tout autre moyen de communication à des fins de démarchage commercial[cite: 7, 21]."
-      },
-      {
-        subtitle: "20.2. Droit de révocation",
-        text: "Cette autorisation peut être révoquée à tout moment par écrit. IDRIFORM s'engage alors à cesser immédiatement tout démarchage[cite: 8, 9]."
-      },
-      {
-        subtitle: "20.3. Cadre légal (Article 57)",
-        text: "Conformément à la loi n° 2020-1525, le démarchage téléphonique pour des offres de formation financées par le CPF est interdit, sauf si l'utilisateur a sollicité le contact. Le non-respect est sanctionné par une amende allant jusqu'à 75 000 € pour une personne morale[cite: 19, 20]."
-      }
-    ]
-  }
+
 
 
   
