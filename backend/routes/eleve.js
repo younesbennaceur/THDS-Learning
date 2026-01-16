@@ -21,7 +21,7 @@ router.post('/analyse-besoins', async (req, res) => {
       <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #3b0764; color: white; padding: 20px; text-align: center;">
           <h2 style="margin: 0;">Nouveau Dossier Élève</h2>
-          <p style="margin: 5px 0 0 0; font-size: 14px;">Fiche Analyse des Besoins (Visio / E-Learning)</p>
+          <p style="margin: 5px 0 0 0; font-size: 14px;">Fiche Analyse des Besoins</p>
         </div>
         <div style="padding: 20px;">
           <h3 style="color: #6b21a8; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px;">👤 1. Informations de Contact</h3>
@@ -109,74 +109,119 @@ router.post('/analyse-besoins', async (req, res) => {
 router.post('/satisfaction-chaud', async (req, res) => {
   try {
     const data = req.body;
-    const raisonsPart = data.raisonsParticipation?.join(', ') || 'Non précisé';
 
-    // 1. HTML ADMIN
+    // Transformation des listes (tableaux) en chaînes lisibles
+    const raisons = data.raisonsParticipation?.join(', ') || 'Non précisé';
+
+    // 1. HTML POUR L'ADMIN (Récapitulatif complet)
     const adminMailContent = `
-      <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-        <div style="background: linear-gradient(135deg, #059669, #047857); color: white; padding: 20px; text-align: center;">
-          <h2 style="margin: 0;">Enquête Satisfaction (À Chaud)</h2>
+      <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 700px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        
+        <div style="background: linear-gradient(135deg, #4c1d95, #1e1b4b); color: white; padding: 25px; text-align: center;">
+          <h2 style="margin: 0; font-size: 22px;">Nouvelle Enquête de Satisfaction</h2>
+          <p style="margin: 5px 0 0 0; opacity: 0.8;">Bilan à chaud - Fin de formation</p>
         </div>
-        <div style="padding: 20px;">
-          <h3>👤 Stagiaire</h3>
-          <p>${data.civilite} ${data.prenom} ${data.nom} (${data.nomEntreprise})</p>
-          <p>Formation : <strong>${data.intituleFormation}</strong></p>
+
+        <div style="padding: 30px;">
           
-          <h3>📊 Résultats</h3>
-          <p>Niveau : <strong>${data.niveauFormation}</strong></p>
-          <p>Note Globale : <strong style="color: #059669; font-size: 1.2em;">${data.globalSatisfaction}</strong></p>
-          <p>Recommandation : ${data.recommandation}</p>
-          
-          <h3>📝 Commentaires</h3>
-          <p>Utile : ${data.partieUtile || '-'}</p>
-          <p>À développer : ${data.partieADevelopper || '-'}</p>
+          <h3 style="color: #4c1d95; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px;">👤 Informations Stagiaire</h3>
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tr><td style="padding: 5px 0;"><strong>Nom :</strong> ${data.civilite} ${data.prenom} ${data.nom}</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Entreprise :</strong> ${data.nomEntreprise || 'N/A'} (${data.fonction || 'N/A'})</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Contact :</strong> ${data.email} | ${data.telephone}</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Formation :</strong> ${data.intituleFormation}</td></tr>
+            <tr><td style="padding: 5px 0;"><strong>Période :</strong> Du ${data.dateDebut} au ${data.dateFin}</td></tr>
+          </table>
+
+          <h3 style="color: #4c1d95; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px; margin-top: 25px;">🎯 Raisons & Niveau</h3>
+          <p><strong>Raisons de participation :</strong> ${raisons}</p>
+          <p><strong>Niveau de la formation :</strong> ${data.niveauFormation}</p>
+          <p><strong>Langage du formateur :</strong> ${data.langageFormateur}</p>
+
+          <h3 style="color: #4c1d95; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px; margin-top: 25px;">🚩 Objectifs Pédagogiques</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li><strong>Objectifs définis au début :</strong> ${data.objectifsDefinis}</li>
+            <li><strong>Objectifs atteints :</strong> ${data.objectifsAtteints}</li>
+            <li><strong>Lacunes comblées :</strong> ${data.lacunesComblees}</li>
+            <li><strong>Objectifs personnels atteints :</strong> ${data.objectifsPersonnelsAtteints}</li>
+            <li><strong>Équilibre Théorie/Pratique :</strong> ${data.equilibreTheoriePratique}</li>
+          </ul>
+
+          <h3 style="color: #4c1d95; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px; margin-top: 25px;">📊 Satisfaction Détaillée</h3>
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px;">
+            <table style="width: 100%; font-size: 14px;">
+              <tr><td style="padding: 4px 0;">Accueil :</td><td style="text-align: right;"><strong>${data.accueil}</strong></td></tr>
+              <tr><td style="padding: 4px 0;">Méthodes :</td><td style="text-align: right;"><strong>${data.methodes}</strong></td></tr>
+              <tr><td style="padding: 4px 0;">Rythme :</td><td style="text-align: right;"><strong>${data.rythme}</strong></td></tr>
+              <tr><td style="padding: 4px 0;">Moyens pédagogiques :</td><td style="text-align: right;"><strong>${data.moyensPedagogiques}</strong></td></tr>
+              <tr><td style="padding: 4px 0;">Animation :</td><td style="text-align: right;"><strong>${data.animation}</strong></td></tr>
+              <tr><td style="padding: 4px 0;">Organisation matérielle :</td><td style="text-align: right;"><strong>${data.organisationMaterielle}</strong></td></tr>
+              <tr><td style="padding: 4px 0;">Échanges groupe :</td><td style="text-align: right;"><strong>${data.echangesGroupe}</strong></td></tr>
+              <tr><td style="padding: 4px 0;">Aide reçue :</td><td style="text-align: right;"><strong>${data.aideRecue}</strong></td></tr>
+              <tr><td style="padding: 4px 0;">Disponibilité formateur :</td><td style="text-align: right;"><strong>${data.disponibiliteFormateur}</strong></td></tr>
+            </table>
+          </div>
+
+          <h3 style="color: #4c1d95; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px; margin-top: 25px;">⭐ Bilan Global</h3>
+          <p style="font-size: 16px;">Satisfaction générale : <strong style="color: #10b981;">${data.globalSatisfaction}</strong></p>
+          <p>Recommandation : <strong>${data.recommandation}</strong></p>
+
+          <h3 style="color: #4c1d95; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px; margin-top: 25px;">📝 Commentaires</h3>
+          <p><strong>Partie la plus utile :</strong><br>${data.partieUtile || 'N/A'}</p>
+          <p><strong>Moins indispensable :</strong><br>${data.partieMoinsUtile || 'N/A'}</p>
+          <p><strong>À développer :</strong><br>${data.partieADevelopper || 'N/A'}</p>
+          <p><strong>Autre commentaire :</strong><br>${data.autreCommentaire || 'N/A'}</p>
+
+        </div>
+        <div style="background-color: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
+          Ceci est un message automatique envoyé depuis le formulaire de satisfaction THDS.
         </div>
       </div>
     `;
 
-    // 2. HTML CLIENT (Remerciement)
+    // 2. HTML POUR LE CLIENT (Remerciement)
     const clientMailContent = `
       <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
-        <div style="background-color: #059669; padding: 20px; text-align: center;">
-          <h2 style="color: white; margin: 0;">Merci pour votre avis !</h2>
+        <div style="background-color: #4c1d95; padding: 20px; text-align: center;">
+          <h2 style="color: white; margin: 0;">Merci pour votre retour !</h2>
         </div>
         <div style="padding: 20px;">
           <p>Bonjour <strong>${data.prenom}</strong>,</p>
-          <p>Nous vous remercions d'avoir pris le temps de répondre à notre enquête de satisfaction concernant la formation :</p>
-          <p style="text-align: center; font-weight: bold;">${data.intituleFormation}</p>
-          <p>Votre avis est précieux et nous aide à améliorer continuellement nos services.</p>
+          <p>Nous vous remercions sincèrement d'avoir pris le temps de répondre à notre enquête de satisfaction concernant votre formation :</p>
+          <p style="text-align: center; font-weight: bold; background: #f3f4f6; padding: 10px; border-radius: 5px;">${data.intituleFormation}</p>
+          <p>Vos réponses nous sont précieuses pour maintenir la qualité de nos formations et répondre au mieux à vos attentes.</p>
           <br>
-          <p>Excellente continuation,</p>
-          <p><strong>L'équipe Qualité</strong></p>
+          <p>Excellente continuation professionnelle,</p>
+          <p><strong>L'équipe Qualité THDS</strong></p>
         </div>
       </div>
     `;
 
-    // --- ENVOI DES DEUX EMAILS ---
+    // --- ENVOI DES EMAILS ---
 
-    // A) Admin
+    // A) Envoi à l'Admin
     await transporter.sendMail({
-      from: `"Enquête Qualité" <${process.env.EMAIL_USER}>`,
+      from: `"Plateforme Qualité" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_ADMIN,
       replyTo: data.email, 
-      subject: `Enquête Satisfaction : ${data.nom} ${data.prenom}`,
+      subject: `Enquête Satisfaction (À Chaud) : ${data.nom} ${data.prenom}`,
       html: adminMailContent,
     });
 
-    // B) Client (Ajouté ici aussi)
+    // B) Envoi au Client
     await transporter.sendMail({
       from: `"THDS FORMATION" <${process.env.EMAIL_USER}>`,
-      to: data.email, // <--- Envoi au client
-      subject: `Nous avons bien reçu votre avis`,
+      to: data.email,
+      subject: `Confirmation de réception de votre avis`,
       html: clientMailContent,
     });
 
     console.log(`📩 Double email envoyé (Admin + Client ${data.email})`);
-    res.status(200).json({ message: 'Enquête reçue avec succès !' });
+    res.status(200).json({ message: 'Enquête transmise avec succès !' });
 
   } catch (error) {
-    console.error('❌ Erreur envoi email :', error);
-    res.status(500).json({ message: "Erreur lors de l'envoi de l'enquête." });
+    console.error('❌ Erreur envoi enquête :', error);
+    res.status(500).json({ message: "Erreur lors du traitement de l'enquête." });
   }
 });
 // ============================================================
@@ -186,80 +231,116 @@ router.post('/satisfaction-froid', async (req, res) => {
   try {
     const data = req.body;
 
-    // 1. HTML ADMIN (Thème Bleu "Froid")
+    // 1. HTML POUR L'ADMIN (Rapport d'impact à 1 mois)
     const adminMailContent = `
-      <div style="font-family: Arial, sans-serif; color: #1e293b; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+      <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1e293b; max-width: 700px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
         
-        <div style="background: linear-gradient(135deg, #0ea5e9, #0369a1); color: white; padding: 20px; text-align: center;">
-          <h2 style="margin: 0;">Enquête Satisfaction (À Froid)</h2>
-          <p style="margin: 5px 0 0 0; font-size: 14px;">1 mois après la formation</p>
+        <div style="background: linear-gradient(135deg, #0ea5e9, #0369a1); color: white; padding: 30px; text-align: center;">
+          <h2 style="margin: 0; font-size: 24px; letter-spacing: 1px;">ENQUÊTE À FROID (J+30)</h2>
+          <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 14px; text-transform: uppercase;">Évaluation de l'impact des acquis</p>
         </div>
 
-        <div style="padding: 20px;">
+        <div style="padding: 30px; background-color: #ffffff;">
           
-          <h3 style="color: #0369a1; border-bottom: 2px solid #e0f2fe; padding-bottom: 5px;">👤 Participant & Formation</h3>
-          <ul style="list-style: none; padding: 0;">
-            <li><strong>Nom :</strong> ${data.prenom} ${data.nom}</li>
-            <li><strong>Email :</strong> <a href="mailto:${data.email}">${data.email}</a></li>
-            <li style="margin-top:10px;"><strong>Formation :</strong> ${data.intituleFormation}</li>
-            <li><strong>Formateur :</strong> ${data.nomFormateur || 'Non précisé'}</li>
-            <li><strong>Dates :</strong> Du ${data.dateDebut} au ${data.dateFin}</li>
-          </ul>
-
-          <h3 style="color: #0369a1; border-bottom: 2px solid #e0f2fe; padding-bottom: 5px; margin-top:25px;">📉 Retour sur la formation</h3>
-          <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
-            <tr style="background:#f9fafb;"><td style="padding:5px;">Réponse aux besoins :</td><td><strong>${data.reponseBesoins}</strong></td></tr>
-            <tr><td style="padding:5px;">Application des acquis :</td><td><strong>${data.applicationAcquis}</strong></td></tr>
-            <tr style="background:#f9fafb;"><td style="padding:5px;">Difficultés rencontrées :</td><td><strong>${data.difficultesMiseEnOeuvre}</strong></td></tr>
-            <tr><td style="padding:5px;">Amélioration pro. :</td><td><strong>${data.amelioration}</strong></td></tr>
-            <tr style="background:#f9fafb;"><td style="padding:5px;">Attentes initiales :</td><td><strong>${data.attentesInitiales}</strong></td></tr>
-            <tr><td style="padding:5px;">Objectifs atteints :</td><td><strong>${data.objectifsAtteints}</strong></td></tr>
+          <h3 style="color: #0369a1; border-bottom: 2px solid #e0f2fe; padding-bottom: 8px; margin-bottom: 15px;">👤 Participant & Session</h3>
+          <table style="width: 100%; margin-bottom: 25px;">
+            <tr><td style="padding: 4px 0;"><strong>Stagiaire :</strong> ${data.prenom} ${data.nom}</td></tr>
+            <tr><td style="padding: 4px 0;"><strong>Email :</strong> <a href="mailto:${data.email}" style="color: #0ea5e9;">${data.email}</a></td></tr>
+            <tr><td style="padding: 4px 0;"><strong>Formation :</strong> ${data.intituleFormation}</td></tr>
+            <tr><td style="padding: 4px 0;"><strong>Formateur :</strong> ${data.nomFormateur || 'Non précisé'}</td></tr>
+            <tr><td style="padding: 4px 0;"><strong>Dates :</strong> Du ${data.dateDebut} au ${data.dateFin}</td></tr>
           </table>
 
-          <h3 style="color: #0369a1; border-bottom: 2px solid #e0f2fe; padding-bottom: 5px; margin-top:25px;">🏆 Avis Général</h3>
-          <div style="background-color: #f0f9ff; padding: 15px; border-radius: 8px; text-align: center;">
-            <p style="margin:0; font-size: 16px;">Note Globale : <strong style="color: #0284c7;">${data.avisGlobal}</strong></p>
-            <p style="margin:5px 0 0 0;">Recommandation : <strong>${data.recommandation}</strong></p>
+          <h3 style="color: #0369a1; border-bottom: 2px solid #e0f2fe; padding-bottom: 8px; margin-top: 30px;">📉 Retour sur l'application des acquis</h3>
+          <div style="background-color: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #f1f5f9;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 10px 0;">Réponse aux besoins :</td>
+                <td style="text-align: right; color: #0369a1;"><strong>${data.reponseBesoins}</strong></td>
+              </tr>
+              <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 10px 0;">Application des acquis :</td>
+                <td style="text-align: right;"><strong>${data.applicationAcquis}</strong></td>
+              </tr>
+              <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 10px 0;">Difficultés rencontrées :</td>
+                <td style="text-align: right;"><strong>${data.difficultesMiseEnOeuvre}</strong></td>
+              </tr>
+              <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 10px 0;">Amélioration professionnelle :</td>
+                <td style="text-align: right; color: #0369a1;"><strong>${data.amelioration}</strong></td>
+              </tr>
+              <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 10px 0;">Respect attentes initiales :</td>
+                <td style="text-align: right; color: #0369a1;"><strong>${data.attentesInitiales}</strong></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 0;">Objectifs pédagogiques atteints :</td>
+                <td style="text-align: right; color: #0369a1;"><strong>${data.objectifsAtteints}</strong></td>
+              </tr>
+            </table>
           </div>
 
-          ${data.commentaires ? `
-            <h3 style="color: #0369a1; border-bottom: 2px solid #e0f2fe; padding-bottom: 5px; margin-top:25px;">📝 Commentaires</h3>
-            <p style="background: #f8fafc; padding: 10px; font-style: italic;">"${data.commentaires}"</p>
-          ` : ''}
+          <h3 style="color: #0369a1; border-bottom: 2px solid #e0f2fe; padding-bottom: 8px; margin-top: 30px;">⭐ Avis Général & Fidélité</h3>
+          <div style="display: flex; gap: 20px; margin-top: 15px;">
+            <div style="flex: 1; background: #f0f9ff; padding: 15px; border-radius: 8px; text-align: center;">
+              <span style="font-size: 12px; color: #64748b; text-transform: uppercase;">Note Globale</span><br>
+              <strong style="font-size: 16px; color: #0369a1;">${data.avisGlobal}</strong>
+            </div>
+            <div style="flex: 1; background: #f0f9ff; padding: 15px; border-radius: 8px; text-align: center;">
+              <span style="font-size: 12px; color: #64748b; text-transform: uppercase;">Recommandation</span><br>
+              <strong style="font-size: 16px; color: #0369a1;">${data.recommandation}</strong>
+            </div>
+          </div>
+
+          <h3 style="color: #0369a1; border-bottom: 2px solid #e0f2fe; padding-bottom: 8px; margin-top: 30px;">💬 Remarques libres</h3>
+          <div style="background: #fdfdfd; padding: 15px; border: 1px dashed #cbd5e1; border-radius: 8px; font-style: italic; color: #475569;">
+            ${data.commentaires ? `"${data.commentaires}"` : "Aucun commentaire supplémentaire laissé."}
+          </div>
 
         </div>
-        <div style="background-color: #f0f9ff; padding: 15px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #bae6fd;">
-          Enquête à froid reçue via le site web THDS.
+        <div style="background-color: #f8fafc; padding: 20px; text-align: center; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9;">
+          Document généré par la plateforme de suivi THDS FORMATION.
         </div>
       </div>
     `;
 
-    // 2. HTML CLIENT (Remerciement simple)
+    // 2. HTML POUR LE CLIENT (Remerciement différé)
     const clientMailContent = `
-      <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
-        <div style="background-color: #0284c7; padding: 20px; text-align: center;">
-          <h2 style="color: white; margin: 0;">Merci pour votre retour !</h2>
+      <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #e0f2fe; border-radius: 8px; overflow: hidden;">
+        <div style="background-color: #0ea5e9; padding: 25px; text-align: center;">
+          <h2 style="color: white; margin: 0;">Un mois après... merci !</h2>
         </div>
-        <div style="padding: 20px;">
+        <div style="padding: 25px;">
           <p>Bonjour <strong>${data.prenom}</strong>,</p>
-          <p>Nous vous remercions d'avoir pris le temps de répondre à notre enquête à froid concernant la formation <strong>${data.intituleFormation}</strong>.</p>
-          <p>Ce retour d'expérience à distance est essentiel pour nous permettre d'ajuster nos programmes sur le long terme.</p>
+          <p>Nous vous remercions d'avoir pris quelques minutes pour répondre à notre enquête de satisfaction à froid concernant la formation :</p>
+          <p style="text-align: center; font-weight: bold; background: #f0f9ff; padding: 12px; border-radius: 6px; color: #0369a1; border: 1px solid #bae6fd;">
+            ${data.intituleFormation}
+          </p>
+          <p>Votre retour d'expérience avec un mois de recul est crucial pour nous. Il nous permet de mesurer l'efficacité réelle de nos programmes sur votre quotidien professionnel.</p>
+          <p>Nous restons à votre entière disposition pour vos futurs besoins de montée en compétences.</p>
           <br>
           <p>Bien cordialement,</p>
-          <p><strong>L'équipe Qualité</strong></p>
+          <p><strong>Le Responsable Pédagogique THDS</strong></p>
+        </div>
+        <div style="background: #f8fafc; padding: 15px; text-align: center; font-size: 11px; color: #94a3b8;">
+          THDS - 5 RUE PLEYEL 93200 SAINT-DENIS
         </div>
       </div>
     `;
 
-    // --- ENVOI EMAILS ---
+    // --- ENVOI DES EMAILS ---
+
+    // A) Envoi à l'Admin
     await transporter.sendMail({
-      from: `"Suivi Qualité" <${process.env.EMAIL_USER}>`,
+      from: `"Suivi Long Terme" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_ADMIN,
-      replyTo: data.email,
-      subject: `Enquête à Froid : ${data.nom} ${data.prenom}`,
+      replyTo: data.email, 
+      subject: `Enquête J+30 : ${data.nom.toUpperCase()} ${data.prenom}`,
       html: adminMailContent,
     });
 
+    // B) Envoi au Client
     await transporter.sendMail({
       from: `"THDS FORMATION" <${process.env.EMAIL_USER}>`,
       to: data.email,
@@ -267,12 +348,12 @@ router.post('/satisfaction-froid', async (req, res) => {
       html: clientMailContent,
     });
 
-    console.log(`📩 [FROID] Email envoyé pour ${data.prenom} ${data.nom}`);
-    res.status(200).json({ message: 'Enquête à froid reçue !' });
+    console.log(`📩 [SUIVI FROID] Email envoyé pour ${data.prenom} ${data.nom}`);
+    res.status(200).json({ message: 'Rapport à froid transmis avec succès !' });
 
   } catch (error) {
-    console.error('❌ Erreur envoi email :', error);
-    res.status(500).json({ message: "Erreur serveur." });
+    console.error('❌ Erreur envoi enquête à froid :', error);
+    res.status(500).json({ message: "Erreur lors de la soumission de l'enquête." });
   }
 });
 
