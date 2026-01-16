@@ -91,7 +91,7 @@ export default function Hero() {
         <img 
           src="/vtestfrance.png" 
           alt="THDS Logo"
-          className="h-24 w-auto"
+          className="md:h-24 h-16 w-auto"
         />
        </Link>
         <ul>
