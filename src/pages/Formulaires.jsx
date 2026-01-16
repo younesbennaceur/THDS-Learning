@@ -12,7 +12,7 @@ const formulairesData = {
       { id: 4, text: "3/ Enquête de satisfaction en fin de formation (à chaud) [ E-LEARNING ]"},
       { id: 5, text: "4/ Enquête de satisfaction en fin de formation (à chaud) ", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
       { id: 6, text: "5/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
-      { id: 9, text: "6/ Test de positionnement Business English - 4 skills",link: "/formulaires/eleve/test-de-positionnement-Business-English-4-skills" },
+      { id: 9, text: "6/ Test de positionnement Business English - 4 skills",link: "/formulaires/test-de-positionnement-BUSINESS-ENGLISH-4-SKILLS" },
       { id: 10, text: "7/ Test de positionnement : Français professionnel", },
       { id: 11, text: "8/ Test de positionnement : Intelligence artificielle",  }
     ]
