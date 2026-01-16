@@ -86,13 +86,28 @@ export default function Hero() {
         </div>
       </div>
       {/* Logo in bottom left corner */}
-      <Link className='absolute bottom-5 md:bottom-14 left-22 z-10' to="/certification-vtest-france"> 
+      <div className="absolute bottom-5 md:bottom-10 left-22 z-10 flex items-center gap-5 ">
+        <Link className='' to="/certification-vtest-france"> 
         <img 
           src="/vtestfrance.png" 
           alt="THDS Logo"
-          className="h-16 w-auto"
+          className="h-24 w-auto"
         />
        </Link>
+        <ul>
+                    <li className='mt-3 space-y-3' >
+                          <Link
+                           to='certification-vtest-france'
+                           
+                         
+                           className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
+                         >
+                           <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                           <span className=' text-xl '>VTest-France</span>
+                         </Link>
+                       </li>
+                   </ul>
+      </div>
 
       {/* Navigation Arrows */}
       <button 
