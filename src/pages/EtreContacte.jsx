@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import du composant Link
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { Send, Phone, Mail, Clock, Calendar, MessageSquare } from 'lucide-react';
+import { Send, ShieldCheck, Phone, Mail, Clock, Calendar, ExternalLink } from 'lucide-react';
 
 export default function ContactPageModern() {
   const [formData, setFormData] = useState({
@@ -11,11 +12,13 @@ export default function ContactPageModern() {
     telephone: '',
     periodeContact: '',
     urgence: '',
-    message: ''
+    message: '',
+    accordDemarchage: false 
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -30,8 +33,11 @@ export default function ContactPageModern() {
         text: 'Notre équipe THDS vous recontactera selon vos préférences.',
         confirmButtonColor: '#4c1d95'
       });
-      // Reset form
-      setFormData({ prenom: '', nom: '', email: '', telephone: '', periodeContact: '', urgence: '', message: '' });
+      setFormData({ 
+        prenom: '', nom: '', email: '', telephone: '', 
+        periodeContact: '', urgence: '', message: '', 
+        accordDemarchage: false 
+      });
     } catch (error) {
       Swal.fire('Erreur', "Échec de l'envoi.", 'error');
     }
@@ -39,7 +45,7 @@ export default function ContactPageModern() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* --- BANNER EN HAUT --- */}
+      {/* --- BANNER --- */}
       <div className="relative h-64 md:h-80 overflow-hidden">
         <img 
           src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&h=600&fit=crop" 
@@ -54,7 +60,6 @@ export default function ContactPageModern() {
         </div>
       </div>
 
-      {/* --- FORMULAIRE --- */}
       <div className="max-w-4xl mx-auto -mt-16 px-4 pb-20 relative z-10">
         <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-slate-100">
           
@@ -81,7 +86,6 @@ export default function ContactPageModern() {
               </div>
             </div>
 
-            {/* Préférences de rappel */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                 <label className="text-sm font-bold mb-3 flex items-center text-purple-900">
@@ -110,6 +114,42 @@ export default function ContactPageModern() {
             <div>
               <label className="block text-sm font-bold mb-2 text-slate-700">Message ou précisions</label>
               <textarea name="message" value={formData.message} onChange={handleChange} rows="4" className="input-modern resize-none" placeholder="Comment pouvons-nous vous aider ?"></textarea>
+            </div>
+
+            {/* --- SECTION RGPD & CGV RENFORCÉE --- */}
+            <div className="bg-slate-50 p-6 rounded-2xl border-2 border-slate-100 hover:border-purple-200 transition-all">
+              <label className="flex items-start cursor-pointer group">
+                <div className="flex items-center h-6">
+                  <input
+                    type="checkbox"
+                    name="accordDemarchage"
+                    id="accordDemarchage"
+                    checked={formData.accordDemarchage}
+                    onChange={handleChange}
+                    required
+                    className="w-5 h-5 rounded border-slate-300 text-purple-900 focus:ring-purple-500 cursor-pointer transition-transform group-hover:scale-110"
+                  />
+                </div>
+                <div className="ml-4">
+                  <span className="text-sm font-extrabold text-slate-800 flex items-center uppercase tracking-tight">
+                    <ShieldCheck size={18} className="mr-2 text-purple-600"/> 
+                    Consentement au contact commercial
+                  </span>
+                  
+                  <div className="mt-3 space-y-3">
+                    <p className="text-xs leading-relaxed text-slate-600">
+                      En cochant cette case, j’autorise l’organisme de formation <strong>THDS</strong> et, le cas échéant, ses partenaires, à utiliser les données que je fournis pour me contacter par téléphone, SMS et e-mail, dans un cadre strictement informatif et commercial concernant leurs activités de formation.
+                    </p>
+                    
+                    <div className="text-[10px] leading-relaxed text-slate-400 border-t border-slate-200 pt-3 italic">
+                      J’ai été informé(e) de mes droits d’accès, de rectification, d’opposition, d’effacement et de limitation du traitement de mes données, conformément à notre{' '}
+                      <Link to="/cgv" className="text-purple-600 font-bold hover:underline underline-offset-2 inline-flex items-center">
+                        Politique de Confidentialité (RGPD) et CGV <ExternalLink size={10} className="ml-1"/>
+                      </Link>.
+                    </div>
+                  </div>
+                </div>
+              </label>
             </div>
 
             <button type="submit" className="w-full bg-purple-900 text-white py-5 rounded-2xl font-bold hover:bg-purple-950 transition-all shadow-xl shadow-purple-200 flex items-center justify-center">
