@@ -1,6 +1,8 @@
 import express from 'express';
 import transporter from '../config/mailer.js';
-import PDFDocument from 'pdfkit'; // Pour le PDF professionnel
+import PDFDocument from 'pdfkit';
+import fs from 'fs';
+import path from 'path';
 
 const router = express.Router();
 
@@ -8,7 +10,9 @@ router.post('/test-anglais', async (req, res) => {
     try {
         const { nom, prenom, email, answers, telephone } = req.body;
 
-        // 1. Clé de réponse officielle [cite: 317-438]
+        if (!answers) return res.status(400).json({ error: "Données manquantes." });
+
+        // --- 1. CALCULS DES SCORES (Inchangé) ---
         const correctKeys = {
             1: 'B', 2: 'B', 3: 'B', 4: 'B', 5: 'B', 6: 'B', 7: 'B', 8: 'B', 9: 'B', 10: 'C',
             11: 'B', 12: 'B', 13: 'C', 14: 'C', 15: 'A', 16: 'B', 17: 'B', 18: 'B', 19: 'B', 20: 'B',
@@ -17,7 +21,6 @@ router.post('/test-anglais', async (req, res) => {
             41: 'B', 42: 'B', 43: 'A', 44: 'B', 45: 'A', 46: 'A', 47: 'A', 48: 'A', 49: 'B', 50: 'B'
         };
 
-        // 2. Catégories par compétence [cite: 315, 344, 381]
         const cats = {
             vocabulaire: [4, 6, 8, 9, 10, 18, 24, 26, 30, 38, 49],
             conjugaison: [3, 5, 11, 16, 22, 27, 28, 31, 33, 34, 36, 37, 40, 41, 44],
@@ -26,105 +29,236 @@ router.post('/test-anglais', async (req, res) => {
 
         let scores = { vocab: 0, conj: 0, gram: 0, total: 0 };
 
-        // Calcul des scores [cite: 6]
         Object.keys(correctKeys).forEach(id => {
             if (answers[id] === correctKeys[id]) {
                 scores.total++;
-                if (cats.vocabulaire.includes(parseInt(id))) scores.vocab++;
-                if (cats.conjugaison.includes(parseInt(id))) scores.conj++;
-                if (cats.grammaire.includes(parseInt(id))) scores.gram++;
+                const qId = parseInt(id);
+                if (cats.vocabulaire.includes(qId)) scores.vocab++;
+                if (cats.conjugaison.includes(qId)) scores.conj++;
+                if (cats.grammaire.includes(qId)) scores.gram++;
             }
         });
 
-        // 3. Interprétation CECRL 
-        let niveau = "A1 (Débutant)";
-        if (scores.total > 15) niveau = "A2 (Élémentaire)";
-        if (scores.total > 25) niveau = "B1 (Indépendant)";
-        if (scores.total > 35) niveau = "B2 (Avancé)";
-        if (scores.total > 45) niveau = "C1 (Expert)";
+        // Barème (Textes en Français)
+        const baremes = [
+            { min: 0, max: 15, niveau: "A1", label: "Débutant", color: "#ef4444", desc: "Compréhension très basique de l’anglais. Utilisation de phrases simples et vocabulaire élémentaire." },
+            { min: 16, max: 27, niveau: "A2", label: "Élémentaire", color: "#f97316", desc: "Compréhension de situations courantes. Utilisation du présent et du passé simple." },
+            { min: 28, max: 39, niveau: "B1", label: "Intermédiaire", color: "#3b82f6", desc: "Bonne maîtrise des bases grammaticales. Capacité à travailler en anglais avec un accompagnement." },
+            { min: 40, max: 50, niveau: "B2", label: "Avancé", color: "#10b981", desc: "Très bonne maîtrise grammaticale et lexicale. Autonomie en contexte professionnel." }
+        ];
 
-        // 4. GÉNÉRATION DU PDF PROFESSIONNEL
-        const generatePDF = () => {
+        const result = baremes.find(b => scores.total >= b.min && scores.total <= b.max) || baremes[0];
+
+        // --- 2. GÉNÉRATION DU PDF (Alignement Corrigé) ---
+        const generateProfessionalPDF = () => {
             return new Promise((resolve) => {
-                const doc = new PDFDocument({ margin: 50 });
+                // Création du document A4 (Largeur ~595 points)
+                const doc = new PDFDocument({ size: 'A4', margin: 40 });
                 let buffers = [];
                 doc.on('data', buffers.push.bind(buffers));
                 doc.on('end', () => resolve(Buffer.concat(buffers)));
 
-                // Design Header
-                doc.fillColor('#3b0764').fontSize(22).text('RAPPORT DE POSITIONNEMENT ANGLAIS', { align: 'center' });
-                doc.fontSize(12).fillColor('#666').text('THDS ', { align: 'center' }).moveDown();
+                // -- CADRE DE PAGE --
+                doc.lineWidth(2).rect(20, 20, 555, 800).stroke('#333'); 
+                doc.lineWidth(0.5).rect(25, 25, 545, 790).stroke('#999'); 
+
+                // -- HEADER (CORRIGÉ) --
                 
-                doc.strokeColor('#eee').moveTo(50, 110).lineTo(550, 110).stroke();
+                // 1. Logo (Position gauche fixe)
+                const logoPath = path.join(process.cwd(), 'Logo.png'); 
+                if (fs.existsSync(logoPath)) {
+                    doc.image(logoPath, 45, 45, { width: 60 });
+                }
 
-                // Infos Candidat
-                doc.fillColor('#000').fontSize(14).text(`Candidat : ${prenom} ${nom}`, 50, 130);
-                doc.text(`Email : ${email}`);
-                doc.text(`Date : ${new Date().toLocaleDateString()}`).moveDown(2);
+                // 2. Titres (Centrés sur toute la page)
+                // On met X=0 et width=595 (largeur A4) pour que le centre soit bien calculé
+                doc.fillColor('#111').font('Helvetica-Bold').fontSize(20);
+                doc.text('RAPPORT DE POSITIONNEMENT ANGLAIS', 0, 55, { 
+                    align: 'center', 
+                    width: 595 
+                });
+                
+                doc.font('Helvetica').fontSize(12).fillColor('#666');
+                doc.text('THDS FORMATION', 0, 80, { 
+                    align: 'center', 
+                    width: 595,
+                    characterSpacing: 2 
+                });
+                
+                // Ligne de séparation
+                doc.moveTo(40, 110).lineTo(555, 110).lineWidth(1).strokeColor('#333').stroke();
 
-                // Score Box
-                doc.rect(50, 200, 500, 100).fill('#f8fafc').stroke('#e2e8f0');
-                doc.fillColor('#3b0764').fontSize(18).text(`SCORE TOTAL : ${scores.total} / 50`, 70, 220);
-                doc.fontSize(16).fillColor('#10b981').text(`NIVEAU CECRL ESTIMÉ : ${niveau}`, 70, 255);
+                // -- SECTION 1 : INFO CANDIDAT --
+                doc.rect(40, 130, 515, 80).fill('#f3f4f6');
+                
+                doc.fillColor('#333').font('Helvetica-Bold').fontSize(11);
+                
+                // Labels
+                doc.text('Candidat :', 60, 145);
+                doc.text('Email :', 60, 165);
+                doc.text('Date :', 60, 185);
 
-                // Détails par compétence [cite: 10-14]
-                doc.fillColor('#000').moveDown(4);
-                doc.fontSize(14).text('Détails des compétences :', { underline: true }).moveDown();
-                doc.fontSize(12).text(`• Vocabulaire : ${scores.vocab} / 11`);
-                doc.text(`• Conjugaison : ${scores.conj} / 15`);
-                doc.text(`• Grammaire : ${scores.gram} / 24`).moveDown(2);
+                // Valeurs
+                doc.font('Helvetica').fontSize(11).fillColor('#000');
+                doc.text(`${prenom} ${nom}`, 150, 145);
+                doc.text(email, 150, 165);
+                doc.text(new Date().toLocaleDateString('fr-FR'), 150, 185);
 
-                // Footer
-                doc.fontSize(10).fillColor('#999').text('Ce test est un outil d\'évaluation initiale pour personnaliser votre parcours de formation.', 50, 700, { align: 'center' });
+                // -- SECTION 2 : RÉSULTATS --
+                doc.moveDown(5); // Espace
+                doc.font('Helvetica-Bold').fontSize(14).text('RÉSULTATS DU TEST', 40, 240);
+                doc.lineWidth(2).moveTo(40, 255).lineTo(180, 255).strokeColor(result.color).stroke();
+
+                // Carré de Couleur (Niveau)
+                doc.rect(40, 270, 150, 120).fillAndStroke(result.color, '#333');
+                doc.fillColor('#FFF').fontSize(50).text(result.niveau, 40, 290, { width: 150, align: 'center' });
+                doc.fontSize(12).text(result.label, 40, 350, { width: 150, align: 'center' });
+
+                // Texte Score & Description
+                doc.fillColor('#000');
+                doc.fontSize(18).font('Helvetica-Bold').text(`SCORE TOTAL : ${scores.total} / 50`, 210, 280);
+                doc.fontSize(11).font('Helvetica-Oblique').fillColor('#555')
+                   .text(result.desc, 210, 310, { width: 330 });
+
+                // -- SECTION 3 : BARRES DE PROGRESSION --
+                const drawBar = (label, score, max, y) => {
+                    const width = 300;
+                    const percent = score / max;
+                    
+                    doc.fillColor('#000').font('Helvetica-Bold').fontSize(10).text(label, 210, y);
+                    doc.font('Helvetica').text(`${score}/${max}`, 520, y);
+                    
+                    // Fond gris
+                    doc.rect(210, y + 15, width, 8).fill('#e5e7eb');
+                    // Barre couleur
+                    doc.rect(210, y + 15, width * percent, 8).fill('#4b5563');
+                };
+
+                drawBar('GRAMMAIRE', scores.gram, 24, 350);
+                drawBar('VOCABULAIRE', scores.vocab, 11, 385);
+                drawBar('CONJUGAISON', scores.conj, 15, 420);
+
+                // -- SECTION 4 : FOOTER --
+                doc.moveTo(40, 470).lineTo(555, 470).lineWidth(1).strokeColor('#ccc').stroke();
+
+                doc.fontSize(8).font('Helvetica').fillColor('#999')
+                   .text(`Ce rapport est généré automatiquement par le système THDS Formation.`, 0, 780, { align: 'center', width: 595 });
 
                 doc.end();
             });
         };
 
-        const pdfBuffer = await generatePDF();
+        const pdfBuffer = await generateProfessionalPDF();
 
-        // 5. ENVOI DE L'EMAIL À L'ÉQUIPE THDS (Admin)
-        await transporter.sendMail({
-            from: `"Système Test THDS" <${process.env.EMAIL_USER}>`,
-            to: process.env.EMAIL_ADMIN,
-            subject: `[Nouveau Test] ${prenom} ${nom} - Score: ${scores.total}/50`,
-            html: `
-                <div style="font-family: Arial; color: #333;">
-                    <h2 style="color: #3b0764;">Nouveau Test de Positionnement</h2>
-                    <p><strong>Candidat :</strong> ${prenom} ${nom}</p>
-                    <p><strong>Score Global :</strong> ${scores.total}/50</p>
-                    <p><strong>Niveau :</strong> ${niveau}</p>
-                    <p>Retrouvez le rapport détaillé en pièce jointe.</p>
-                </div>
-            `,
-            attachments: [{ filename: `Resultat_${nom}_Anglais.pdf`, content: pdfBuffer }]
-        });
-
-        // 6. ENVOI DE L'EMAIL AU CLIENT (Étudiant)
-        await transporter.sendMail({
+        // --- 3. ENVOI DES EMAILS ---
+        const mailOptionsClient = {
             from: `"THDS Formation" <${process.env.EMAIL_USER}>`,
             to: email,
-            subject: `Vos résultats du test de positionnement d'Anglais`,
+            subject: `Votre résultat : Test d'Anglais - ${nom} ${prenom}`,
             html: `
-                <div style="font-family: Arial; color: #333; max-width: 600px; margin: auto;">
-                    <div style="background: #3b0764; color: white; padding: 20px; text-align: center;">
-                        <h1>Bravo ${prenom} !</h1>
+                <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd;">
+                    <div style="background-color: #3b0764; padding: 20px; text-align: center;">
+                        <h2 style="color: #fff; margin: 0;">RÉSULTAT DU TEST</h2>
                     </div>
-                    <div style="padding: 20px; border: 1px solid #eee;">
-                        <p>Bonjour ${prenom},</p>
-                        <p>Merci d'avoir complété votre test de positionnement Business English.</p>
-                        <p>Votre score est de <strong>${scores.total} / 50</strong>, ce qui correspond à un niveau <strong>${niveau}</strong>.</p>
-                        <p>Nos conseillers vont étudier votre profil pour vous proposer le parcours le plus adapté.</p>
-                        <p><i>Veuillez trouver votre rapport complet en pièce jointe.</i></p>
+                    <div style="padding: 30px;">
+                        <p>Bonjour <strong>${prenom} ${nom}</strong>,</p>
+                        <p>Voici votre rapport de positionnement d'anglais.</p>
+                        
+                        <div style="background: #f8fafc; border-left: 5px solid ${result.color}; padding: 15px; margin: 20px 0;">
+                            <p style="margin: 0; font-size: 18px;"><strong>Score Total : ${scores.total} / 50</strong></p>
+                            <p style="margin: 5px 0 0 0; color: #666;">Niveau estimé : ${result.niveau} (${result.label})</p>
+                        </div>
+
+                        <p>Vous trouverez le rapport détaillé format PDF en pièce jointe.</p>
                         <br>
-                        <p>Cordialement,<br><strong>L'équipe THDS</strong></p>
+                        <p style="font-size: 12px; color: #999;">L'équipe THDS Formation</p>
                     </div>
                 </div>
             `,
-            attachments: [{ filename: `Votre_Resultat_Anglais.pdf`, content: pdfBuffer }]
-        });
+            attachments: [{ filename: `Rapport_THDS_${nom}.pdf`, content: pdfBuffer }]
+        };
 
-        res.status(200).json({ message: 'Résultats calculés et rapports envoyés avec succès.' });
+        // --- EMAIL ADMINISTRATEUR (Format "Fiche Prospect") ---
+        const mailOptionsAdmin = {
+            from: `"Système THDS" <${process.env.EMAIL_USER}>`,
+            to: process.env.EMAIL_ADMIN,
+            subject: `[NOUVEAU TEST] ${prenom} ${nom} - Niveau ${result.niveau} (${scores.total}/50)`,
+            html: `
+                <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; background-color: #f9fafb;">
+                    
+                    <div style="background-color: #1e293b; padding: 15px; text-align: center;">
+                        <h2 style="color: #fff; margin: 0; font-size: 18px; text-transform: uppercase;">Nouveau Lead Qualifié</h2>
+                    </div>
+
+                    <div style="padding: 20px;">
+                        
+                        <div style="background: #fff; padding: 15px; border-radius: 5px; border: 1px solid #e5e7eb; margin-bottom: 20px;">
+                            <h3 style="margin-top: 0; color: #3b0764; border-bottom: 2px solid #3b0764; padding-bottom: 5px;">👤 Informations Candidat</h3>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666;">Nom complet :</td>
+                                    <td style="padding: 5px 0; font-weight: bold;">${prenom} ${nom}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666;">Email :</td>
+                                    <td style="padding: 5px 0;"><a href="mailto:${email}" style="color: #3b82f6; text-decoration: none;">${email}</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666;">Téléphone :</td>
+                                    <td style="padding: 5px 0;">${telephone || 'Non renseigné'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; color: #666;">Date :</td>
+                                    <td style="padding: 5px 0;">${new Date().toLocaleDateString('fr-FR')}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="background: #fff; padding: 15px; border-radius: 5px; border: 1px solid #e5e7eb;">
+                            <h3 style="margin-top: 0; color: #3b0764; border-bottom: 2px solid #3b0764; padding-bottom: 5px;">📊 Résultats & Analyse</h3>
+                            
+                            <div style="text-align: center; margin: 15px 0;">
+                                <span style="background-color: ${result.color}; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 16px;">
+                                    Niveau ${result.niveau}
+                                </span>
+                                <p style="font-size: 20px; font-weight: bold; margin: 10px 0 5px 0;">Score : ${scores.total} / 50</p>
+                                <p style="font-style: italic; color: #666; font-size: 13px; margin: 0;">${result.label}</p>
+                            </div>
+
+                            <table style="width: 100%; background-color: #f3f4f6; border-radius: 5px; margin-top: 15px;">
+                                <tr>
+                                    <td style="padding: 10px; text-align: center; border-right: 1px solid #ddd;">
+                                        <div style="font-size: 11px; color: #666;">GRAMMAIRE</div>
+                                        <div style="font-weight: bold; color: #333;">${scores.gram}/24</div>
+                                    </td>
+                                    <td style="padding: 10px; text-align: center; border-right: 1px solid #ddd;">
+                                        <div style="font-size: 11px; color: #666;">VOCABULAIRE</div>
+                                        <div style="font-weight: bold; color: #333;">${scores.vocab}/11</div>
+                                    </td>
+                                    <td style="padding: 10px; text-align: center;">
+                                        <div style="font-size: 11px; color: #666;">CONJUGAISON</div>
+                                        <div style="font-weight: bold; color: #333;">${scores.conj}/15</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="margin-top: 20px; text-align: center;">
+                            <p style="font-size: 12px; color: #888;">Le rapport PDF complet est joint à cet email.</p>
+                            <a href="mailto:${email}" style="background-color: #3b0764; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 14px;">Contacter le candidat</a>
+                        </div>
+                    </div>
+                </div>
+            `,
+            attachments: [{ filename: `Rapport_${nom}.pdf`, content: pdfBuffer }]
+        };
+
+        await Promise.all([
+            transporter.sendMail(mailOptionsClient),
+            transporter.sendMail(mailOptionsAdmin)
+        ]);
+
+        res.status(200).json({ message: 'Succès', niveau: result.niveau });
 
     } catch (error) {
         console.error('Erreur Backend:', error);
