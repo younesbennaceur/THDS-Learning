@@ -17,7 +17,8 @@ export default function ContactPageModern() {
     adresse: '',
     accordDemarchage: false 
   });
-   const API_URL = process.env.REACT_APP_API_URL
+  const API_URL = process.env.REACT_APP_API_URL || 'https://thds-learning.vercel.app'
+
 
   const handleChange = (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
