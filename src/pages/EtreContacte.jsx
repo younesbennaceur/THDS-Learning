@@ -17,6 +17,7 @@ export default function ContactPageModern() {
     adresse: '',
     accordDemarchage: false 
   });
+   const API_URL = process.env.REACT_APP_API_URL
 
   const handleChange = (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -28,7 +29,7 @@ export default function ContactPageModern() {
     Swal.fire({ title: 'Transmission de votre demande...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      await axios.post('http://localhost:5000/api/contact/contact-complet', formData);
+     await axios.post(`${API_URL}/api/contact/contact-complet`, formData);
       Swal.fire({
         icon: 'success',
         title: 'Demande envoyée !',
@@ -44,6 +45,7 @@ export default function ContactPageModern() {
       Swal.fire('Erreur', "Échec de l'envoi.", 'error');
     }
   };
+ 
 
   return (
     <div className="min-h-screen bg-slate-50">
