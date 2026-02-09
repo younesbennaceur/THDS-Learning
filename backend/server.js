@@ -13,13 +13,17 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json()); 
+// --- CORRECTION ICI : CORS DOIT ÊTRE EN PREMIER ---
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: '*', // Autorise tout le monde (Vercel, Localhost, Ngrok)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Ajoute OPTIONS pour les preflights
+  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning'], // Autorise le header spécial Ngrok
   credentials: false
 }));
 
+app.use(express.json()); 
+
+// --- ROUTES ---
 app.use('/api/eleve', eleveRoutes);
 app.use('/api/formateur', formateurRoutes); 
 app.use('/api/test', testRoutes); 
@@ -32,11 +36,10 @@ app.get('/', (req, res) => {
 
 // ✅ Pour local
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
+// Note : J'ai enlevé la condition NODE_ENV pour être sûr qu'il démarre toujours en local pour tes tests
+app.listen(PORT, () => {
     console.log(`✅ SERVEUR DÉMARRÉ SUR : http://localhost:${PORT}`);
-  });
-}
+});
 
 // ✅ Pour Vercel (serverless)
 export default app;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import du composant Link
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Send, ShieldCheck, Phone, Mail, Clock, Calendar, ExternalLink } from 'lucide-react';
@@ -13,12 +13,10 @@ export default function ContactPageModern() {
     periodeContact: '',
     urgence: '',
     message: '',
-    dateNaissance: '', // Nouveau champ
+    dateNaissance: '',
     adresse: '',
     accordDemarchage: false 
   });
-  const API_URL = process.env.REACT_APP_API_URL || 'https://thds-learning.vercel.app'
-
 
   const handleChange = (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -30,23 +28,37 @@ export default function ContactPageModern() {
     Swal.fire({ title: 'Transmission de votre demande...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-     await axios.post(`${API_URL}/api/contact/contact-complet`, formData);
+      // 👇 C'EST ICI QUE J'AI FAIT LA MODIFICATION IMPORTANTE 👇
+      await axios.post(
+        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/contact/contact-complet', 
+        formData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+          }
+        }
+      );
+      // 👆 FIN DE LA MODIFICATION 👆
+
       Swal.fire({
         icon: 'success',
         title: 'Demande envoyée !',
         text: 'Notre équipe THDS vous recontactera selon vos préférences.',
         confirmButtonColor: '#4c1d95'
       });
+      
       setFormData({ 
         prenom: '', nom: '', email: '', telephone: '', 
         periodeContact: '', urgence: '', message: '', 
-        accordDemarchage: false 
+        dateNaissance: '', adresse: '', accordDemarchage: false 
       });
+
     } catch (error) {
-      Swal.fire('Erreur', "Échec de l'envoi.", 'error');
+      console.error("Erreur API:", error); // Ajout d'un log pour t'aider à debugger si besoin
+      Swal.fire('Erreur', "Échec de l'envoi. Vérifiez que le serveur est bien allumé.", 'error');
     }
   };
- 
 
   return (
     <div className="min-h-screen bg-slate-50">
