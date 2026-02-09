@@ -9,15 +9,12 @@ import testRoutes from './routes/test.js';
 import contactRoutes from './routes/contact.js';
 import reclamationRoutes from './routes/reclamations.js';
 
-
 dotenv.config();
 
 const app = express();
 
-
 app.use(cors()); 
 app.use(express.json()); 
-
 
 app.use('/api/eleve', eleveRoutes);
 app.use('/api/formateur', formateurRoutes); 
@@ -25,15 +22,17 @@ app.use('/api/test', testRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/reclamation', reclamationRoutes);
 
-
 app.get('/', (req, res) => {
   res.send('🚀 Serveur Blue Formation Backend est en ligne !');
 });
 
-// --- Démarrage ---
+// ✅ Pour local
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`\n==================================================`);
-  console.log(`✅ SERVEUR DÉMARRÉ SUR : http://localhost:${PORT}`);
-  console.log(`==================================================\n`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`✅ SERVEUR DÉMARRÉ SUR : http://localhost:${PORT}`);
+  });
+}
+
+// ✅ Pour Vercel (serverless)
+export default app;
