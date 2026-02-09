@@ -331,10 +331,14 @@ const Line = ({ step, target }) => (
                   <Label>1. Quelle formation allez-vous suivre ? <span className="text-red-500">*</span></Label>
                   <input type="text" name="formationVisee" value={formData.formationVisee} onChange={handleChange} className="input-modern" placeholder="Intitulé de la formation..." />
                 </div>
+                  <div>
+                  <Label>2.Quel niveau souhaiteriez-vous atteindre ? <span className="text-red-500">*</span></Label>
+                  <input type="text" name="niveauSouhaite" value={formData.niveauSouhaite} onChange={handleChange} className="input-modern" placeholder="Niveau souhaité..." />
+                </div>
 
                 {/* Q2 */}
                 <div>
-                  <Label>2. Pour quelle(s) raison(s) souhaitez-vous suivre cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
+                  <Label>3. Pour quelle(s) raison(s) souhaitez-vous suivre cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
                     {optionsRaisons.map(opt => (
                       <SelectCard key={opt} label={opt} selected={formData.raisonsFormation.includes(opt)} onClick={() => toggleSelection('raisonsFormation', opt)} />
@@ -344,7 +348,7 @@ const Line = ({ step, target }) => (
 
                 {/* Q3 */}
                 <div>
-                  <Label>3. Quelles sont vos attentes prioritaires en participant à cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
+                  <Label>4. Quelles sont vos attentes prioritaires en participant à cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
                     {optionsAttentes.map(opt => (
                       <SelectCard key={opt} label={opt} selected={formData.attentesPrioritaires.includes(opt)} onClick={() => toggleSelection('attentesPrioritaires', opt)} />
@@ -354,7 +358,7 @@ const Line = ({ step, target }) => (
 
                 {/* Q4 (Critères - Max 3) */}
                 <div className="bg-purple-50/50 p-6 rounded-2xl border border-purple-100">
-                  <Label>4. Quels sont les 3 critères les plus importants pour vous en assistant à cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
+                  <Label>5. Quels sont les 3 critères les plus importants pour vous en assistant à cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
                   <p className="text-xs text-purple-700 mb-3 font-medium">Sélectionnez uniquement les 3 critères les plus importants à vos yeux.</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {optionsCriteres.map(opt => (
@@ -371,7 +375,7 @@ const Line = ({ step, target }) => (
 
                 {/* Q5 */}
                 <div>
-                   <Label>5. Les objectifs de la formation tels que décrits sur notre site répondent-ils à vos attentes ? (Nécessaire) <span className="text-red-500">*</span></Label>
+                   <Label>6. Les objectifs de la formation tels que décrits sur notre site répondent-ils à vos attentes ? (Nécessaire) <span className="text-red-500">*</span></Label>
                    <div className="flex flex-wrap gap-3 mt-3">
                      {['Oui', 'Partiellement', 'Non'].map(opt => (
                        <RadioCard key={opt} label={opt} selected={formData.objectifsRepondent === opt} onClick={() => setSelection('objectifsRepondent', opt)} />
@@ -381,7 +385,7 @@ const Line = ({ step, target }) => (
 
                 {/* Q6 */}
                 <div>
-                  <Label>6. Pour cette formation, pensez-vous avoir le plus besoin d'un apport de connaissances : (Nécessaire) <span className="text-red-500">*</span></Label>
+                  <Label>7. Pour cette formation, pensez-vous avoir le plus besoin d'un apport de connaissances : (Nécessaire) <span className="text-red-500">*</span></Label>
                   <p className="text-xs text-slate-500 mb-2">Plusieurs réponses sont possibles (*)</p>
                   <div className="flex flex-wrap gap-3 mt-2">
                     {optionsConnaissances.map(opt => (
@@ -392,7 +396,7 @@ const Line = ({ step, target }) => (
 
                 {/* Q7 */}
                 <div>
-                  <Label>7. Avez-vous des commentaires à rajouter concernant vos attentes vis-à-vis de la formation ?</Label>
+                  <Label>8. Avez-vous des commentaires à rajouter concernant vos attentes vis-à-vis de la formation ?</Label>
                   <textarea name="commentairesAttentes" rows="3" value={formData.commentairesAttentes} onChange={handleChange} className="input-modern resize-none" />
                 </div>
               </div>
@@ -405,7 +409,7 @@ const Line = ({ step, target }) => (
 
                 {/* Q8 */}
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                   <Label>8. Avez-vous déjà participé à une formation sur le même thème ? (Nécessaire) <span className="text-red-500">*</span></Label>
+                   <Label>9. Avez-vous déjà participé à une formation sur le même thème ? (Nécessaire) <span className="text-red-500">*</span></Label>
                    <div className="flex gap-4 mt-3">
                       <RadioCard label="Oui" selected={formData.dejaParticipe === 'Oui'} onClick={() => setSelection('dejaParticipe', 'Oui')} />
                       <RadioCard label="Non" selected={formData.dejaParticipe === 'Non'} onClick={() => setSelection('dejaParticipe', 'Non')} />
@@ -414,13 +418,13 @@ const Line = ({ step, target }) => (
 
                 {/* Q9 */}
                 <div>
-                  <Label>9. Expliquer la situation d’origine, votre projet, vos attentes, objectifs et résultats attendus <span className="text-red-500">*</span></Label>
+                  <Label>10. Expliquer la situation d’origine, votre projet, vos attentes, objectifs et résultats attendus <span className="text-red-500">*</span></Label>
                   <textarea name="situationOrigine" rows="5" value={formData.situationOrigine} onChange={handleChange} className="input-modern" />
                 </div>
 
                 {/* Q10 */}
                 <div>
-                  <Label>10. Modalités de réalisation / contraintes <span className="text-red-500">*</span></Label>
+                  <Label>11. Modalités de réalisation / contraintes <span className="text-red-500">*</span></Label>
                   <textarea name="modalitesContraintes" rows="3" value={formData.modalitesContraintes} onChange={handleChange} className="input-modern" />
                 </div>
 
@@ -428,7 +432,7 @@ const Line = ({ step, target }) => (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Q11 */}
                   <div>
-                    <Label>11. Y a t'il une prise en charge possible ? (Nécessaire) <span className="text-red-500">*</span></Label>
+                    <Label>12. Y a t'il une prise en charge possible ? (Nécessaire) <span className="text-red-500">*</span></Label>
                     <div className="flex flex-col gap-2 mt-3">
                       {optionsFinancement.map(opt => (
                         <CheckboxRow key={opt} label={opt} selected={formData.priseEnCharge.includes(opt)} onClick={() => toggleSelection('priseEnCharge', opt)} />
@@ -439,11 +443,11 @@ const Line = ({ step, target }) => (
                   {/* Q12 & Q13 */}
                   <div className="space-y-6">
                     <div>
-                        <Label>12. Lieu de réalisation (Nécessaire) <span className="text-red-500">*</span></Label>
+                        <Label>13. Lieu de réalisation (Nécessaire) <span className="text-red-500">*</span></Label>
                         <input type="text" name="lieuRealisation" value={formData.lieuRealisation} onChange={handleChange} className="input-modern" />
                     </div>
                     <div>
-                        <Label>13. Dates de démarrage de formation souhaitées / calendrier (Nécessaire) <span className="text-red-500">*</span></Label>
+                        <Label>14. Dates de démarrage de formation souhaitées / calendrier (Nécessaire) <span className="text-red-500">*</span></Label>
                         <input type="text" name="dateDemarrage" value={formData.dateDemarrage} onChange={handleChange} className="input-modern" placeholder="JJ/MM/AAAA" />
                     </div>
                   </div>
@@ -451,13 +455,13 @@ const Line = ({ step, target }) => (
 
                 {/* Q14 */}
                 <div className="mt-6">
-                  <Label>14. Souhaitez-vous ajouter des remarques / questions au présent questionnaire ?</Label>
+                  <Label>15. Souhaitez-vous ajouter des remarques / questions au présent questionnaire ?</Label>
                   <textarea name="remarquesFinales" rows="3" value={formData.remarquesFinales} onChange={handleChange} className="input-modern" />
                 </div>
 
                 {/* Q15 Handicap */}
                 <div className="border-t pt-6 mt-6">
-                    <Label>15. Avez-vous un handicap (Nécessaire) <span className="text-red-500">*</span></Label>
+                    <Label>16. Avez-vous un handicap (Nécessaire) <span className="text-red-500">*</span></Label>
                     <div className="flex gap-4 mt-3">
                       <RadioCard label="Oui" selected={formData.handicap === 'Oui'} onClick={() => setSelection('handicap', 'Oui')} />
                       <RadioCard label="Non" selected={formData.handicap === 'Non'} onClick={() => setSelection('handicap', 'Non')} />
