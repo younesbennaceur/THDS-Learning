@@ -120,7 +120,17 @@ export default function Formateur3() {
     Swal.fire({ title: 'Envoi du bilan...', didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('http://localhost:5000/api/formateur/fin-formation', formData);
+
+      const response =  await axios.post(
+        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/formateur/fin-formation', 
+        formData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+          }
+        }
+      );
       if (response.status === 200) {
         Swal.fire({
           title: 'Transmis !',

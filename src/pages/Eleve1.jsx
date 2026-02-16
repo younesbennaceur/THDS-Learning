@@ -165,7 +165,16 @@ const Line = ({ step, target }) => (
     });
 
     try {
-      const response = await axios.post('http://localhost:5000/api/eleve/analyse-besoins', formData);
+      const response =  await axios.post(
+        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/eleve/analyse-besoins', 
+        formData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+          }
+        }
+      );
 
       if (response.status === 200) {
         Swal.fire({

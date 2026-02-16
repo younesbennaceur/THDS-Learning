@@ -134,7 +134,7 @@ export default function Footer() {
             </div>
             <div className="">
               <img 
-                src="/image.png" 
+                src="/qualiopi.png" 
                 alt="Calibration Qualiopi THDS"
                 className="h-32"
               />

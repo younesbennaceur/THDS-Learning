@@ -145,8 +145,18 @@ export default function Eleve5() {
     });
 
     try {
-      // Attention : Tu devras créer cette route côté backend plus tard
-      const response = await axios.post('http://localhost:5000/api/eleve/satisfaction-chaud', formData);
+      
+       const response =  await axios.post(
+        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/eleve/satisfaction-chaud', 
+        formData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+          }
+        }
+      );
+      
 
       if (response.status === 200) {
         Swal.fire({

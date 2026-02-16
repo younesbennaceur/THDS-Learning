@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, MessageSquare, Send } from 'lucide-react';
+
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+import {  ShieldCheck,   ExternalLink } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,7 +28,16 @@ export default function Contact() {
     Swal.fire({ title: 'Transmission de votre demande...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      await axios.post('http://localhost:5000/api/contact/contact-complet', formData);
+      await axios.post(
+        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/contact/contact-complet', 
+        formData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+          }
+        }
+      );
       Swal.fire({
         icon: 'success',
         title: 'Demande envoyée !',
@@ -165,9 +178,9 @@ export default function Contact() {
           })}
         </div>
 
-      {/* --- FORMULAIRE --- */}
-      <div className="max-w-7xl mx-auto mt-16  pb-20 relative z-10">
-        <div className="bg-white rounded-xl shadow-md  p-8 md:p-12 border border-slate-100">
+      
+      <div className="max-w-7xl mx-auto px-4 pb-20 relative z-10">
+        <div className="bg-white  g-white rounded-2xl shadow-md p-8 md:p-12 border border-slate-100">
           
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -183,6 +196,17 @@ export default function Contact() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
+                <label className="block text-sm font-bold mb-2 text-slate-700">Date de naissance *</label>
+                <input type="date" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} className="input-modern" required />
+              </div>
+              <div>
+                <label className="block text-sm font-bold mb-2 text-slate-700">Adresse complète *</label>
+                <input type="text" name="adresse" value={formData.adresse} onChange={handleChange} className="input-modern" required placeholder="N°, rue, CP et Ville" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
                 <label className="block text-sm font-bold mb-2 text-slate-700">E-mail *</label>
                 <input type="email" name="email" value={formData.email} onChange={handleChange} className="input-modern" required placeholder="jean.dupont@mail.com" />
               </div>
@@ -192,7 +216,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Préférences de rappel */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                 <label className="text-sm font-bold mb-3 flex items-center text-purple-900">
@@ -221,6 +244,42 @@ export default function Contact() {
             <div>
               <label className="block text-sm font-bold mb-2 text-slate-700">Message ou précisions</label>
               <textarea name="message" value={formData.message} onChange={handleChange} rows="4" className="input-modern resize-none" placeholder="Comment pouvons-nous vous aider ?"></textarea>
+            </div>
+
+            {/* --- SECTION RGPD & CGV RENFORCÉE --- */}
+            <div className="bg-slate-50 p-6 rounded-2xl border-2 border-slate-100 hover:border-purple-200 transition-all">
+              <label className="flex items-start cursor-pointer group">
+                <div className="flex items-center h-6">
+                  <input
+                    type="checkbox"
+                    name="accordDemarchage"
+                    id="accordDemarchage"
+                    checked={formData.accordDemarchage}
+                    onChange={handleChange}
+                    required
+                    className="w-5 h-5 rounded border-slate-300 text-purple-900 focus:ring-purple-500 cursor-pointer transition-transform group-hover:scale-110"
+                  />
+                </div>
+                <div className="ml-4">
+                  <span className="text-sm font-extrabold text-slate-800 flex items-center uppercase tracking-tight">
+                    <ShieldCheck size={18} className="mr-2 text-purple-600"/> 
+                    Consentement au contact commercial
+                  </span>
+                  
+                  <div className="mt-3 space-y-3">
+                    <p className="text-xs leading-relaxed text-slate-600">
+                      En cochant cette case, j’autorise l’organisme de formation <strong>THDS</strong> et, le cas échéant, ses partenaires, à utiliser les données que je fournis pour me contacter par téléphone, SMS et e-mail, dans un cadre strictement informatif et commercial concernant leurs activités de formation.
+                    </p>
+                    
+                    <div className="text-[10px] leading-relaxed text-slate-400 border-t border-slate-200 pt-3 italic">
+                      J’ai été informé(e) de mes droits d’accès, de rectification, d’opposition, d’effacement et de limitation du traitement de mes données, conformément à notre{' '}
+                      <Link to="/cgv" className="text-purple-600 font-bold hover:underline underline-offset-2 inline-flex items-center">
+                        Politique de Confidentialité (RGPD) et CGV <ExternalLink size={10} className="ml-1"/>
+                      </Link>.
+                    </div>
+                  </div>
+                </div>
+              </label>
             </div>
 
             <button type="submit" className="w-full bg-purple-900 text-white py-5 rounded-2xl font-bold hover:bg-purple-950 transition-all shadow-xl shadow-purple-200 flex items-center justify-center">

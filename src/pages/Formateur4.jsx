@@ -88,7 +88,17 @@ export default function GrilleEvaluation() {
     Swal.fire({ title: 'Correction en cours...', didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('http://localhost:5000/api/formateur/evaluation-sous-traitants', formData);
+      
+      const response =  await axios.post(
+        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/formateur/evaluation-sous-traitants', 
+        formData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+          }
+        }
+      );
 
       if (response.status === 200) {
         Swal.fire({

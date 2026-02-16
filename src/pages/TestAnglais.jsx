@@ -103,8 +103,18 @@ export default function TestPositionnementModern() {
     Swal.fire({ title: 'Envoi en cours...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      // Note: Assurez-vous que votre backend a une route '/api/eleve/test-anglais' pour traiter ces données
-      const response = await axios.post('http://localhost:5000/api/test/test-anglais', formData);
+   
+       const response =  await axios.post(
+        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/test/test-anglais', 
+        formData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+          }
+        }
+      );
+      
       if (response.status === 200) {
         Swal.fire({ title: 'Test Terminé !', text: 'Vos résultats ont été transmis à l\'équipe THDS.', icon: 'success', confirmButtonColor: '#4c1d95' });
       }
