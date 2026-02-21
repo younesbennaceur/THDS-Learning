@@ -28,6 +28,7 @@ import TestAnglais from './pages/TestAnglais';
 import ContactPage from './pages/EtreContacte';
 import ReclamationForm from './pages/ReclamationForm';
 import CertificationVTest from './pages/VtestFrance';
+import TestPositionnementIA from './pages/TestIA';
 
 
 // ✅ ScrollToTop reste ici
@@ -86,6 +87,10 @@ function App() {
           <Route
           path='/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)'
           element={<Eleve6 />}
+        />
+         <Route
+          path='/formulaires/eleve/TestPositionnementIA'
+          element={<TestPositionnementIA />}
         />
         <Route 
           path='/formulaires/formateur/Fiche-Formateur' 

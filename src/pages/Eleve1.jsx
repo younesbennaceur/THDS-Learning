@@ -14,12 +14,13 @@ export default function FicheAnalyseModern() {
     
     // Step 2
     formationVisee: '', 
+    certificationVisee: '', 
     raisonsFormation: [], 
     attentesPrioritaires: [], 
     criteresImportants: [],   
     objectifsRepondent: '', 
     besoinConnaissances: [],  
-    commentairesAttentes: '', // Facultatif par nature
+    commentairesAttentes: '', 
 
     // Step 3
     dejaParticipe: '', 
@@ -28,9 +29,9 @@ export default function FicheAnalyseModern() {
     priseEnCharge: [], 
     lieuRealisation: '', 
     dateDemarrage: '', 
-    remarquesFinales: '',     // Facultatif par nature
+    remarquesFinales: '',     
     handicap: '', 
-    contraintesHandicap: ''   // Obligatoire seulement si Handicap = Oui
+    contraintesHandicap: ''   
   });
 
   const handleChange = (e) => {
@@ -64,20 +65,21 @@ export default function FicheAnalyseModern() {
   const setSelection = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+
   const StepIcon = ({ num, curr, icon }) => {
-  const active = curr >= num;
-  return (
-    <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${active ? 'bg-purple-900 border-purple-900 text-white' : 'bg-white border-slate-300 text-slate-400'}`}>
-      {icon}
-    </div>
+    const active = curr >= num;
+    return (
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${active ? 'bg-purple-900 border-purple-900 text-white' : 'bg-white border-slate-300 text-slate-400'}`}>
+        {icon}
+      </div>
+    );
+  };
+
+  const Line = ({ step, target }) => (
+    <div className={`h-1 flex-1 mx-2 rounded transition-colors duration-500 ${step >= target ? 'bg-purple-900' : 'bg-slate-200'}`} />
   );
-};
-const Line = ({ step, target }) => (
-  <div className={`h-1 flex-1 mx-2 rounded transition-colors duration-500 ${step >= target ? 'bg-purple-900' : 'bg-slate-200'}`} />
-);
 
-
-  // --- VALIDATION DES CHAMPS (NOUVEAU) ---
+  // --- VALIDATION DES CHAMPS ---
   const validateStep = (currentStep) => {
     const errors = [];
 
@@ -92,23 +94,23 @@ const Line = ({ step, target }) => (
 
     if (currentStep === 2) {
       if (!formData.formationVisee) errors.push("Q1. Formation visée");
-      if (formData.raisonsFormation.length === 0) errors.push("Q2. Raisons de la formation");
-      if (formData.attentesPrioritaires.length === 0) errors.push("Q3. Attentes prioritaires");
-      if (formData.criteresImportants.length === 0) errors.push("Q4. Critères importants");
-      if (!formData.objectifsRepondent) errors.push("Q5. Adéquation objectifs");
-      if (formData.besoinConnaissances.length === 0) errors.push("Q6. Besoin connaissances");
+      if (!formData.certificationVisee) errors.push("Q2. Certification visée");
+      if (formData.raisonsFormation.length === 0) errors.push("Q3. Raisons de la formation");
+      if (formData.attentesPrioritaires.length === 0) errors.push("Q4. Attentes prioritaires");
+      if (formData.criteresImportants.length === 0) errors.push("Q5. Critères importants");
+      if (!formData.objectifsRepondent) errors.push("Q6. Adéquation objectifs");
+      if (formData.besoinConnaissances.length === 0) errors.push("Q7. Besoin connaissances");
     }
 
     if (currentStep === 3) {
-      if (!formData.dejaParticipe) errors.push("Q8. Déjà participé");
-      if (!formData.situationOrigine) errors.push("Q9. Situation d'origine");
-      if (!formData.modalitesContraintes) errors.push("Q10. Modalités/Contraintes");
-      if (formData.priseEnCharge.length === 0) errors.push("Q11. Prise en charge");
-      if (!formData.lieuRealisation) errors.push("Q12. Lieu de réalisation");
-      if (!formData.dateDemarrage) errors.push("Q13. Date de démarrage");
-      if (!formData.handicap) errors.push("Q15. Handicap");
-      // Conditionnel : Si Handicap est Oui, alors la contrainte est obligatoire
-      if (formData.handicap === 'Oui' && !formData.contraintesHandicap) errors.push("Q15. Précisions handicap");
+      if (!formData.dejaParticipe) errors.push("Q9. Déjà participé");
+      if (!formData.situationOrigine) errors.push("Q10. Situation d'origine");
+      if (!formData.modalitesContraintes) errors.push("Q11. Modalités/Contraintes");
+      if (formData.priseEnCharge.length === 0) errors.push("Q12. Prise en charge");
+      if (!formData.lieuRealisation) errors.push("Q13. Lieu de réalisation");
+      if (!formData.dateDemarrage) errors.push("Q14. Date de démarrage");
+      if (!formData.handicap) errors.push("Q16. Handicap");
+      if (formData.handicap === 'Oui' && !formData.contraintesHandicap) errors.push("Q16. Précisions handicap");
     }
 
     return errors;
@@ -118,7 +120,6 @@ const Line = ({ step, target }) => (
   const handleNext = (e) => {
     e.preventDefault();
     
-    // Vérification avant de passer à l'étape suivante
     const errors = validateStep(step);
     if (errors.length > 0) {
       Swal.fire({
@@ -127,7 +128,7 @@ const Line = ({ step, target }) => (
         html: `Veuillez remplir les champs suivants :<br/><br/><ul style="text-align:left;">${errors.map(e => `<li>• ${e}</li>`).join('')}</ul>`,
         confirmButtonColor: '#4c1d95'
       });
-      return; // On arrête tout si erreur
+      return; 
     }
 
     setStep(prev => Math.min(prev + 1, 3));
@@ -145,7 +146,6 @@ const Line = ({ step, target }) => (
     e.preventDefault(); 
     if (step !== 3) return;
 
-    // Vérification finale
     const errors = validateStep(3);
     if (errors.length > 0) {
       Swal.fire({
@@ -171,7 +171,7 @@ const Line = ({ step, target }) => (
         {
           headers: {
             "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+            "ngrok-skip-browser-warning": "true" 
           }
         }
       );
@@ -243,7 +243,7 @@ const Line = ({ step, target }) => (
     "OPCO (Opérateur de Compétences)",
     "FNE (Fonds National de l'Emploi)",
     "FSE (Fonds Social Européen)",
-    "AGEFIPH (Association de Gestion du Fonds pour l'Insertion Professionnelle des Personnes Handicapées)",
+    "AGEFIPH",
     "Autre"
   ];
 
@@ -267,8 +267,6 @@ const Line = ({ step, target }) => (
       </div>
 
       <div className="max-w-5xl -mt-10 mx-auto px-4 sm:px-6 z-index-1000 relative">
-        
-       
         
         {/* Stepper Compact */}
         <div className="bg-white rounded-xl shadow-md p-4 mb-6 flex justify-between items-center overflow-x-auto">
@@ -324,7 +322,7 @@ const Line = ({ step, target }) => (
                   </div>
                 </div>
                 <div>
-                   <Label>Date de l'entretien (Nécessaire) <span className="text-red-500">*</span></Label>
+                   <Label>Date de votre demande (Nécessaire) <span className="text-red-500">*</span></Label>
                    <input type="date" name="dateEntretien" value={formData.dateEntretien} onChange={handleChange} className="input-modern w-full md:w-1/3" />
                 </div>
               </div>
@@ -337,15 +335,26 @@ const Line = ({ step, target }) => (
 
                 {/* Q1 */}
                 <div>
-                  <Label>1. Quelle formation allez-vous suivre ? <span className="text-red-500">*</span></Label>
-                  <input type="text" name="formationVisee" value={formData.formationVisee} onChange={handleChange} className="input-modern" placeholder="Intitulé de la formation..." />
+                  <Label>1. Quelle formation souhaitez-vous suivre ? <span className="text-red-500">*</span></Label>
+                  <select name="formationVisee" value={formData.formationVisee} onChange={handleChange} className="input-modern">
+                    <option value="">Sélectionnez une formation...</option>
+                    <option value="English Business">English Business</option>
+                    <option value="Intelligence Artificielle">Intelligence Artificielle</option>
+                    <option value="Autres">Autres</option>
+                  </select>
                 </div>
-                  <div>
-                  <Label>2.Quel niveau souhaiteriez-vous atteindre ? <span className="text-red-500">*</span></Label>
-                  <input type="text" name="niveauSouhaite" value={formData.niveauSouhaite} onChange={handleChange} className="input-modern" placeholder="Niveau souhaité..." />
+                
+                {/* Q2 */}
+                <div>
+                  <Label>2. Quelle certification visez-vous ? <span className="text-red-500">*</span></Label>
+                  <select name="certificationVisee" value={formData.certificationVisee} onChange={handleChange} className="input-modern">
+                    <option value="">Sélectionnez un certificateur...</option>
+                    <option value="INKREA CERTIFICATIONS">INKREA CERTIFICATIONS</option>
+                    <option value="VTEST">VTEST</option>
+                  </select>
                 </div>
 
-                {/* Q2 */}
+                {/* Q3 */}
                 <div>
                   <Label>3. Pour quelle(s) raison(s) souhaitez-vous suivre cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
@@ -355,7 +364,7 @@ const Line = ({ step, target }) => (
                   </div>
                 </div>
 
-                {/* Q3 */}
+                {/* Q4 */}
                 <div>
                   <Label>4. Quelles sont vos attentes prioritaires en participant à cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
@@ -365,7 +374,7 @@ const Line = ({ step, target }) => (
                   </div>
                 </div>
 
-                {/* Q4 (Critères - Max 3) */}
+                {/* Q5 (Critères - Max 3) */}
                 <div className="bg-purple-50/50 p-6 rounded-2xl border border-purple-100">
                   <Label>5. Quels sont les 3 critères les plus importants pour vous en assistant à cette formation ? (Nécessaire) <span className="text-red-500">*</span></Label>
                   <p className="text-xs text-purple-700 mb-3 font-medium">Sélectionnez uniquement les 3 critères les plus importants à vos yeux.</p>
@@ -382,7 +391,7 @@ const Line = ({ step, target }) => (
                   </div>
                 </div>
 
-                {/* Q5 */}
+                {/* Q6 */}
                 <div>
                    <Label>6. Les objectifs de la formation tels que décrits sur notre site répondent-ils à vos attentes ? (Nécessaire) <span className="text-red-500">*</span></Label>
                    <div className="flex flex-wrap gap-3 mt-3">
@@ -392,7 +401,7 @@ const Line = ({ step, target }) => (
                    </div>
                 </div>
 
-                {/* Q6 */}
+                {/* Q7 */}
                 <div>
                   <Label>7. Pour cette formation, pensez-vous avoir le plus besoin d'un apport de connaissances : (Nécessaire) <span className="text-red-500">*</span></Label>
                   <p className="text-xs text-slate-500 mb-2">Plusieurs réponses sont possibles (*)</p>
@@ -403,7 +412,7 @@ const Line = ({ step, target }) => (
                   </div>
                 </div>
 
-                {/* Q7 */}
+                {/* Q8 */}
                 <div>
                   <Label>8. Avez-vous des commentaires à rajouter concernant vos attentes vis-à-vis de la formation ?</Label>
                   <textarea name="commentairesAttentes" rows="3" value={formData.commentairesAttentes} onChange={handleChange} className="input-modern resize-none" />
@@ -416,7 +425,7 @@ const Line = ({ step, target }) => (
               <div className="space-y-10 animate-fade-in-up">
                 <SectionTitle number="3" title="Analyse" />
 
-                {/* Q8 */}
+                {/* Q9 */}
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                    <Label>9. Avez-vous déjà participé à une formation sur le même thème ? (Nécessaire) <span className="text-red-500">*</span></Label>
                    <div className="flex gap-4 mt-3">
@@ -425,21 +434,21 @@ const Line = ({ step, target }) => (
                    </div>
                 </div>
 
-                {/* Q9 */}
+                {/* Q10 */}
                 <div>
                   <Label>10. Expliquer la situation d’origine, votre projet, vos attentes, objectifs et résultats attendus <span className="text-red-500">*</span></Label>
                   <textarea name="situationOrigine" rows="5" value={formData.situationOrigine} onChange={handleChange} className="input-modern" />
                 </div>
 
-                {/* Q10 */}
+                {/* Q11 */}
                 <div>
                   <Label>11. Modalités de réalisation / contraintes <span className="text-red-500">*</span></Label>
                   <textarea name="modalitesContraintes" rows="3" value={formData.modalitesContraintes} onChange={handleChange} className="input-modern" />
                 </div>
 
-                {/* Q11 - Q12 - Q13 */}
+                {/* Q12 - Q13 - Q14 */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Q11 */}
+                  {/* Q12 */}
                   <div>
                     <Label>12. Y a t'il une prise en charge possible ? (Nécessaire) <span className="text-red-500">*</span></Label>
                     <div className="flex flex-col gap-2 mt-3">
@@ -449,12 +458,19 @@ const Line = ({ step, target }) => (
                     </div>
                   </div>
                   
-                  {/* Q12 & Q13 */}
+                  {/* Q13 & Q14 */}
                   <div className="space-y-6">
+                    {/* --- ZONE MODIFIÉE : Q13 EN MENU DÉROULANT --- */}
                     <div>
                         <Label>13. Lieu de réalisation (Nécessaire) <span className="text-red-500">*</span></Label>
-                        <input type="text" name="lieuRealisation" value={formData.lieuRealisation} onChange={handleChange} className="input-modern" />
+                        <select name="lieuRealisation" value={formData.lieuRealisation} onChange={handleChange} className="input-modern">
+                          <option value="">Sélectionnez un lieu...</option>
+                          <option value="Paris">Paris</option>
+                          <option value="Proche banlieue">Proche banlieue</option>
+                        </select>
                     </div>
+                    {/* --- FIN ZONE MODIFIÉE --- */}
+                    
                     <div>
                         <Label>14. Dates de démarrage de formation souhaitées / calendrier (Nécessaire) <span className="text-red-500">*</span></Label>
                         <input type="text" name="dateDemarrage" value={formData.dateDemarrage} onChange={handleChange} className="input-modern" placeholder="JJ/MM/AAAA" />
@@ -462,13 +478,13 @@ const Line = ({ step, target }) => (
                   </div>
                 </div>
 
-                {/* Q14 */}
+                {/* Q15 */}
                 <div className="mt-6">
                   <Label>15. Souhaitez-vous ajouter des remarques / questions au présent questionnaire ?</Label>
                   <textarea name="remarquesFinales" rows="3" value={formData.remarquesFinales} onChange={handleChange} className="input-modern" />
                 </div>
 
-                {/* Q15 Handicap */}
+                {/* Q16 Handicap */}
                 <div className="border-t pt-6 mt-6">
                     <Label>16. Avez-vous un handicap (Nécessaire) <span className="text-red-500">*</span></Label>
                     <div className="flex gap-4 mt-3">

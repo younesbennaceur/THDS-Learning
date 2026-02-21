@@ -15,9 +15,9 @@ export default function Footer() {
 
   return (
     <footer className=" bg-purple-950 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto  py-12">
         
-        <div className="grid md:grid-cols-3 gap-12 mb-8">
+        <div className="grid md:grid-cols-3  mb-8">
           
           {/* Section 1: THDS FORMATION */}
           <div>
@@ -89,7 +89,7 @@ export default function Footer() {
                     className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
                   >
                     <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                    <span>{link.name}</span>
+                    <span >{link.name}</span>
                   </Link>
                 </li>
               ))}
@@ -119,7 +119,7 @@ export default function Footer() {
           </div>
 
           {/* Section 3: CERTIFICATIONS */}
-          <div className=' flex gap-4 flex-col justify-baseline'>
+          <div className=' flex gap-4 flex-col w-full justify-baseline'>
             <h3 className="text-xl font-bold mb-6 flex items-center space-x-2">
               <Award className="w-6 h-6 text-orange-400" />
               <span>CERTIFICATIONS</span>
@@ -129,16 +129,29 @@ export default function Footer() {
               <img 
                 src="/Footer2.png" 
                 alt="CPF - Charte de déontologie"
-                className="w-32 h-32"
+                className="w-24 h-24"
               />
             </div>
             <div className="">
               <img 
                 src="/qualiopi.png" 
                 alt="Calibration Qualiopi THDS"
-                className="h-32"
+                className="h-24"
               />
             </div>
+            <ul>
+             <li className='mt-3 space-y-3' >
+                   <a
+                    href='https://www.moncompteformation.gouv.fr/espace-prive/html/#/'
+                    
+                  
+                    className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                    <span>Mon compte formation</span>
+                  </a>
+                </li>
+            </ul>
             </div>
             <div className='flex gap-8 '>
              <a href="https://vtest-france.exassess.com">
@@ -166,6 +179,32 @@ export default function Footer() {
                 </li>
             </ul>
             </div>
+             <div className='flex gap-8 '>
+             
+
+                  <div className="">
+              <img 
+                src="/inkrea.png" 
+                alt="CPF - Charte de déontologie"
+                className="w-32 h-16"
+              />
+            </div>
+
+             
+             <ul>
+             <li className='mt-3 space-y-3' >
+                   <a
+                    href='https://www.inkrea-certifications.fr/'
+                    
+                  
+                    className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                    <span>inkrea certification</span>
+                  </a>
+                </li>
+            </ul>
+            </div>
 
           
             
@@ -181,7 +220,7 @@ export default function Footer() {
             Copyright 2025 © <span className="font-bold text-white">THDS FORMATION</span>
           </p>
           <p className=" text-blue-200">
-            dernière mise à jour : 15/01/2026
+            dernière mise à jour : 21/02/2026
 
           </p>
         </div>

@@ -8,13 +8,13 @@ const formulairesData = {
     icon: GraduationCap,
     items: [
       { id: 1, text: "1/ Fiche analyse des besoins et attentes clients [ présentiel ]", link: "/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients" },
-      { id: 2, text: "2/ Fiche analyse des besoins et attentes clients [ E-LEARNING ]" },
-      { id: 4, text: "3/ Enquête de satisfaction en fin de formation (à chaud) [ E-LEARNING ]"},
-      { id: 5, text: "4/ Enquête de satisfaction en fin de formation (à chaud) ", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
-      { id: 6, text: "5/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
-      { id: 9, text: "6/ Test de positionnement Business English - 4 skills",link: "/formulaires/test-de-positionnement-BUSINESS-ENGLISH-4-SKILLS" },
-      { id: 10, text: "7/ Test de positionnement : Français professionnel", },
-      { id: 11, text: "8/ Test de positionnement : Intelligence artificielle",  }
+     
+      { id: 5, text: "2/ Enquête de satisfaction en fin de formation (à chaud) ", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
+      { id: 6, text: "3/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
+      { id: 9, text: "4/ Test de positionnement Business English - 4 skills",link: "/formulaires/test-de-positionnement-BUSINESS-ENGLISH-4-SKILLS" },
+      { id: 10, text: "5/ Test de positionnement : Français professionnel", },
+      { id: 11, text: "6/ Test de positionnement : Intelligence artificielle",  },
+      { id: 12, text: "7/Test de positionnementFormation : Création de contenus rédactionnels et visuels par l'usage responsable de l'IA",link: "/formulaires/eleve/TestPositionnementIA" }
     ]
   },
   formateur: {
@@ -105,7 +105,7 @@ export default function Formulaires() {
                     className="text-sm hover:text-purple-600 hover:underline flex items-start"
                   >
                
-                    <span>• 9/ Règlement intérieur</span>
+                    <span>• 8/ Règlement intérieur</span>
                   </a>
                 </li>
             </ul>
