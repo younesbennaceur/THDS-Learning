@@ -200,7 +200,7 @@ export default function Footer() {
                     className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-2 group"
                   >
                     <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                    <span>Inkrea Certificatios</span>
+                    <span>Inkrea Certifications</span>
                   </a>
                 </li>
             </ul>
