@@ -95,7 +95,6 @@ export default function Eleve5() {
       if (!formData.equilibreTheoriePratique) errors.push("Q8. Équilibre Théorie/Pratique");
     }
     if (currentStep === 4) {
-      // Liste des champs obligatoires pour l'étape 4
       const fields = ['accueil', 'methodes', 'rythme', 'moyensPedagogiques', 'animation', 'organisationMaterielle', 'echangesGroupe', 'aideRecue', 'disponibiliteFormateur'];
       fields.forEach(f => {
         if (!formData[f]) errors.push(`Question ${f} non remplie`);
@@ -106,7 +105,6 @@ export default function Eleve5() {
       if (!formData.globalSatisfaction) errors.push("Q18. Satisfaction globale");
       if (!formData.recommandation) errors.push("Q19. Recommandation");
     }
-    // Etape 6 : Facultative (Textes)
 
     return errors;
   };
@@ -145,25 +143,25 @@ export default function Eleve5() {
     });
 
     try {
-      
        const response =  await axios.post(
         'https://unsweepable-torri-victoryless.ngrok-free.dev/api/eleve/satisfaction-chaud', 
         formData, 
         {
           headers: {
             "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+            "ngrok-skip-browser-warning": "true" 
           }
         }
       );
       
-
       if (response.status === 200) {
         Swal.fire({
           title: 'Merci !',
           text: 'Votre enquête de satisfaction a bien été envoyée.',
           icon: 'success',
           confirmButtonColor: '#4c1d95'
+        }).then(() => {
+          window.location.reload();
         });
       }
     } catch (error) {
@@ -190,6 +188,17 @@ export default function Eleve5() {
     "Mon manager me l'a imposé",
     "On ne sait jamais, ça me servira peut être un jour",
     "Autre"
+  ];
+
+  // NOUVEAU : Liste des formations pour le menu déroulant
+  const optionsFormations = [
+    "English Business - 10 Heures",
+    "English Business - 20 Heures",
+    "English Business - 30 Heures",
+    "English Business - 40 Heures",
+    "English Business - 50 Heures",
+    "Intelligence Artificielle - Agents IA & No-Code",
+    
   ];
 
   const optionsSatisfaction = ["Très satisfait(e)", "Satisfait(e)", "Neutre", "Insatisfait(e)", "Très insatisfait(e)"];
@@ -280,9 +289,15 @@ export default function Eleve5() {
                   </div>
                 </div>
 
+                {/* --- MENU DÉROULANT POUR LES FORMATIONS --- */}
                 <div>
                    <Label req>Intitulé de la formation</Label>
-                   <input type="text" name="intituleFormation" value={formData.intituleFormation} onChange={handleChange} className="input-modern"/>
+                   <select name="intituleFormation" value={formData.intituleFormation} onChange={handleChange} className="input-modern">
+                     <option value="">Sélectionnez une formation...</option>
+                     {optionsFormations.map(opt => (
+                       <option key={opt} value={opt}>{opt}</option>
+                     ))}
+                   </select>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

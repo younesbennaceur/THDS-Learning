@@ -112,7 +112,7 @@ export default function Hero() {
             <li>
               <a href="https://www.inkrea-certifications.fr/" className="text-blue-100 hover:text-orange-400 transition-colors flex items-center space-x-1 sm:space-x-2 group">
                 <span className="w-1.5 h-1.5 bg-orange-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                <span className="text-sm sm:text-lg md:text-xl font-medium">inkrea certification</span>
+                <span className="text-sm sm:text-lg md:text-xl font-medium">Inkrea Certificatios</span>
               </a>
             </li>
           </ul>

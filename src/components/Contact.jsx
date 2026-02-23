@@ -224,7 +224,7 @@ export default function Contact() {
                 <select name="periodeContact" value={formData.periodeContact} onChange={handleChange} className="input-modern bg-white" required>
                   <option value="">Sélectionnez...</option>
                   <option value="Semaine">En semaine (Lundi - Vendredi)</option>
-                  <option value="Week-end">Le Week-end (Samedi)</option>
+                  
                 </select>
               </div>
 

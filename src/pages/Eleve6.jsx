@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { Send, ChevronRight, ChevronLeft, User, Calendar, BarChart2, Star, Check } from 'lucide-react';
+import { Send, ChevronRight, ChevronLeft, User, Calendar, BarChart2, Star, Check, CheckCircle, Target, MessageSquare } from 'lucide-react';
 
 export default function Eleve6() {
   const [step, setStep] = useState(1);
@@ -98,7 +98,7 @@ export default function Eleve6() {
         {
           headers: {
             "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
+            "ngrok-skip-browser-warning": "true" 
           }
         }
       );
@@ -108,16 +108,29 @@ export default function Eleve6() {
           text: 'Merci pour ce retour à froid.',
           icon: 'success',
           confirmButtonColor: '#4c1d95'
+        }).then(() => {
+          window.location.reload();
         });
       }
     } catch (error) {
-      Swal.fire({ title: 'Erreur', icon: 'error' });
+      Swal.fire({ title: 'Erreur', text: "Impossible d'envoyer le formulaire.", icon: 'error' });
     }
   };
 
-  // Options
+  // --- LISTES D'OPTIONS ---
   const optionsSatisfaction = ["Très satisfait(e)", "Satisfait(e)", "Neutre", "Insatisfait(e)", "Très insatisfait(e)"];
   const optionsGlobal = ["Très satisfaisante", "Satisfaisante", "Neutre", "Insatisfaisante", "Très insatisfaisante"];
+  
+  // NOUVEAU : Liste des formations pour le menu déroulant
+  const optionsFormations = [
+    "English Business - 10 Heures",
+    "English Business - 20 Heures",
+    "English Business - 30 Heures",
+    "English Business - 40 Heures",
+    "English Business - 50 Heures",
+    "Intelligence Artificielle - Agents IA & No-Code",
+    "Autre"
+  ];
 
   return (
     <div className="min-h-screen bg-slate-50 relative">
@@ -164,7 +177,18 @@ export default function Eleve6() {
                 <div><Label req>E-mail</Label><input name="email" type="email" value={formData.email} onChange={handleChange} className="input-modern" placeholder="confirmez l'e-mail ici"/></div>
                 
                 <SectionTitle title="La Formation" />
-                <div><Label req>Intitulé de la formation</Label><input name="intituleFormation" value={formData.intituleFormation} onChange={handleChange} className="input-modern"/></div>
+                
+                {/* --- MENU DÉROULANT POUR LES FORMATIONS --- */}
+                <div>
+                   <Label req>Intitulé de la formation</Label>
+                   <select name="intituleFormation" value={formData.intituleFormation} onChange={handleChange} className="input-modern">
+                     <option value="">Sélectionnez une formation...</option>
+                     {optionsFormations.map(opt => (
+                       <option key={opt} value={opt}>{opt}</option>
+                     ))}
+                   </select>
+                </div>
+
                 <div><Label>Nom du formateur</Label><input name="nomFormateur" value={formData.nomFormateur} onChange={handleChange} className="input-modern"/></div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div><Label req>Date début</Label><input type="date" name="dateDebut" value={formData.dateDebut} onChange={handleChange} className="input-modern"/></div>
