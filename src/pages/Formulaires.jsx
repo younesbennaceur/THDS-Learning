@@ -13,7 +13,7 @@ const formulairesData = {
       { id: 6, text: "3/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
       { id: 9, text: "4/ Test de positionnement Business English - 4 skills",link: "/formulaires/test-de-positionnement-BUSINESS-ENGLISH-4-SKILLS" },
       { id: 10, text: "5/ Test de positionnement : Français professionnel", },
-      { id: 12, text: "6/Test de positionnement : Création de contenus rédactionnels et visuels par l'usage responsable de l'IA",link: "/formulaires/eleve/TestPositionnementIA" }
+      { id: 12, text: "6/ Test de positionnement : Création de contenus rédactionnels et visuels par l'usage responsable de l'IA",link: "/formulaires/eleve/TestPositionnementIA" }
     ]
   },
   formateur: {
