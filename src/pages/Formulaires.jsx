@@ -7,7 +7,7 @@ const formulairesData = {
     title: "ÉLÈVE",
     icon: GraduationCap,
     items: [
-      { id: 1, text: "1/ Fiche analyse des besoins et attentes clients [ présentiel ]", link: "/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients" },
+      { id: 1, text: "1/ Fiche analyse des besoins et attentes clients (présentiel)", link: "/formulaires/eleve/Fiche-analyse-des-besoins-et-attentes-clients" },
      
       { id: 5, text: "2/ Enquête de satisfaction en fin de formation (à chaud) ", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-EN-FIN-DE-FORMATION" },
       { id: 6, text: "3/ Enquête de satisfaction à froid (1 mois après)", link: "/formulaires/eleve/ENQUÊTE-DE-SATISFACTION-À-FROID-(1-MOIS-APRÈS)" },
