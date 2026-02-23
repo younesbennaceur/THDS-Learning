@@ -104,16 +104,8 @@ export default function TestPositionnementModern() {
 
     try {
    
-       const response =  await axios.post(
-        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/test/test-anglais', 
-        formData, 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
-          }
-        }
-      );
+     
+      const response = await axios.post('/api/test/test-anglais', formData);
       
       if (response.status === 200) {
         Swal.fire({ title: 'Test Terminé !', text: 'Vos résultats ont été transmis à l\'équipe THDS.', icon: 'success', confirmButtonColor: '#4c1d95' });

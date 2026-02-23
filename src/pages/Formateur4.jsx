@@ -89,16 +89,8 @@ export default function GrilleEvaluation() {
 
     try {
       
-      const response =  await axios.post(
-        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/formateur/evaluation-sous-traitants', 
-        formData, 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
-          }
-        }
-      );
+   
+      const response = await axios.post('/api/formateur/evaluation-sous-traitants', formData);
 
       if (response.status === 200) {
         Swal.fire({

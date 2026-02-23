@@ -151,16 +151,9 @@ export default function FicheFormateur() {
 
     try {
      
-      const response =  await axios.post(
-        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/formateur/inscription', 
-        formData, 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
-          }
-        }
-      );
+    
+      const response = await axios.post('/api/formateur/inscription', formData);
+      
       
 
       if (response.status === 200) {

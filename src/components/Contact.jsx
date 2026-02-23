@@ -28,16 +28,8 @@ export default function Contact() {
     Swal.fire({ title: 'Transmission de votre demande...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      await axios.post(
-        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/contact/contact-complet', 
-        formData, 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" // <--- LA CLÉ POUR PASSER NGROK
-          }
-        }
-      );
+    
+       await axios.post('api/contact/contact-complet', formData);
       Swal.fire({
         icon: 'success',
         title: 'Demande envoyée !',

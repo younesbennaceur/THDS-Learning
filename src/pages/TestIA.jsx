@@ -147,13 +147,8 @@ export default function TestPositionnementIA() {
     });
 
     try {
-      // 3. Appel API via Axios
-      const response = await axios.post('http://localhost:5000/api/test/test-ia', payload, {
-          headers: {
-              "Content-Type": "application/json",
-              "ngrok-skip-browser-warning": "true" // Utile si tu utilises Ngrok
-          }
-      });
+    
+       const response = await axios.post('/api/test/test-ia', payload);
       
       if (response.status === 200) {
         Swal.fire({

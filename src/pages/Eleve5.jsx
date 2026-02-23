@@ -143,16 +143,8 @@ export default function Eleve5() {
     });
 
     try {
-       const response =  await axios.post(
-        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/eleve/satisfaction-chaud', 
-        formData, 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" 
-          }
-        }
-      );
+     
+      const response = await axios.post('/api/eleve/satisfaction-chaud', formData);
       
       if (response.status === 200) {
         Swal.fire({

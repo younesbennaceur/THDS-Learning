@@ -21,7 +21,7 @@ export default function ReclamationForm() {
     Swal.fire({ title: 'Enregistrement de votre réclamation...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('http://localhost:5000/api/reclamation/reclamationForm', formData);
+      const response = await axios.post('/api/reclamation/reclamationForm', formData);
       if (response.status === 200) {
         Swal.fire({
           icon: 'success',
@@ -106,7 +106,7 @@ export default function ReclamationForm() {
                 <select name="periodeContact" value={formData.periodeContact} onChange={handleChange} className="input-modern bg-white" required>
                   <option value="">Sélectionnez...</option>
                   <option value="Semaine">En semaine</option>
-                  <option value="Week-end">Le week-end</option>
+                 
                 </select>
               </div>
 

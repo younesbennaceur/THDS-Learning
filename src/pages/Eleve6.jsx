@@ -92,16 +92,8 @@ export default function Eleve6() {
     Swal.fire({ title: 'Envoi...', didOpen: () => Swal.showLoading() });
 
     try {
-       const response =  await axios.post(
-        'https://unsweepable-torri-victoryless.ngrok-free.dev/api/eleve/satisfaction-froid', 
-        formData, 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "true" 
-          }
-        }
-      );
+      
+      const response = await axios.post('/api/eleve/satisfaction-froid', formData);
       if (response.status === 200) {
         Swal.fire({
           title: 'Envoyé !',
