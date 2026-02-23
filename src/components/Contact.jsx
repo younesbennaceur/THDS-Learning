@@ -230,7 +230,7 @@ export default function Contact() {
 
               <div className="bg-purple-50 p-6 rounded-2xl border border-purple-100">
                 <label className="text-sm font-bold mb-3 flex items-center text-purple-900">
-                  <Clock size={18} className="mr-2"/> Urgence de l'appel
+                  <Clock size={18} className="mr-2"/>  Quand souhaitez-vous être recontacté ?
                 </label>
                 <select name="urgence" value={formData.urgence} onChange={handleChange} className="input-modern bg-white" required>
                   <option value="">Sélectionnez...</option>

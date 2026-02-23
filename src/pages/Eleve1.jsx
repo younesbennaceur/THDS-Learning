@@ -351,6 +351,8 @@ export default function FicheAnalyseModern() {
                     <option value="">Sélectionnez un certificateur...</option>
                     <option value="INKREA CERTIFICATIONS">INKREA CERTIFICATIONS</option>
                     <option value="VTEST">VTEST</option>
+                    <option value="Autres">Autres</option>
+                    
                   </select>
                 </div>
 
@@ -465,8 +467,7 @@ export default function FicheAnalyseModern() {
                         <Label>13. Lieu de réalisation (Nécessaire) <span className="text-red-500">*</span></Label>
                         <select name="lieuRealisation" value={formData.lieuRealisation} onChange={handleChange} className="input-modern">
                           <option value="">Sélectionnez un lieu...</option>
-                          <option value="Paris">Paris</option>
-                          <option value="Proche banlieue">Proche banlieue</option>
+                          <option value="Proche banlieue">Ile de France</option>
                         </select>
                     </div>
                     {/* --- FIN ZONE MODIFIÉE --- */}
