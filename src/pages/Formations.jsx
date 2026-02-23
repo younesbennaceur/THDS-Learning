@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Briefcase, Bot, Folder, FolderOpen, ChevronDown, ChevronUp } from 'lucide-react';
+import { Briefcase, Bot, ChevronDown } from 'lucide-react';
 
 export default function Formations() {
-  // État pour gérer l'ouverture/fermeture des dossiers (le premier est ouvert par défaut)
+  // État pour gérer l'ouverture/fermeture des dossiers (fermés par défaut)
   const [openFolders, setOpenFolders] = useState({
     'dossier-english': false,
     'dossier-ia': false
@@ -23,6 +23,7 @@ export default function Formations() {
       title: "English Business",
       themeColor: "border-purple-600",
       iconColor: "text-purple-600",
+      folderIcon: Briefcase, // <-- Icône du dossier
       items: [
         {
           id: 1,
@@ -81,6 +82,7 @@ export default function Formations() {
       title: "CERTIFICATION IA GÉNÉRATIVE AUTOMATISATION NO-CODE & AGENTS IA",
       themeColor: "border-indigo-600",
       iconColor: "text-indigo-600",
+      folderIcon: Bot, // <-- Icône du dossier
       items: [
         {
           id: 6,
@@ -89,7 +91,7 @@ export default function Formations() {
           icon: Bot,
           color: "from-indigo-600 to-indigo-900",
           description: "Programme de formation : IA Générative, Automatisation No-Code et création d'Agents IA.",
-          link: "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_IA33/83277408700023_IA33?contexteFormation=ACTIVITE_PROFESSIONNELLE", // <-- N'oublie pas de mettre ton lien EDOF ici
+          link: "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/83277408700023_IA33/83277408700023_IA33?contexteFormation=ACTIVITE_PROFESSIONNELLE", 
           bgImage: 'none'
         }
       ]
@@ -115,15 +117,13 @@ export default function Formations() {
           <p className="text-xl text-purple-100 font-medium text-center max-w-2xl">Boostez votre carrière avec THDS FORMATION et nos partenaires certifiés.</p>
         </div>
 
-        {/* Logos des certificateurs (Vtest & Inkrea) dans une belle bulle de verre */}
-        <div className="relative z-10 flex justify-center  mt-auto">
-          <div className=" px-8 py-4  flex items-center gap-8 md:gap-16">
+        {/* Logos des certificateurs (Vtest & Inkrea) */}
+        <div className="relative z-10 flex justify-center mt-auto">
+          <div className="px-8 py-4 flex items-center gap-8 md:gap-16">
             <div className="flex flex-col items-center gap-2">
               <img src="/vtestfrance.png" alt="Vtest English" className="h-10 md:h-14 w-auto object-contain drop-shadow-md" />
               <span className="text-white/80 text-xs font-bold uppercase tracking-widest">Vtest English</span>
             </div>
-            
-            
             
             <div className="flex flex-col items-center gap-2">
               <img src="/inkrea.png" alt="Inkrea" className="h-10 md:h-14 w-auto object-contain drop-shadow-md" />
@@ -147,17 +147,21 @@ export default function Formations() {
                 {/* Bouton du Dossier (Clic pour ouvrir/fermer) */}
                 <button 
                   onClick={() => toggleFolder(dossier.id)}
-                  className={`w-full flex items-center justify-between p-5 md:p-6 bg-white rounded-2xl shadow-sm border-l-8 ${dossier.themeColor} hover:shadow-md transition-all duration-300 cursor-pointer group`}
+                  className={`w-full flex items-center justify-between p-4 md:p-6 bg-white rounded-2xl shadow-sm border-l-8 ${dossier.themeColor} hover:shadow-md transition-all duration-300 cursor-pointer group`}
                 >
-                  <div className="flex items-center gap-4 text-left">
+                  <div className="flex items-center gap-4 md:gap-6 text-left">
+                    
+                    {/* --- ZONE MODIFIÉE : ICÔNES BRIEFCASE / BOT --- */}
                     <div className={`p-3 rounded-xl bg-slate-50 group-hover:bg-slate-100 transition-colors ${dossier.iconColor}`}>
-                      {isOpen ? <FolderOpen className="w-8 h-8" /> : <Folder className="w-8 h-8" />}
+                      <dossier.folderIcon className="w-8 h-8" />
                     </div>
+                    {/* --------------------------------------------- */}
+
                     <h2 className="text-lg md:text-2xl font-extrabold text-slate-800 uppercase tracking-tight">
                       {dossier.title}
                     </h2>
                   </div>
-                  <div className={`p-2 rounded-full transition-transform duration-300 ${isOpen ? 'bg-slate-100 rotate-180' : 'bg-slate-50'}`}>
+                  <div className={`p-2 rounded-full flex-shrink-0 transition-transform duration-300 ${isOpen ? 'bg-slate-100 rotate-180' : 'bg-slate-50'}`}>
                     <ChevronDown className="w-6 h-6 text-slate-500" />
                   </div>
                 </button>
@@ -212,7 +216,7 @@ export default function Formations() {
                             rel="noopener noreferrer"
                             className="inline-block w-full py-4 bg-purple-900 hover:bg-purple-950 shadow-purple-100 text-white font-black rounded-2xl transition-all shadow-xl uppercase text-sm tracking-wider hover:scale-105 active:scale-95"
                           >
-                            S'inscrire via EDOF
+                            S’inscrire via Mon Compte Formation
                           </a>
                         </div>
                       </div>

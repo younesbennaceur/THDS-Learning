@@ -420,7 +420,7 @@ router.post('/test-ia', async (req, res) => {
         
         // Email Client
         const mailOptionsClient = {
-            from: `"EASYLOC TRAINING" <${process.env.EMAIL_USER}>`,
+            from: `"THDS" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: `Votre résultat : Test IA Générative - ${nom} ${prenom}`,
             html: `
