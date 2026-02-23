@@ -359,7 +359,7 @@ router.post('/test-ia', async (req, res) => {
                 doc.text("RAPPORT DE POSITIONNEMENT Création de contenus rédactionnels et visuels par l'usage responsable de l'IA", 0, 55, { align: 'center', width: 595 });
                 
                 doc.font('Helvetica').fontSize(11).fillColor('#666');
-                doc.text('EASYLOC TRAINING', 0, 80, { align: 'center', width: 595, characterSpacing: 2 });
+                doc.text('THDS', 0, 80, { align: 'center', width: 595, characterSpacing: 2 });
                 
                 doc.moveTo(40, 110).lineTo(555, 110).lineWidth(1).strokeColor('#4f46e5').stroke();
 
@@ -408,7 +408,7 @@ router.post('/test-ia', async (req, res) => {
 
                 // Footer
                 doc.moveTo(40, 520).lineTo(555, 520).lineWidth(1).strokeColor('#ccc').stroke();
-                doc.fontSize(8).font('Helvetica').fillColor('#999').text(`Ce rapport est généré automatiquement par le système EASYLOC TRAINING.`, 0, 780, { align: 'center', width: 595 });
+                doc.fontSize(8).font('Helvetica').fillColor('#999').text(`Ce rapport est généré automatiquement par le système THDS.`, 0, 780, { align: 'center', width: 595 });
 
                 doc.end();
             });
@@ -439,7 +439,7 @@ router.post('/test-ia', async (req, res) => {
 
                         <p>Vous trouverez votre rapport d'analyse détaillé en format PDF en pièce jointe.</p>
                         <br>
-                        <p style="font-size: 12px; color: #999;">L'équipe EASYLOC TRAINING</p>
+                        <p style="font-size: 12px; color: #999;">L'équipe THDS</p>
                     </div>
                 </div>
             `,
@@ -448,7 +448,7 @@ router.post('/test-ia', async (req, res) => {
 
         // Email Administrateur
         const mailOptionsAdmin = {
-            from: `"Système EASYLOC" <${process.env.EMAIL_USER}>`,
+            from: `"THDS" <${process.env.EMAIL_USER}>`,
             to: process.env.EMAIL_ADMIN,
             subject: `[TEST IA] Nouveau résultat - ${prenom} ${nom} (${scores.total}/20)`,
             html: `
