@@ -13,7 +13,6 @@ dotenv.config();
 
 const app = express();
 
-// --- CORRECTION ICI : CORS DOIT ÊTRE EN PREMIER ---
 app.use(cors({
   origin: '*', // Autorise tout le monde (Vercel, Localhost, Ngrok)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Ajoute OPTIONS pour les preflights
@@ -21,7 +20,9 @@ app.use(cors({
   credentials: false
 }));
 
-app.use(express.json()); 
+
+app.use(express.json({ limit: '30mb' })); 
+app.use(express.urlencoded({ limit: '30mb', extended: true }));
 
 // --- ROUTES ---
 app.use('/api/eleve', eleveRoutes);
@@ -36,7 +37,6 @@ app.get('/', (req, res) => {
 
 // ✅ Pour local
 const PORT = process.env.PORT || 5000;
-// Note : J'ai enlevé la condition NODE_ENV pour être sûr qu'il démarre toujours en local pour tes tests
 app.listen(PORT, () => {
     console.log(`✅ SERVEUR DÉMARRÉ SUR : http://localhost:${PORT}`);
 });
