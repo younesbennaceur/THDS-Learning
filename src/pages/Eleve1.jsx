@@ -166,7 +166,7 @@ export default function FicheAnalyseModern() {
 
     try {
      
-      const response = await axios.post('api/eleve/analyse-besoins', formData);
+      const response = await axios.post('/api/eleve/analyse-besoins', formData);
       
 
       if (response.status === 200) {
