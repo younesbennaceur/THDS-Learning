@@ -85,7 +85,7 @@ router.post('/contact-complet', async (req, res) => {
               <div class="signature-box">
                 <div class="signature-title">SIGNATURE NUMÉRIQUE</div>
                 <p style="font-size: 14px; margin: 10px 0;"><strong>${prenom} ${nom}</strong></p>
-                <p style="font-size: 9px; color: #9ca3af;">Document validé via formulaire en ligne<br>IP: ${req.ip}</p>
+                <p style="font-size: 9px; color: #9ca3af;">Document validé via formulaire en ligne</p>
               </div>
             </div>
 
@@ -162,7 +162,7 @@ router.post('/contact-complet', async (req, res) => {
             </p>
           </div>
           <div style="background: #f9fafb; padding: 10px; text-align: center; font-size: 11px; color: #999;">
-            Envoyé depuis le portail web THDS - IP: ${req.ip}
+            Envoyé depuis le portail web THDS 
           </div>
         </div>`,
       attachments: [{ filename: `Autorisation_THDS_${nom}.pdf`, content: pdfBuffer }]
