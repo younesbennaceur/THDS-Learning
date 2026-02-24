@@ -239,6 +239,15 @@ export default function FicheAnalyseModern() {
     "AGEFIPH",
     "Autre"
   ];
+  const optionsFormations = [
+    "English Business - 10 Heures",
+    "English Business - 20 Heures",
+    "English Business - 30 Heures",
+    "English Business - 40 Heures",
+    "English Business - 50 Heures",
+    "Intelligence Artificielle - Agents IA & No-Code",
+    
+  ];
 
   return (
     <div className="relative">
@@ -327,14 +336,16 @@ export default function FicheAnalyseModern() {
                 <SectionTitle number="2" title="Vos Attentes" />
 
                 {/* Q1 */}
+              
+                {/* --- MENU DÉROULANT POUR LES FORMATIONS --- */}
                 <div>
-                  <Label>1. Quelle formation souhaitez-vous suivre ? <span className="text-red-500">*</span></Label>
-                  <select name="formationVisee" value={formData.formationVisee} onChange={handleChange} className="input-modern">
-                    <option value="">Sélectionnez une formation...</option>
-                    <option value="English Business">English Business</option>
-                    <option value="Intelligence Artificielle">Intelligence Artificielle</option>
-                    <option value="Autres">Autres</option>
-                  </select>
+                   <Label req>1. Quelle formation souhaitez-vous suivre ?</Label>
+                   <select name="intituleFormation" value={formData.intituleFormation} onChange={handleChange} className="input-modern">
+                     <option value="">Sélectionnez une formation...</option>
+                     {optionsFormations.map(opt => (
+                       <option key={opt} value={opt}>{opt}</option>
+                     ))}
+                   </select>
                 </div>
                 
                 {/* Q2 */}
