@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { Send, ChevronRight, ChevronLeft, User, Briefcase, FileText, Check, UploadCloud, File } from 'lucide-react';
+// Ajout de l'icône 'X' pour le bouton de suppression
+import { Send, ChevronRight, ChevronLeft, User, Briefcase, FileText, Check, UploadCloud, X } from 'lucide-react';
 
 export default function FicheFormateur() {
   const [step, setStep] = useState(1);
@@ -11,10 +12,8 @@ export default function FicheFormateur() {
     civilite: '', qualite: '', prenom: '', nom: '', telephone: '',
     adresse: '', adresse2: '', ville: '', codePostal: '',
     email: '', siteWeb: '', linkedin: '', facebook: '',
-    
     domaineExpertise: '', anneesExperience: '',
     veilleInfo: '', methodeVeille: [], 
-    
     tarifHoraire: '', tva: ''
   });
 
@@ -32,11 +31,33 @@ export default function FicheFormateur() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // --- NOUVEAU : Limite à 5 Mo par fichier ---
   const handleFileChange = (e) => {
     const { name, files: uploadedFiles } = e.target;
     if (uploadedFiles.length > 0) {
-      setFiles(prev => ({ ...prev, [name]: uploadedFiles[0] }));
+      const file = uploadedFiles[0];
+      const maxSize = 5 * 1024 * 1024; // 5 Mo
+
+      if (file.size > maxSize) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Fichier trop volumineux',
+          text: `Le fichier "${file.name}" dépasse la limite autorisée de 5 Mo. Veuillez le compresser.`,
+          confirmButtonColor: '#d33'
+        });
+        e.target.value = null; // Réinitialise l'input
+        return; 
+      }
+
+      setFiles(prev => ({ ...prev, [name]: file }));
     }
+  };
+
+  // --- NOUVEAU : Fonction pour supprimer un fichier ---
+  const handleRemoveFile = (name, e) => {
+    e.preventDefault(); // Empêche la soumission du formulaire
+    e.stopPropagation(); // Empêche de déclencher le <label> qui ouvre la sélection de fichier
+    setFiles(prev => ({ ...prev, [name]: null }));
   };
 
   const setSelection = (field, value) => {
@@ -55,49 +76,34 @@ export default function FicheFormateur() {
   // --- VALIDATION STRICTE ---
   const validateStep = (currentStep) => {
     const errors = [];
-
     if (currentStep === 1) {
       if (!formData.nom) errors.push("Nom");
-      // Note: Prénom n'était pas marqué (Nécessaire) dans ton texte, mais c'est mieux de l'avoir.
-      // Je mets obligatoire ce qui avait (Nécessaire)
       if (!formData.telephone) errors.push("Téléphone");
       if (!formData.email) errors.push("E-mail");
     }
-
     if (currentStep === 2) {
       if (!formData.domaineExpertise) errors.push("Domaines d'expertise");
       if (!formData.anneesExperience) errors.push("Années d'expérience");
       if (!formData.veilleInfo) errors.push("Veille informationnelle (Oui/Non)");
-      
-      // Si Veille = Oui, alors Méthode est obligatoire
       if (formData.veilleInfo === 'Oui' && formData.methodeVeille.length === 0) {
         errors.push("Méthode de veille");
       }
     }
-
-    if (currentStep === 3) {
-        // Validation finale avant envoi (Tarif, TVA, Fichiers)
-        // Cette validation se fera dans handleSubmit pour bloquer l'envoi
-    }
-
     return errors;
   };
 
-  // Navigation
   const handleNext = (e) => {
     e.preventDefault();
-    
     const errors = validateStep(step);
     if (errors.length > 0) {
       Swal.fire({
         icon: 'warning',
         title: 'Champs manquants',
-        html: `Veuillez remplir :<br/><ul style="text-align:left; margin-top:10px;">${errors.map(e => `<li>- ${e}</li>`).join('')}</ul>`,
-        confirmButtonColor: '#3b0764' // Purple-950
+        html: `Veuillez remplir :<br/><ul style="text-align:left; margin-top:10px;">${errors.map(err => `<li>- ${err}</li>`).join('')}</ul>`,
+        confirmButtonColor: '#3b0764' 
       });
       return;
     }
-
     setStep(prev => Math.min(prev + 1, 3));
     window.scrollTo(0, 0);
   };
@@ -112,12 +118,11 @@ export default function FicheFormateur() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Validation Étape 3 (Fichiers & Admin)
+    // Validation Étape 3
     const errors = [];
     if (!formData.tarifHoraire) errors.push("Tarif horaire");
     if (!formData.tva) errors.push("Assujetti TVA");
     
-    // Fichiers Obligatoires
     if (!files.justificatifNDA) errors.push("Justificatif NDA (Fichier)");
     if (!files.cv) errors.push("CV (Fichier)");
     if (!files.kbis) errors.push("Kbis (Fichier)");
@@ -127,10 +132,26 @@ export default function FicheFormateur() {
         Swal.fire({
           icon: 'warning',
           title: 'Documents manquants',
-          html: `Veuillez fournir :<br/><ul style="text-align:left; margin-top:10px;">${errors.map(e => `<li>- ${e}</li>`).join('')}</ul>`,
+          html: `Veuillez fournir :<br/><ul style="text-align:left; margin-top:10px;">${errors.map(err => `<li>- ${err}</li>`).join('')}</ul>`,
           confirmButtonColor: '#3b0764'
         });
         return;
+    }
+
+    // --- NOUVEAU : Vérification du poids total (Max 25 Mo) ---
+    let totalSize = 0;
+    Object.values(files).forEach(file => {
+      if (file) totalSize += file.size;
+    });
+
+    if (totalSize > 25 * 1024 * 1024) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Poids total trop élevé',
+        text: 'L\'ensemble de vos fichiers dépasse la limite de 25 Mo. Veuillez les compresser avant l\'envoi.',
+        confirmButtonColor: '#d33'
+      });
+      return;
     }
 
     // Préparation FormData
@@ -150,13 +171,8 @@ export default function FicheFormateur() {
     });
 
     try {
-     
-    
-  
-const response = await axios.post('/api/formateur/inscription', dataToSend);
+      const response = await axios.post('/api/formateur/inscription', dataToSend);
       
-      
-
       if (response.status === 200) {
         Swal.fire({ 
             title: 'Candidature envoyée !', 
@@ -167,9 +183,18 @@ const response = await axios.post('/api/formateur/inscription', dataToSend);
       }
     } catch (error) {
       console.error(error);
+      Swal.close();
+      
+      let errorMessage = "Erreur lors de l'envoi. Vérifiez votre connexion ou réessayez plus tard.";
+      
+      // Gestion spécifique de l'erreur 413 (Nginx)
+      if (error.response && error.response.status === 413) {
+          errorMessage = "Le poids TOTAL de vos fichiers est refusé par le serveur (Limite : 25 Mo). Veuillez les compresser.";
+      }
+
       Swal.fire({ 
           title: 'Erreur', 
-          text: "Erreur lors de l'envoi. Vérifiez que le serveur tourne et que vos fichiers ne sont pas trop volumineux.", 
+          text: errorMessage, 
           icon: 'error',
           confirmButtonColor: '#d33'
       });
@@ -182,7 +207,6 @@ const response = await axios.post('/api/formateur/inscription', dataToSend);
     <div className="min-h-screen bg-slate-50">
       {/* Banner */}
       <div className="relative h-64 bg-purple-950 flex items-center justify-center overflow-hidden">
-        {/* Background Overlay effect */}
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="text-center text-white px-4 relative z-10">
           <h1 className="text-4xl font-extrabold mb-2">FICHE FORMATEUR</h1>
@@ -191,7 +215,6 @@ const response = await axios.post('/api/formateur/inscription', dataToSend);
       </div>
 
       <div className="max-w-4xl mx-auto px-4 -mt-10 relative z-10 mb-16">
-        
         {/* Stepper */}
         <div className="bg-white rounded-xl shadow-md p-4 mb-6 flex justify-between items-center">
            <StepIcon num={1} curr={step} icon={<User size={18}/>} />
@@ -204,7 +227,7 @@ const response = await axios.post('/api/formateur/inscription', dataToSend);
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
           <form className="p-8" onKeyDown={handleKeyDown}>
             
-            {/* === ETAPE 1 : IDENTITÉ === */}
+            {/* ETAPES 1 & 2 IDENTIQUES AU CODE PRÉCÉDENT */}
             {step === 1 && (
               <div className="space-y-6 animate-fade-in-up">
                 <h2 className="text-xl font-bold text-purple-950 border-b pb-2 uppercase">1. Identité & Coordonnées</h2>
@@ -254,21 +277,17 @@ const response = await axios.post('/api/formateur/inscription', dataToSend);
               </div>
             )}
 
-            {/* === ETAPE 2 : EXPERTISE === */}
             {step === 2 && (
               <div className="space-y-8 animate-fade-in-up">
                 <h2 className="text-xl font-bold text-purple-950 border-b pb-2 uppercase">2. Expertise & Veille</h2>
-
                 <div>
                     <Label req>Domaine(s) d'expertise(s)</Label>
                     <textarea name="domaineExpertise" rows="3" value={formData.domaineExpertise} onChange={handleChange} className="input-modern" placeholder="Détaillez vos domaines..."/>
                 </div>
-
                 <div>
                     <Label req>Nombre d'années d'expérience</Label>
                     <input type="text" name="anneesExperience" value={formData.anneesExperience} onChange={handleChange} className="input-modern"/>
                 </div>
-
                 <div className="bg-purple-50 p-6 rounded-xl border border-purple-100">
                     <Label req>Avez-vous mis en place une veille informationnelle ?</Label>
                     <p className="text-xs text-purple-800 mb-3">La veille sert à rester informé des nouvelles publications dans un domaine précis.</p>
@@ -276,7 +295,6 @@ const response = await axios.post('/api/formateur/inscription', dataToSend);
                         <RadioCard label="Oui" selected={formData.veilleInfo === 'Oui'} onClick={() => setSelection('veilleInfo', 'Oui')} />
                         <RadioCard label="Non" selected={formData.veilleInfo === 'Non'} onClick={() => setSelection('veilleInfo', 'Non')} />
                     </div>
-
                     {formData.veilleInfo === 'Oui' && (
                         <div className="mt-4 pt-4 border-t border-purple-200">
                             <Label req>Si oui, quelle(s) méthode(s) utilisez-vous ?</Label>
@@ -312,14 +330,14 @@ const response = await axios.post('/api/formateur/inscription', dataToSend);
 
                 <div className="mt-6">
                     <h3 className="font-bold text-purple-900 mb-4 flex items-center bg-purple-50 p-3 rounded-lg"><UploadCloud className="mr-2"/> Documents à transmettre</h3>
-                    <p className="text-xs text-slate-500 mb-4 ml-1">Formats acceptés : PDF, JPG, PNG. Taille max : 10 Mo par fichier.</p>
+                    <p className="text-xs text-slate-500 mb-4 ml-1">Formats acceptés : PDF, JPG, PNG. Taille max : 5 Mo par fichier (Total max : 25 Mo).</p>
                     
                     <div className="space-y-4">
-                        <FileInput label="Justificatif NDA" req name="justificatifNDA" file={files.justificatifNDA} onChange={handleFileChange} />
-                        <FileInput label="Justificatif déclaration d'activité" name="declarationActivite" file={files.declarationActivite} onChange={handleFileChange} />
-                        <FileInput label="CV" req name="cv" file={files.cv} onChange={handleFileChange} />
-                        <FileInput label="Kbis ou Extrait Insee" req name="kbis" file={files.kbis} onChange={handleFileChange} />
-                        <FileInput label="Pièce d'identité (Recto/Verso)" req name="pieceIdentite" file={files.pieceIdentite} onChange={handleFileChange} />
+                        <FileInput label="Justificatif NDA" req name="justificatifNDA" file={files.justificatifNDA} onChange={handleFileChange} onRemove={handleRemoveFile} />
+                        <FileInput label="Justificatif déclaration d'activité" name="declarationActivite" file={files.declarationActivite} onChange={handleFileChange} onRemove={handleRemoveFile} />
+                        <FileInput label="CV" req name="cv" file={files.cv} onChange={handleFileChange} onRemove={handleRemoveFile} />
+                        <FileInput label="Kbis ou Extrait Insee" req name="kbis" file={files.kbis} onChange={handleFileChange} onRemove={handleRemoveFile} />
+                        <FileInput label="Pièce d'identité (Recto/Verso)" req name="pieceIdentite" file={files.pieceIdentite} onChange={handleFileChange} onRemove={handleRemoveFile} />
                     </div>
                 </div>
               </div>
@@ -343,7 +361,6 @@ const response = await axios.post('/api/formateur/inscription', dataToSend);
                 </button>
               )}
             </div>
-
           </form>
         </div>
       </div>
@@ -385,23 +402,40 @@ const CheckboxRow = ({ label, selected, onClick }) => (
     </div>
 );
 
-const FileInput = ({ label, name, file, onChange, req }) => (
+// --- NOUVEAU : Composant FileInput avec bouton supprimer ---
+const FileInput = ({ label, name, file, onChange, onRemove, req }) => (
     <div className={`border-2 border-dashed rounded-xl p-4 transition flex flex-col justify-center items-center text-center group ${file ? 'border-green-500 bg-green-50' : 'border-slate-300 hover:border-purple-400 hover:bg-purple-50'}`}>
         <div className="w-full text-left mb-2">
             <Label req={req}>{label}</Label>
         </div>
+        
+        {/* On masque l'input natif */}
         <input type="file" id={name} name={name} onChange={onChange} className="hidden" />
-        <label htmlFor={name} className="cursor-pointer w-full flex flex-col items-center">
-            {file ? (
-                <div className="flex items-center text-green-700 font-semibold">
-                    <FileText className="mr-2" /> {file.name}
+        
+        {file ? (
+            // Affichage quand un fichier est sélectionné (avec bouton supprimer)
+            <div className="flex items-center justify-between w-full px-4 py-2 bg-white rounded-lg border border-green-200 shadow-sm">
+                <div className="flex items-center text-green-700 font-semibold truncate">
+                    <FileText className="mr-2 flex-shrink-0" size={20} />
+                    <span className="truncate max-w-[200px] md:max-w-md">{file.name}</span>
                 </div>
-            ) : (
+                <button
+                    type="button"
+                    onClick={(e) => onRemove(name, e)}
+                    className="ml-4 text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-full transition"
+                    title="Supprimer ce fichier"
+                >
+                    <X size={20} />
+                </button>
+            </div>
+        ) : (
+            // Affichage quand aucun fichier n'est sélectionné
+            <label htmlFor={name} className="cursor-pointer w-full flex flex-col items-center">
                 <div className="text-slate-500 group-hover:text-purple-700">
                     <UploadCloud className="mx-auto mb-2 h-8 w-8 text-slate-400 group-hover:text-purple-500" />
-                    <span className="text-sm">Cliquez pour déposer un fichier</span>
+                    <span className="text-sm">Cliquez pour déposer un fichier (Max: 5 Mo)</span>
                 </div>
-            )}
-        </label>
+            </label>
+        )}
     </div>
 );
