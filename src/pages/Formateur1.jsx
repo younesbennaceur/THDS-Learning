@@ -152,7 +152,8 @@ export default function FicheFormateur() {
     try {
      
     
-      const response = await axios.post('/api/formateur/inscription', formData);
+  
+const response = await axios.post('/api/formateur/inscription', dataToSend);
       
       
 
