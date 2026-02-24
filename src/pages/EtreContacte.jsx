@@ -29,7 +29,7 @@ export default function ContactPageModern() {
 
     try {
       
-       await axios.post('api/contact/contact-complet', formData);
+       await axios.post('/api/contact/contact-complet', formData);
       // 👆 FIN DE LA MODIFICATION 👆
 
       Swal.fire({

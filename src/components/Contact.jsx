@@ -29,7 +29,7 @@ export default function Contact() {
 
     try {
     
-       await axios.post('api/contact/contact-complet', formData);
+       await axios.post('/api/contact/contact-complet', formData);
       Swal.fire({
         icon: 'success',
         title: 'Demande envoyée !',
