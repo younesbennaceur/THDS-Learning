@@ -338,15 +338,21 @@ export default function FicheAnalyseModern() {
                 {/* Q1 */}
               
                 {/* --- MENU DÉROULANT POUR LES FORMATIONS --- */}
-                <div>
-                   <Label req>1. Quelle formation souhaitez-vous suivre ?</Label>
-                   <select name="intituleFormation" value={formData.intituleFormation} onChange={handleChange} className="input-modern">
-                     <option value="">Sélectionnez une formation...</option>
-                     {optionsFormations.map(opt => (
-                       <option key={opt} value={opt}>{opt}</option>
-                     ))}
-                   </select>
-                </div>
+                {/* Q1 - Harmonisé avec formationVisee */}
+<div>
+   <Label>1. Quelle formation souhaitez-vous suivre ? <span className="text-red-500">*</span></Label>
+   <select 
+     name="formationVisee" // Changé de intituleFormation à formationVisee
+     value={formData.formationVisee} // Changé de intituleFormation à formationVisee
+     onChange={handleChange} 
+     className="input-modern"
+   >
+     <option value="">Sélectionnez une formation...</option>
+     {optionsFormations.map(opt => (
+       <option key={opt} value={opt}>{opt}</option>
+     ))}
+   </select>
+</div>
                 
                 {/* Q2 */}
                 <div>
