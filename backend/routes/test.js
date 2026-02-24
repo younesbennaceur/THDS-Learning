@@ -330,9 +330,9 @@ router.post('/test-ia', async (req, res) => {
 
         // --- 2. BARÈME DE NIVEAU (Adapté pour l'IA) ---
         const baremes = [
-            { min: 0, max: 8, niveau: "Débutant", label: "Initiation requise", color: "#ef4444", desc: "Découverte des concepts de base de l'IA. Besoin d'acquérir les fondamentaux techniques et éthiques." },
-            { min: 9, max: 14, niveau: "Intermédiaire", label: "Bases acquises", color: "#f97316", desc: "Bonne compréhension globale de l'IA. Prêt à approfondir les techniques de prompting et l'inclusivité." },
-            { min: 15, max: 20, niveau: "Avancé", label: "Maîtrise de l'IA", color: "#10b981", desc: "Excellente maîtrise des concepts, des prompts complexes, ainsi que des enjeux éthiques et réglementaires." }
+            { min: 0, max: 8, niveau: "Débutant",  color: "#ef4444", desc: "Découverte des concepts de base de l'IA. Besoin d'acquérir les fondamentaux techniques et éthiques." },
+            { min: 9, max: 14, niveau: "Intermédiaire",  color: "#f97316", desc: "Bonne compréhension globale de l'IA. Prêt à approfondir les techniques de prompting et l'inclusivité." },
+            { min: 15, max: 20, niveau: "Avancé",  color: "#10b981", desc: "Excellente maîtrise des concepts, des prompts complexes, ainsi que des enjeux éthiques et réglementaires." }
         ];
 
         const result = baremes.find(b => scores.total >= b.min && scores.total <= b.max) || baremes[0];
@@ -382,7 +382,7 @@ router.post('/test-ia', async (req, res) => {
                 doc.lineWidth(2).moveTo(40, 255).lineTo(180, 255).strokeColor(result.color).stroke();
 
                 doc.rect(40, 270, 160, 120).fillAndStroke(result.color, '#333');
-                doc.fillColor('#FFF').fontSize(26).text(result.niveau, 40, 310, { width: 160, align: 'center' });
+                doc.fillColor('#FFF').fontSize(22).text(result.niveau, 40, 310, { width: 160, align: 'center' });
                 doc.fontSize(12).text(result.label, 40, 350, { width: 160, align: 'center' });
 
                 doc.fillColor('#000');
