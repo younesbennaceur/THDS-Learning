@@ -41,7 +41,7 @@ router.post('/analyse-besoins', async (req, res) => {
             <li style="margin-bottom: 10px;"><strong>Besoin de connaissances :</strong><br>${connaissances}</li>
             ${data.commentairesAttentes ? `<li style="margin-top: 10px; background: #f8fafc; padding: 10px; border-left: 3px solid #6b21a8;"><em>" ${data.commentairesAttentes} "</em></li>` : ''}
           </ul>
-          <h3 style="color: #6b21a8; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px; margin-top: 25px;">⚙️ 3. Analyse & Logistique</h3>
+         <h3 style="color: #6b21a8; border-bottom: 2px solid #f3e8ff; padding-bottom: 5px; margin-top: 25px;">⚙️ 3. Analyse & Logistique</h3>
           <ul style="list-style: none; padding: 0;">
             <li><strong>Déjà formé sur ce thème ? :</strong> ${data.dejaParticipe}</li>
             <li style="margin-top: 10px;"><strong>Situation d'origine :</strong><br>${data.situationOrigine || 'Non renseigné'}</li>
@@ -49,9 +49,15 @@ router.post('/analyse-besoins', async (req, res) => {
             <li style="margin-top: 10px;"><strong>Financement :</strong><br>${financements}</li>
             <li><strong>Lieu :</strong> ${data.lieuRealisation}</li>
             <li><strong>Date démarrage :</strong> ${data.dateDemarrage}</li>
+            
+            {/* LIGNE AJOUTÉE ICI : Affichera "Oui" ou "Non" systématiquement */}
+            <li style="margin-top: 10px; color: #b91c1c; font-weight: bold;">Situation de handicap : ${data.handicap || 'Non précisé'}</li>
+            
             ${data.remarquesFinales ? `<li style="margin-top: 15px;"><strong>Remarques :</strong><br><em>${data.remarquesFinales}</em></li>` : ''}
           </ul>
-          ${data.handicap === 'Oui' ? `<div style="background-color: #fef2f2; padding: 15px; margin-top: 20px;"><strong style="color: #b91c1c;">⚠️ Handicap :</strong> ${data.contraintesHandicap}</div>` : ''}
+          
+          {/* Si c'est OUI, on garde l'encart pour afficher les précisions */}
+          ${data.handicap === 'Oui' ? `<div style="background-color: #fef2f2; padding: 15px; margin-top: 20px;"><strong style="color: #b91c1c;">⚠️ Contraintes liées au handicap :</strong> ${data.contraintesHandicap}</div>` : ''}
         </div>
       </div>
     `;
